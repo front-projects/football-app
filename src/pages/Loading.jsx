@@ -10,6 +10,8 @@ export default function Loading() {
   const [error, setIsError] = useState();
   const [imagesReady, setImagesReady] = useState();
   const userInfo = useSelector((state) => state.auth);
+  const balls = useSelector((state) => state.static.balls);
+  const players = useSelector((state) => state.static.players);
 
   const FallbackNavigate = ({ to }) => {
     const navigate = useNavigate();
@@ -30,12 +32,12 @@ export default function Loading() {
   }, []);
 
   useEffect(() => {
-    if (imagesReady && userInfo && userInfo !== "error") {
+    if (imagesReady && balls && players && userInfo && userInfo !== "error") {
       setIsReady(true);
-    } else if (userInfo == "error" || !userInfo) {
+    } else if (userInfo == "error") {
       setIsError(true);
     }
-  }, [imagesReady, userInfo]);
+  }, [imagesReady, userInfo, balls, players]);
 
   return (
     <>

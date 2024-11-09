@@ -8,81 +8,93 @@ const URL = "https://footballearn.site:6044/api/v1/"; //PROD
 const TYPE = "DEV";
 
 export const getAllPlayers = async () => {
-  if (TYPE == "DEV") {
-    return [
-      {
-        name: "Player One",
-        price: 1000,
-        value: 15.5,
-        photo: "./images/person/1.png",
-      },
-      {
-        name: "Player Two",
-        price: 2000,
-        value: 20,
-        photo: "./images/person/2.png",
-      },
-      {
-        name: "Player Three",
-        price: 1500,
-        value: 18.7,
-        photo: "./images/person/3.png",
-      },
-      {
-        name: "Player Four",
-        price: 1000,
-        value: 15.5,
-        photo: "./images/person/4.png",
-      },
-      {
-        name: "Player Five",
-        price: 2000,
-        value: 20,
-        photo: "./images/person/5.png",
-      },
-      {
-        name: "Player Fifth",
-        price: 1500,
-        value: 18.7,
-        photo: "./images/person/6.png",
-      },
-    ];
+  // if (TYPE == "DEV") {
+  //   return [
+  //     {
+  //       name: "Player One",
+  //       price: 1000,
+  //       value: 15.5,
+  //       photo: "./images/person/1.png",
+  //     },
+  //     {
+  //       name: "Player Two",
+  //       price: 2000,
+  //       value: 20,
+  //       photo: "./images/person/2.png",
+  //     },
+  //     {
+  //       name: "Player Three",
+  //       price: 1500,
+  //       value: 18.7,
+  //       photo: "./images/person/3.png",
+  //     },
+  //     {
+  //       name: "Player Four",
+  //       price: 1000,
+  //       value: 15.5,
+  //       photo: "./images/person/4.png",
+  //     },
+  //     {
+  //       name: "Player Five",
+  //       price: 2000,
+  //       value: 20,
+  //       photo: "./images/person/5.png",
+  //     },
+  //     {
+  //       name: "Player Fifth",
+  //       price: 1500,
+  //       value: 18.7,
+  //       photo: "./images/person/6.png",
+  //     },
+  //   ];
+  // }
+  try {
+    const response = await axios.get(URL + "player/shop/all");
+    return response.data;
+  } catch {
+    return false;
   }
 };
 export const getAllBalls = async () => {
-  if (TYPE == "DEV") {
-    return [
-      {
-        name: "Test",
-        price: 100,
-        photo: "./images/ball/1.png",
-      },
-      {
-        name: "Test",
-        price: 100,
-        photo: "./images/ball/2.png",
-      },
-      {
-        name: "Test",
-        price: 100,
-        photo: "./images/ball/3.png",
-      },
-      {
-        name: "Test",
-        price: 100,
-        photo: "./images/ball/4.png",
-      },
-      {
-        name: "Test",
-        price: 100,
-        photo: "./images/ball/5.png",
-      },
-      {
-        name: "Test",
-        price: 100,
-        photo: "./images/ball/6.png",
-      },
-    ];
+  // if (TYPE == "DEV") {
+  //   return [
+  //     {
+  //       name: "Test",
+  //       price: 100,
+  //       photo: "./images/ball/1.png",
+  //     },
+  //     {
+  //       name: "Test",
+  //       price: 100,
+  //       photo: "./images/ball/2.png",
+  //     },
+  //     {
+  //       name: "Test",
+  //       price: 100,
+  //       photo: "./images/ball/3.png",
+  //     },
+  //     {
+  //       name: "Test",
+  //       price: 100,
+  //       photo: "./images/ball/4.png",
+  //     },
+  //     {
+  //       name: "Test",
+  //       price: 100,
+  //       photo: "./images/ball/5.png",
+  //     },
+  //     {
+  //       name: "Test",
+  //       price: 100,
+  //       photo: "./images/ball/6.png",
+  //     },
+  //   ];
+  // }
+  try {
+    const response = await axios.get(URL + "ball/shop/all");
+    return response.data;
+  } catch {
+    return false;
   }
 };
 
@@ -215,16 +227,27 @@ export const getHistory = async () => {
 
 export const getUserInfo = async (id) => {
   if (TYPE == "DEV") {
-    return {
-      telegramId: "kleinheisterkamp",
-      username: "Nick_name",
-      balance: 0.0,
-      currentBallId: 1,
-      currentPlayerId: 1,
-      counterFriend: 0,
-      loginDate: null,
-      energy: 5,
-    };
+    try {
+      const response = await axios.get(
+        URL + "user/kleinheisterkamp/{uniqueLink}",
+      );
+      if (response) {
+        return response.data;
+      }
+    } catch (err) {
+      console.log(err);
+      return "error";
+    }
+    // return {
+    //   telegramId: "kleinheisterkamp",
+    //   username: "Nick_name",
+    //   balance: 0.0,
+    //   currentBallId: 1,
+    //   currentPlayerId: 1,
+    //   counterFriend: 0,
+    //   loginDate: null,
+    //   energy: 5,
+    // };
   } else {
     try {
       const response = await axios.get(URL + "user/" + id);

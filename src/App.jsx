@@ -20,9 +20,10 @@ import History from "./pages/History";
 import CountrySelect from "./pages/CountrySelect";
 import CryptoSelect from "./pages/CryptoSelect";
 import Withdraw from "./pages/Withdraw";
-import { getUserInfo } from "./util/back/requests";
+import { getAllBalls, getAllPlayers, getUserInfo } from "./util/back/requests";
 import { useDispatch } from "react-redux";
 import { setUser } from "./store/auth-slice";
+import { setStatic } from "./store/static-slice";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,9 +40,12 @@ function App() {
     WebApp.expand();
     // console.log(WebApp);
     const fetchData = async () => {
-      const response = await getUserInfo("test");
-      if (response) {
-        dispatch(setUser(response));
+      const user = await getUserInfo("test");
+      const balls = await getAllBalls();
+      const players = await getAllPlayers();
+      if (user && balls && players) {
+        dispatch(setUser(user));
+        dispatch(setStatic({ balls: balls, players: players }));
       }
     };
     fetchData();

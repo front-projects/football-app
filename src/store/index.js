@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./auth-slice";
+import { staticReducer } from "./static-slice";
 // import { fetchInitialUser, userReducer } from "./user-slice";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    static: staticReducer,
   },
 });
 
