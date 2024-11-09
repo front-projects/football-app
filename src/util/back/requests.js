@@ -259,3 +259,22 @@ export const getUserInfo = async (id) => {
     }
   }
 };
+
+export const updateUserName = async (id, name) => {
+  try {
+    const response = await axios.put(
+      URL + "user/update/nickname/" + id,
+      '"' + name + '"',
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    if (response) {
+      return true;
+    }
+  } catch (err) {
+    return false;
+  }
+};

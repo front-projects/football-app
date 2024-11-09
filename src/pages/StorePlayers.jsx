@@ -2,46 +2,21 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import { useEffect, useRef, useState } from "react";
-import { getAllPlayers } from "../util/back/requests";
+import { useRef } from "react";
 import { chunkArray } from "../util/front/func";
 import { ButtonLeft, ButtonRight } from "../components/UI/icons";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 import PlayerItem from "../components/Store/PlayerItem";
+import { useSelector } from "react-redux";
 
 export default function StorePlayers() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [players, setPlayers] = useState([]);
+  const players = useSelector((state) => state.static.players);
   const swiperRef = useRef(null);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const fetchData = async () => {
-      try {
-        const response = await getAllPlayers();
-        setPlayers(response);
-      } catch {
-        setError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
 
   const groupedPlayers = chunkArray(players, 4);
 
-  return isLoading ? (
-    <div className="w-full h-full flex items-center justify-center text-3xl">
-      Loading...
-    </div>
-  ) : error ? (
-    <p className="w-full h-full flex items-center justify-center text-3xl text-red-600 font- px-4 text-center">
-      Something went wrong.
-    </p>
-  ) : (
+  return (
     <>
       <Swiper
         spaceBetween={50}

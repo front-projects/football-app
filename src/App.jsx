@@ -40,6 +40,7 @@ function App() {
     WebApp.expand();
     // console.log(WebApp);
     const fetchData = async () => {
+      // WebApp.initDataUnsafe.user.username
       const user = await getUserInfo("test");
       const balls = await getAllBalls();
       const players = await getAllPlayers();

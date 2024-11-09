@@ -1,5 +1,4 @@
 const PlayerItem = ({ player }) => {
-  console.log(player);
   return (
     <div className="relative w-full min-h-[80%] h-[80%] bg-white/40 flex flex-col items-center rounded-[14px] mt-10">
       {player.value && (
