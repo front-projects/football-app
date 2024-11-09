@@ -34,11 +34,11 @@ function App() {
     WebApp.ready();
     WebApp.expand();
     // console.log(WebApp);
-    if (WebApp.platform !== "weba") {
-      WebApp.ready();
-    } else {
-      window.location.href = "https://telegram.org/";
-    }
+    // if (WebApp.platform !== "weba") {
+    WebApp.ready();
+    // } else {
+    //   window.location.href = "https://telegram.org/";
+    // }
   }, []);
 
   return (
