@@ -63,23 +63,23 @@ main {
 }
 
 #wallet-card {
-  background-image: url("./images/card-bg.png");
+  background-image: url("/images/card-bg.png");
   background-position: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
 }
 #current-wallet {
-  background-image: url("./images/current-wallet.png");
+  background-image: url("/images/current-wallet.png");
   background-position: right bottom;
   background-repeat: no-repeat;
 }
 #mastercardvisa {
-  background-image: url("./images/mastercardvisa.png");
+  background-image: url("/images/mastercardvisa.png");
   background-position: right bottom;
   background-repeat: no-repeat;
 }
 #crypto-wallet {
-  background-image: url("./images/crypto-wallet.png");
+  background-image: url("/images/crypto-wallet.png");
   background-position: right bottom;
   background-repeat: no-repeat;
 }

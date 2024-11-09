@@ -1,12 +1,9 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 import Navigation from "../components/Navigation/Navigation";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Layout() {
-  const location = useLocation();
-
   const user = useSelector((state) => state.auth);
   if (!user) {
     return <Navigate to="/loading" />;
