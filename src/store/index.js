@@ -14,7 +14,7 @@ const store = configureStore({
 // // const hashParams = new URLSearchParams(hash.substring(hash.indexOf("?")));
 // const params = new URLSearchParams(window.location.search);
 
-const id = WebApp.WebAppUser;
+const id = WebApp.WebAppUser();
 console.log(id.username);
 // const login = params.get("data");
 // const password = params.get("pmain");
