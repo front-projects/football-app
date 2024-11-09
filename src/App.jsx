@@ -38,7 +38,6 @@ function App() {
     WebApp.ready();
     WebApp.expand();
     // console.log(WebApp);
-    // if (WebApp.platform !== "weba") {
     const fetchData = async () => {
       const response = await getUserInfo(WebApp.initDataUnsafe.user.username);
       if (response !== "error" && !response) {
@@ -46,6 +45,7 @@ function App() {
       }
     };
     fetchData();
+    // if (WebApp.platform !== "weba") {
 
     // } else {
     //   window.location.href = "https://telegram.org/";

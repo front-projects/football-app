@@ -214,12 +214,23 @@ export const getHistory = async () => {
 };
 
 export const getUserInfo = async (id) => {
-  try {
-    const response = await axios.get(URL + "/user/" + id);
-    if (response) {
-      console.log(response.data);
+  if (TYPE == "DEV") {
+    try {
+      const response = await axios.get(URL + "/user/kleinheisterkamp");
+      if (response) {
+        console.log(response.data);
+      }
+    } catch {
+      return "error";
     }
-  } catch {
-    return "error";
+  } else {
+    try {
+      const response = await axios.get(URL + "/user/" + id);
+      if (response) {
+        console.log(response.data);
+      }
+    } catch {
+      return "error";
+    }
   }
 };
