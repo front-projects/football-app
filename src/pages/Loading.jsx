@@ -9,7 +9,7 @@ export default function Loading() {
   const [isReady, setIsReady] = useState();
   const [error, setIsError] = useState();
   const [imagesReady, setImagesReady] = useState();
-  const userInfo = useSelector((state) => state.user);
+  const userInfo = useSelector((state) => state.auth);
 
   const FallbackNavigate = ({ to }) => {
     const navigate = useNavigate();
@@ -19,36 +19,23 @@ export default function Loading() {
     return null;
   };
 
-  // useEffect(() => {
-  //   loadImages(imagesToLoad)
-  //     .then(() => {
-  //       setImagesReady(true);
-  //     })
-  //     .catch(() => {
-  //       setIsError(true);
-  //     });
-  // }, []);
+  useEffect(() => {
+    loadImages(imagesToLoad)
+      .then(() => {
+        setImagesReady(true);
+      })
+      .catch(() => {
+        setIsError(true);
+      });
+  }, []);
 
-  // useEffect(() => {
-  //   if (
-  //     imagesReady &&
-  //     userInfo.status == "succeeded"
-  //   ) {
-  //     setIsReady(true);
-  //   } else if (
-  //     userInfo.status == "failed"
-  //   ) {
-  //     setIsError(true);
-  //   }
-  // }, [imagesReady, tokenInfo, usersInfo, userInfo]);
-
-  // useEffect(() => {
-  //   if (imagesReady && userInfo.status == "succeeded") {
-  //     setIsReady(true);
-  //   } else if (userInfo.status == "failed") {
-  //     setIsError(true);
-  //   }
-  // }, [imagesReady, userInfo]);
+  useEffect(() => {
+    if (imagesReady && userInfo && userInfo !== "error") {
+      setIsReady(true);
+    } else if (userInfo == "error") {
+      setIsError(true);
+    }
+  }, [imagesReady, userInfo]);
 
   return (
     <>
@@ -71,8 +58,8 @@ export default function Loading() {
         </div>
       </main>
 
-      {/* {isReady && <FallbackNavigate to="/menu" />} */}
-      <FallbackNavigate to="/menu/home" />
+      {isReady && <FallbackNavigate to="/menu/home" />}
+      {/* <FallbackNavigate to="/menu/home" /> */}
     </>
   );
 }
