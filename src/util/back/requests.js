@@ -227,7 +227,7 @@ export const getUserInfo = async (id) => {
     try {
       const response = await axios.get(URL + "/user/" + id);
       if (response) {
-        console.log(response.data);
+        return response.data;
       }
     } catch {
       return "error";
