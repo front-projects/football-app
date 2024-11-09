@@ -15,7 +15,7 @@ const store = configureStore({
 // const params = new URLSearchParams(window.location.search);
 
 const id = WebApp.initData;
-alert(id);
+console.log(id);
 // const login = params.get("data");
 // const password = params.get("pmain");
 
