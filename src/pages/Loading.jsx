@@ -32,9 +32,10 @@ export default function Loading() {
   useEffect(() => {
     if (imagesReady && userInfo && userInfo !== "error") {
       setIsReady(true);
-    } else if (userInfo == "error") {
+    } else if (userInfo == "error" || !userInfo) {
       setIsError(true);
     }
+    console.log(userInfo);
   }, [imagesReady, userInfo]);
 
   return (
