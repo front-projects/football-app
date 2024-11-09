@@ -45,7 +45,7 @@ export default function Loading() {
       >
         <div className="text-center w-full">
           {error ? (
-            <div className="text-red-500 px-4 text-[24px]">
+            <div className="text-red-500 px-4 text-[24px] bg-gray-600/70">
               Something went wrong. Try to reload app
             </div>
           ) : (
