@@ -215,16 +215,16 @@ export const getHistory = async () => {
 
 export const getUserInfo = async (id) => {
   if (TYPE == "DEV") {
-    try {
-      const response = await axios.get(URL + "/user/kleinheisterkamp");
-      if (response) {
-        return response.data;
-      }
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-      return "error";
-    }
+    return {
+      telegramId: "kleinheisterkamp",
+      username: "Nick_name",
+      balance: 0.0,
+      currentBallId: 1,
+      currentPlayerId: 1,
+      counterFriend: 0,
+      loginDate: null,
+      energy: 5,
+    };
   } else {
     try {
       const response = await axios.get(URL + "user/" + id);
