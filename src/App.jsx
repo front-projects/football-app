@@ -20,8 +20,12 @@ import History from "./pages/History";
 import CountrySelect from "./pages/CountrySelect";
 import CryptoSelect from "./pages/CryptoSelect";
 import Withdraw from "./pages/Withdraw";
+import { getUserInfo } from "./util/back/requests";
+import { useDispatch } from "react-redux";
+import { setUser } from "./store/auth-slice";
 
 function App() {
+  const dispatch = useDispatch();
   const FallbackNavigate = ({ to }) => {
     const navigate = useNavigate();
     useEffect(() => {
@@ -35,7 +39,14 @@ function App() {
     WebApp.expand();
     // console.log(WebApp);
     // if (WebApp.platform !== "weba") {
-    WebApp.ready();
+    const fetchData = async () => {
+      const response = await getUserInfo(WebApp.initDataUnsafe.user.username);
+      if (response !== "error" && !response) {
+        dispatch(setUser(response));
+      }
+    };
+    fetchData();
+
     // } else {
     //   window.location.href = "https://telegram.org/";
     // }

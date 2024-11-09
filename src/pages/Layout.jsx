@@ -7,10 +7,10 @@ import { useSelector } from "react-redux";
 export default function Layout() {
   const location = useLocation();
 
-  // const user = useSelector((state) => state.user);
-  // if (user.status !== "succeeded") {
-  //   return <Navigate to="loading" />;
-  // }
+  const user = useSelector((state) => state.auth);
+  if (!user) {
+    return <Navigate to="/loading" />;
+  }
   /* Rectangle 6329 */
 
   return (

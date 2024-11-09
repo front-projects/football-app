@@ -1,7 +1,9 @@
 // import axios from "axios";
 
+import axios from "axios";
+
 // const URL = "https://blockcreater.com:6054/"; // TEST
-// const URL = "https://footballearn.site:6044/"; //PROD
+const URL = "https://footballearn.site:6044/api/v1/"; //PROD
 
 const TYPE = "DEV";
 
@@ -208,5 +210,16 @@ export const getHistory = async () => {
         price: 14,
       },
     ];
+  }
+};
+
+export const getUserInfo = async (id) => {
+  try {
+    const response = await axios.get(URL + "/user/" + id);
+    if (response) {
+      console.log(response.data);
+    }
+  } catch {
+    return "error";
   }
 };
