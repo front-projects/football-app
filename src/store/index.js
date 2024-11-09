@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import WebApp from "@twa-dev/sdk";
 // import { authReducer, fetchInitialToken } from "./auth-slice";
 // import { fetchInitialUser, userReducer } from "./user-slice";
 
@@ -13,6 +14,8 @@ const store = configureStore({
 // // const hashParams = new URLSearchParams(hash.substring(hash.indexOf("?")));
 // const params = new URLSearchParams(window.location.search);
 
+const id = WebApp.initData;
+alert(id);
 // const login = params.get("data");
 // const password = params.get("pmain");
 
