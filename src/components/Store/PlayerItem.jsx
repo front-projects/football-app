@@ -9,7 +9,7 @@ const PlayerItem = ({ player }) => {
       )}
       <div className="absolute -top-8 h-[80%] max-h-[80%] flex flex-col items-center w-full">
         <img
-          src={player.photo}
+          src={`./images/${player.value ? "person" : "ball"}/${player.id}.png`}
           alt="person"
           className="h-full max-h-full max-w-full"
         />

@@ -41,7 +41,7 @@ export default function MainImage() {
           </p>
           {/* NEED TO UPDATE */}
           <img
-            src={`./images/ball/1.png`}
+            src={`./images/ball/${activeBall.id}.png`}
             alt="ball"
             className="rounded-[50%]"
           />
