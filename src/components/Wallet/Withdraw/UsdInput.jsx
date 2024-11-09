@@ -29,6 +29,7 @@ const UsdInput = () => {
           className="rounded-[28px] py-[22px] pl-[20px]"
           placeholder="Enter an amount"
           value={100000}
+          readOnly
         />
         <div className="bg-white rounded-[28px] text-[#37C100] flex items-center justify-center w-full">
           USDT

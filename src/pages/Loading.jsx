@@ -42,13 +42,13 @@ export default function Loading() {
   //   }
   // }, [imagesReady, tokenInfo, usersInfo, userInfo]);
 
-  useEffect(() => {
-    if (imagesReady && userInfo.status == "succeeded") {
-      setIsReady(true);
-    } else if (userInfo.status == "failed") {
-      setIsError(true);
-    }
-  }, [imagesReady, userInfo]);
+  // useEffect(() => {
+  //   if (imagesReady && userInfo.status == "succeeded") {
+  //     setIsReady(true);
+  //   } else if (userInfo.status == "failed") {
+  //     setIsError(true);
+  //   }
+  // }, [imagesReady, userInfo]);
 
   return (
     <>
@@ -72,7 +72,7 @@ export default function Loading() {
       </main>
 
       {/* {isReady && <FallbackNavigate to="/menu" />} */}
-      <FallbackNavigate to="/menu" />
+      <FallbackNavigate to="/menu/home" />
     </>
   );
 }
