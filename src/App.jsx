@@ -50,7 +50,7 @@ function App() {
     // } else {
     //   window.location.href = "https://telegram.org/";
     // }
-  }, []);
+  }, [dispatch]);
 
   return (
     <Router>
