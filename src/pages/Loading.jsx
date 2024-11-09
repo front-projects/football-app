@@ -19,15 +19,15 @@ export default function Loading() {
     return null;
   };
 
-  useEffect(() => {
-    loadImages(imagesToLoad)
-      .then(() => {
-        setImagesReady(true);
-      })
-      .catch(() => {
-        setIsError(true);
-      });
-  }, []);
+  // useEffect(() => {
+  //   loadImages(imagesToLoad)
+  //     .then(() => {
+  //       setImagesReady(true);
+  //     })
+  //     .catch(() => {
+  //       setIsError(true);
+  //     });
+  // }, []);
 
   // useEffect(() => {
   //   if (
