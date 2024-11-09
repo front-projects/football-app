@@ -39,8 +39,8 @@ function App() {
     WebApp.expand();
     // console.log(WebApp);
     const fetchData = async () => {
-      const response = await getUserInfo(WebApp.initDataUnsafe.user.username);
-      if (response !== "error" && !response) {
+      const response = await getUserInfo("test");
+      if (response) {
         dispatch(setUser(response));
       }
     };

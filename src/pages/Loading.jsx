@@ -35,7 +35,6 @@ export default function Loading() {
     } else if (userInfo == "error" || !userInfo) {
       setIsError(true);
     }
-    console.log(userInfo);
   }, [imagesReady, userInfo]);
 
   return (

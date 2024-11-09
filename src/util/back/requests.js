@@ -220,12 +220,14 @@ export const getUserInfo = async (id) => {
       if (response) {
         return response.data;
       }
-    } catch {
+      console.log(response);
+    } catch (err) {
+      console.log(err);
       return "error";
     }
   } else {
     try {
-      const response = await axios.get(URL + "/user/" + id);
+      const response = await axios.get(URL + "user/" + id);
       if (response) {
         return response.data;
       }
