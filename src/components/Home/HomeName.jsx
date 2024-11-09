@@ -34,7 +34,7 @@ export default function HomeName() {
     <>
       {isError && <ErrorAlert />}
       <div
-        className="flex items-end gap-[10px] mt-[25px]"
+        className="flex items-center gap-[10px] mt-[25px]"
         onClick={() => setIsEditing(true)}
       >
         {isEditing ? (
@@ -46,7 +46,7 @@ export default function HomeName() {
             onChange={(e) => setName(e.target.value)}
           />
         ) : (
-          <p className="text-white/40 text-[14px]">{name}</p>
+          <p className="text-white/40 text-[18px]">{name}</p>
         )}
 
         <div className="h-max ">
@@ -70,7 +70,9 @@ export default function HomeName() {
               </div>
             </div>
           ) : (
-            <EditIcon />
+            <div className="mb-2">
+              <EditIcon />
+            </div>
           )}
         </div>
       </div>
