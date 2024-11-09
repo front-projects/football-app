@@ -85,5 +85,11 @@ main {
 }
 
 input{
-  background-color: inherit;
+  background-color: transparent;
+}
+input:focus{
+  outline: none;
+}
+input::placeholder{
+  color: rgba(255, 255, 255, .5)
 }
