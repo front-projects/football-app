@@ -10,6 +10,7 @@ import { setUser } from "../../store/auth-slice";
 import Modal from "../UI/Modal";
 import ErrorAlert from "../UI/errorAlert";
 import { setStatic } from "../../store/static-slice";
+import WebApp from "@twa-dev/sdk";
 
 const BallItem = ({ ball }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -70,6 +71,7 @@ const BallItem = ({ ball }) => {
 
   const updateBall = async () => {
     // setIsLoading(true);
+    WebApp.HapticFeedback.impactOccurred("soft");
     const response = await selectBall(user.telegramId, ball.id);
     if (response) {
       updateUser("UPDATE");
@@ -85,6 +87,7 @@ const BallItem = ({ ball }) => {
     setIsLoading(true);
     const response = await buyNewBall(user.telegramId, ball.id);
     if (response) {
+      WebApp.HapticFeedback.notificationOccurred("success");
       updateUser("BUY");
     } else {
       setIsError(true);
