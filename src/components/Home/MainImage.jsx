@@ -18,7 +18,7 @@ export default function MainImage() {
   );
 
   const clickHandler = useCallback((e) => {
-    WebApp.HapticFeedback.impactOccurred("soft");
+    WebApp.HapticFeedback.impactOccurred("heavy");
     const { clientX: x, clientY: y } = e;
     const newText = { id: nextIdRef.current, x: x - 50, y: y - 60 };
     setFloatingTexts((prev) => [...prev, newText]);
