@@ -30,6 +30,8 @@ export default function MainImage() {
   useEffect(() => {
     if (clicks > 0) {
       WebApp.enableClosingConfirmation();
+    } else {
+      WebApp.disableClosingConfirmation();
     }
   }, [clicks]);
 
