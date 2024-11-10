@@ -278,3 +278,22 @@ export const updateUserName = async (id, name) => {
     return false;
   }
 };
+
+export const updateBalance = async (id, clicks) => {
+  console.log(id, clicks);
+  try {
+    const response = axios.put(
+      URL + "user/update/balance/" + id,
+      '"' + clicks + '"',
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};

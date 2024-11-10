@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGesture } from "@use-gesture/react";
 import WebApp from "@twa-dev/sdk";
@@ -6,6 +6,7 @@ import { setUser } from "../../store/auth-slice";
 import gsap from "gsap";
 import ErrorAlert from "../UI/errorAlert";
 import { plusClick, resetClicks } from "../../store/clicks-slice";
+import { updateBalance } from "../../util/back/requests";
 
 export default function MainImage() {
   const staticData = useSelector((state) => state.static);
@@ -24,9 +25,30 @@ export default function MainImage() {
     (el) => el.id == userInfo.currentBallId,
   );
 
+  const clicksUpdate = async () => {
+    updateBalance(userInfo.telegramId, clicks);
+  };
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      // Викликаємо запит на оновлення балансу
+      clicksUpdate();
+
+      // Інтерфейс для підтвердження виходу з сторінки (необов'язково)
+      event.preventDefault();
+      event.returnValue = ""; // Це необхідно для деяких браузерів (наприклад, Chrome).
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Очистка при відключенні компонента
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   const clickHandler = useCallback(
     (e) => {
-      console.log(clicks);
       if (userInfo.energy == 0) {
         if (!isError) {
           setIsError(true);
@@ -37,7 +59,12 @@ export default function MainImage() {
 
         return;
       }
-
+      const clicksSubmit = async () => {
+        const response = await updateBalance(userInfo.telegramId, clicks);
+        if (response) {
+          dispatch(resetClicks());
+        }
+      };
       dispatch(plusClick());
       gsap.to(e.currentTarget, {
         rotation: "+=180",
@@ -48,12 +75,12 @@ export default function MainImage() {
       dispatch(
         setUser({
           ...userInfo,
-          energy: clicks == 500 ? userInfo.energy - 1 : userInfo.energy,
+          energy: clicks == 10 ? userInfo.energy - 1 : userInfo.energy,
           balance: userInfo.balance + activePlayer.value,
         }),
       );
-      if (clicks == 500) {
-        dispatch(resetClicks());
+      if (clicks == 10) {
+        clicksSubmit();
       }
       WebApp.HapticFeedback.impactOccurred("medium");
       const { clientX: x, clientY: y } = e;
