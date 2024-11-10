@@ -39,7 +39,7 @@ export default function MainImage() {
 
   useEffect(() => {
     WebApp.onEvent("web_app_close", () => {
-      updateBalance(userInfo.telegramId, clicks);
+      updateBalanceBeforeClosing(userInfo.telegramId, clicks);
     });
     window.addEventListener("beforeunload", () => {
       updateBalanceBeforeClosing(userInfo.telegramId, clicks);
