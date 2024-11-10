@@ -100,7 +100,7 @@ input::placeholder {
     transform: translateY(0);
   }
   100% {
-    opacity: 0.3;
+    opacity: 0.5;
     transform: translateY(-200px);
   }
 }

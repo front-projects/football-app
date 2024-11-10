@@ -79,7 +79,7 @@ export default function MainImage() {
           balance: userInfo.balance + activePlayer.value,
         }),
       );
-      if (clicks == 100) {
+      if (clicks == 500) {
         clicksSubmit();
       }
       WebApp.HapticFeedback.impactOccurred("medium");
@@ -95,6 +95,7 @@ export default function MainImage() {
       }, 2000);
       timeoutIdsRef.current.push(timeoutId);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [activePlayer.value, dispatch, userInfo, isError, clicks],
   );
 
@@ -110,7 +111,7 @@ export default function MainImage() {
       <div className="h-[60%] max-h-[419px] w-[298px] relative select-none">
         {floatingTexts.map((text) => (
           <span
-            className="floating-text z-10 font-semibold text-[20px] white"
+            className="floating-text z-10 font-semibold text-[24px] white"
             key={text.id}
             style={{ top: text.y, left: text.x }}
           >
