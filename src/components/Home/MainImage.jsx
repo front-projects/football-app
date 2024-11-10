@@ -19,21 +19,29 @@ export default function MainImage() {
     (el) => el.id == userInfo.currentBallId,
   );
 
-  const clickHandler = useCallback((e) => {
-    dispatch(
-      setUser({ ...userInfo, balance: userInfo.balance + activePlayer.value }),
-    );
-    WebApp.HapticFeedback.impactOccurred("medium");
-    const { clientX: x, clientY: y } = e;
-    const newText = { id: nextIdRef.current, x: x - 50, y: y - 60 };
-    setFloatingTexts((prev) => [...prev, newText]);
-    nextIdRef.current += 1;
+  const clickHandler = useCallback(
+    (e) => {
+      dispatch(
+        setUser({
+          ...userInfo,
+          balance: userInfo.balance + activePlayer.value,
+        }),
+      );
+      WebApp.HapticFeedback.impactOccurred("medium");
+      const { clientX: x, clientY: y } = e;
+      const newText = { id: nextIdRef.current, x: x - 50, y: y - 60 };
+      setFloatingTexts((prev) => [...prev, newText]);
+      nextIdRef.current += 1;
 
-    const timeoutId = setTimeout(() => {
-      setFloatingTexts((prev) => prev.filter((text) => text.id !== newText.id));
-    }, 2000);
-    timeoutIdsRef.current.push(timeoutId);
-  }, []);
+      const timeoutId = setTimeout(() => {
+        setFloatingTexts((prev) =>
+          prev.filter((text) => text.id !== newText.id),
+        );
+      }, 2000);
+      timeoutIdsRef.current.push(timeoutId);
+    },
+    [activePlayer.value, dispatch, userInfo],
+  );
 
   const click = useGesture({
     onPointerDown: ({ event }) => {
