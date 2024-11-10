@@ -50,7 +50,7 @@ export default function MainImage() {
   });
 
   return (
-    <div className="h-[60%] max-h-[419px] w-[298px] relative">
+    <div className="h-[60%] max-h-[419px] w-[298px] relative select-none">
       {floatingTexts.map((text) => (
         <span
           className="floating-text z-10 font-semibold text-[15px] text-black"
