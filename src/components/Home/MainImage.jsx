@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGesture } from "@use-gesture/react";
 import WebApp from "@twa-dev/sdk";
@@ -19,11 +19,13 @@ export default function MainImage() {
   const timeoutIdsRef = useRef([]);
   const timerRef = useRef(null);
 
-  const activePlayer = staticData.players.find(
-    (el) => el.id == userInfo.currentPlayerId,
+  const activePlayer = useMemo(
+    () => staticData.players.find((el) => el.id === userInfo.currentPlayerId),
+    [staticData.players, userInfo.currentPlayerId],
   );
-  const activeBall = staticData.balls.find(
-    (el) => el.id == userInfo.currentBallId,
+  const activeBall = useMemo(
+    () => staticData.balls.find((el) => el.id === userInfo.currentBallId),
+    [staticData.balls, userInfo.currentBallId],
   );
 
   const clicksUpdate = async () => {
