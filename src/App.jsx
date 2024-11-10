@@ -38,10 +38,11 @@ function App() {
   useEffect(() => {
     WebApp.ready();
     WebApp.expand();
+    WebApp.isClosingConfirmationEnabled = true;
     // console.log(WebApp);
     const fetchData = async () => {
       // WebApp.initDataUnsafe.user.username
-      const user = await getUserInfo(WebApp.initDataUnsafe.user.username);
+      const user = await getUserInfo("Test");
       const balls = await getAllBalls();
       const players = await getAllPlayers();
       if (user && balls && players) {

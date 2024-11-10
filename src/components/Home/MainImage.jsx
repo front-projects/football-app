@@ -26,36 +26,21 @@ export default function MainImage() {
   );
 
   const clicksUpdate = async () => {
-    updateBalance(userInfo.telegramId, clicks);
+    if (clicks > 0) {
+      const response = await updateBalance(userInfo.telegramId, clicks);
+      if (response) {
+        dispatch(resetClicks());
+      }
+    }
   };
 
-  // useEffect(() => {
-  //   const handleBeforeUnload = (event) => {
-  //     // Викликаємо запит на оновлення балансу
-  //     clicksUpdate();
-
-  //     // Інтерфейс для підтвердження виходу з сторінки (необов'язково)
-  //     event.preventDefault();
-  //     event.returnValue = ""; // Це необхідно для деяких браузерів (наприклад, Chrome).
-  //   };
-
-  //   window.addEventListener("beforeunload", handleBeforeUnload);
-
-  //   // Очистка при відключенні компонента
-  //   return () => {
-  //     window.removeEventListener("beforeunload", handleBeforeUnload);
-  //   };
-  // }, []);
-
   useEffect(() => {
-    WebApp.onEvent("close", () => {
-      // Викликаємо функцію для оновлення балансу перед закриттям
-      clicksUpdate();
-    });
+    return () => clicksUpdate();
   }, []);
 
   const clickHandler = useCallback(
     (e) => {
+      console.log(clicks);
       if (userInfo.energy == 0) {
         if (!isError) {
           setIsError(true);
@@ -82,11 +67,11 @@ export default function MainImage() {
       dispatch(
         setUser({
           ...userInfo,
-          energy: clicks == 10 ? userInfo.energy - 1 : userInfo.energy,
+          energy: clicks == 100 ? userInfo.energy - 1 : userInfo.energy,
           balance: userInfo.balance + activePlayer.value,
         }),
       );
-      if (clicks == 10) {
+      if (clicks == 100) {
         clicksSubmit();
       }
       WebApp.HapticFeedback.impactOccurred("medium");
