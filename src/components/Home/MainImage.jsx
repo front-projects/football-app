@@ -20,7 +20,7 @@ export default function MainImage() {
   const clickHandler = useCallback((e) => {
     WebApp.HapticFeedback.impactOccurred("soft");
     const { clientX: x, clientY: y } = e;
-    const newText = { id: nextIdRef.current, x: x, y: y };
+    const newText = { id: nextIdRef.current, x: x - 50, y: y - 60 };
     setFloatingTexts((prev) => [...prev, newText]);
     nextIdRef.current += 1;
 
@@ -40,11 +40,11 @@ export default function MainImage() {
     <div className="h-[60%] max-h-[419px] w-[298px] relative">
       {floatingTexts.map((text) => (
         <span
-          className="floating-text z-10 font-semibold text-[30px]"
+          className="floating-text z-10 font-semibold text-[15px]"
           key={text.id}
           style={{ top: text.y, left: text.x }}
         >
-          +1
+          +{activePlayer.value}
         </span>
       ))}
       <div className="h-full relative w-full">

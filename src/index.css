@@ -101,12 +101,12 @@ input::placeholder {
   }
   100% {
     opacity: 0;
-    transform: translateY(-130px);
+    transform: translateY(-200px);
   }
 }
 
 .floating-text {
   position: absolute;
-  animation: floatUp 2s forwards;
+  animation: floatUp 2.3s forwards;
   pointer-events: none;
 }
