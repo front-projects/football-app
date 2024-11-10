@@ -32,6 +32,17 @@ export default function MainImage() {
     if (clicks > 0) {
       const response = await updateBalance(userInfo.telegramId, clicks);
       if (response) {
+        if (
+          response.energy !== userInfo.energy ||
+          response.balance.toFixed(2) !== userInfo.balance.toFixed(2)
+        )
+          dispatch(
+            setUser({
+              ...userInfo,
+              balance: response.balance,
+              energy: response.energy,
+            }),
+          );
         dispatch(resetClicks());
       }
     }

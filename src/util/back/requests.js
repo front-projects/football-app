@@ -233,6 +233,8 @@ export const getUserInfo = async (id) => {
       );
       if (response) {
         return response.data;
+      } else {
+        return "error";
       }
     } catch (err) {
       console.log(err);
@@ -290,21 +292,10 @@ export const updateBalance = async (id, clicks) => {
         },
       },
     );
-    console.log(response);
-    return response;
+    console.log(response.data);
+    return response.data;
   } catch (err) {
     console.log(err);
     return false;
-  }
-};
-
-export const updateBalanceBeforeClosing = async (id, clicks) => {
-  const endpoint = `${URL}user/update/balance/${id}`;
-
-  const data = JSON.stringify({ clicks });
-  const success = navigator.sendBeacon(endpoint, data);
-
-  if (!success) {
-    console.error("Failed to send balance update via sendBeacon.");
   }
 };
