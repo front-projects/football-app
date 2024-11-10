@@ -105,22 +105,22 @@ export const getListUsers = async () => {
       poolUserDtoList: [
         {
           amount: 0,
-          nameSurname: "1",
+          nameSurname: "TestUser",
           photo: "string",
         },
         {
           amount: 100,
-          nameSurname: "2",
+          nameSurname: "TestUser2",
           photo: "string",
         },
         {
           amount: 0,
-          nameSurname: "3",
+          nameSurname: "TestUser3",
           photo: "string",
         },
         {
           amount: 0,
-          nameSurname: "4",
+          nameSurname: "TestUser6",
           photo: "string",
         },
         {

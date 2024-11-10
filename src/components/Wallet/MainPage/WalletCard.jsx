@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const WalletCard = () => {
+  const balance = useSelector((state) => state.auth.balance);
+
   return (
     <>
       <div
@@ -8,7 +11,9 @@ const WalletCard = () => {
         id="wallet-card"
       >
         <div className="w-max relative">
-          <h1 className="text-[40px] w-max leading-10">100 000 USD</h1>
+          <h1 className="text-[40px] w-max leading-10">
+            {balance ? balance.toFixed(2) : "0.00"} USD
+          </h1>
           <div className="w-full flex justify-end text-[14px]">
             {/* <div>**** 4562</div> */}
             <div>Your cash</div>
