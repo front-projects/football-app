@@ -1,10 +1,12 @@
 import { useCallback, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useGesture } from "@use-gesture/react";
 import WebApp from "@twa-dev/sdk";
+import { setUser } from "../../store/auth-slice";
 
 export default function MainImage() {
   const staticData = useSelector((state) => state.static);
+  const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.auth);
   const [floatingTexts, setFloatingTexts] = useState([]);
   const nextIdRef = useRef(0);
@@ -18,7 +20,10 @@ export default function MainImage() {
   );
 
   const clickHandler = useCallback((e) => {
-    WebApp.HapticFeedback.impactOccurred("heavy");
+    dispatch(
+      setUser({ ...userInfo, balance: userInfo.balance + activePlayer.value }),
+    );
+    WebApp.HapticFeedback.impactOccurred("medium");
     const { clientX: x, clientY: y } = e;
     const newText = { id: nextIdRef.current, x: x - 50, y: y - 60 };
     setFloatingTexts((prev) => [...prev, newText]);
