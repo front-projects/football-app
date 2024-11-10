@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGesture } from "@use-gesture/react";
 import WebApp from "@twa-dev/sdk";
 import { setUser } from "../../store/auth-slice";
+import gsap from "gsap";
 
 export default function MainImage() {
   const staticData = useSelector((state) => state.static);
@@ -21,6 +22,11 @@ export default function MainImage() {
 
   const clickHandler = useCallback(
     (e) => {
+      gsap.to(e.currentTarget, {
+        rotation: "+=360", // обертання по осі X на 360 градусів
+        duration: 0.6,
+        ease: "power2.inOut",
+      });
       dispatch(
         setUser({
           ...userInfo,
