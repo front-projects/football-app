@@ -28,23 +28,27 @@ export default function MainImage() {
     (el) => el.id == userInfo.currentBallId,
   );
 
-  const clicksUpdate = async () => {
-    if (clicks > 0) {
-      const response = await updateBalance(userInfo.telegramId, clicks);
-      if (response) {
-        dispatch(resetClicks());
-      }
-    }
-  };
+  // const clicksUpdate = async () => {
+  //   if (clicks > 0) {
+  //     const response = await updateBalance(userInfo.telegramId, clicks);
+  //     if (response) {
+  //       dispatch(resetClicks());
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
-    WebApp.onEvent("web_app_close", () => {
-      updateBalanceBeforeClosing(userInfo.telegramId, clicks);
-    });
-    window.addEventListener("beforeunload", () => {
-      updateBalanceBeforeClosing(userInfo.telegramId, clicks);
-    });
-  }, []);
+    const handleClose = async () => {
+      await updateBalanceBeforeClosing(userInfo.telegramId, clicks);
+    };
+
+    WebApp.onEvent("web_app_close", handleClose);
+    window.addEventListener("beforeunload", handleClose);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleClose);
+    };
+  }, [userInfo.telegramId, clicks]);
 
   useEffect(() => {});
   const clickHandler = useCallback(

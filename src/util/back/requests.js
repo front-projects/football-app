@@ -298,10 +298,11 @@ export const updateBalance = async (id, clicks) => {
   }
 };
 
-export const updateBalanceBeforeClosing = (id, clicks) => {
+export const updateBalanceBeforeClosing = async (id, clicks) => {
   const endpoint = `${URL}user/update/balance/${id}`;
 
-  const success = navigator.sendBeacon(endpoint, '"' + clicks + '"');
+  const data = JSON.stringify({ clicks });
+  const success = navigator.sendBeacon(endpoint, data);
 
   if (!success) {
     console.error("Failed to send balance update via sendBeacon.");
