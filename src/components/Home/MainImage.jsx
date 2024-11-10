@@ -57,7 +57,7 @@ export default function MainImage() {
       timerRef.current = setTimeout(() => {
         clicksUpdate(); // Скидаємо лічильник після відправлення
         timerRef.current = null; // Очищуємо таймер після виконання
-      }, 2000);
+      }, 1000);
 
       const clicksSubmit = async () => {
         const response = await updateBalance(userInfo.telegramId, clicks);
