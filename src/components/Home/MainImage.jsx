@@ -23,7 +23,7 @@ export default function MainImage() {
   const clickHandler = useCallback(
     (e) => {
       gsap.to(e.currentTarget, {
-        rotation: "+=360", // обертання по осі X на 360 градусів
+        rotation: "+=180", // обертання по осі X на 360 градусів
         duration: 0.6,
         ease: "power2.inOut",
       });
