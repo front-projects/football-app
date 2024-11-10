@@ -40,15 +40,10 @@ function App() {
     WebApp.expand();
     // WebApp.isClosingConfirmationEnabled = true;
     WebApp.enableClosingConfirmation();
-    const onBeforeUnload = (e) => {
-      // Це дає користувачеві час для підтвердження
-      const confirmationMessage = "Test";
-      (e || window.event).returnValue = confirmationMessage; // стандарт для старих браузерів
-      return confirmationMessage; // для нових браузерів
-    };
+    WebApp.onEvent("web_app_setup_closing_behavior", (eventData) => {
+      alert(eventData);
+    });
 
-    // Реєстрація обробника події для браузера
-    window.addEventListener("beforeunload", onBeforeUnload);
     // console.log(WebApp);
     const fetchData = async () => {
       // WebApp.initDataUnsafe.user.username

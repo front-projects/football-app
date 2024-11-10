@@ -34,10 +34,6 @@ export default function MainImage() {
     }
   };
 
-  useEffect(() => {
-    return () => clicksUpdate();
-  }, []);
-
   const clickHandler = useCallback(
     (e) => {
       console.log(clicks);
