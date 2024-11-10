@@ -21,16 +21,13 @@ const BallItem = ({ ball }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
+  const telegramId = WebApp.initDataUnsafe.user.username;
+  // "kleinheisterkamp"
   const updateUser = async () => {
     setIsLoading(true);
     try {
-      const balls = await getBoughtBalls(
-        WebApp.initDataUnsafe.user.username,
-        ball.id,
-      );
-      const updatedUserInfo = await getUserInfo(
-        WebApp.initDataUnsafe.user.username,
-      );
+      const balls = await getBoughtBalls(telegramId, ball.id);
+      const updatedUserInfo = await getUserInfo(telegramId);
       if (balls && updatedUserInfo) {
         dispatch(setStatic({ ...staticData, boughtBalls: balls }));
         dispatch(setUser(updatedUserInfo));

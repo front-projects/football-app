@@ -172,7 +172,7 @@ export default function MainImage() {
               {...click()}
               src={`./images/ball/${activeBall.id}.png`}
               alt="ball"
-              className="rounded-[50%]"
+              className="rounded-[50%] max-w-[33%]"
             />
             <p className="text-[14px] absolute right-0 w-1/4 px-2">
               To make progress

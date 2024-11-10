@@ -44,20 +44,15 @@ function App() {
   useEffect(() => {
     WebApp.ready();
     WebApp.expand();
-    // WebApp.isClosingConfirmationEnabled = true;
-
-    // console.log(WebApp);
+    const telegramId = WebApp.initDataUnsafe.user.username;
+    // "kleinheisterkamp"
     const fetchData = async () => {
       // WebApp.initDataUnsafe.user.username
-      const user = await getUserInfo(WebApp.initDataUnsafe.user.username);
+      const user = await getUserInfo(telegramId);
       const balls = await getAllBalls();
       const players = await getAllPlayers();
-      const boughtPlayers = await getBoughtPlayers(
-        WebApp.initDataUnsafe.user.username,
-      );
-      const boughtBalls = await getBoughtBalls(
-        WebApp.initDataUnsafe.user.username,
-      );
+      const boughtPlayers = await getBoughtPlayers(telegramId);
+      const boughtBalls = await getBoughtBalls(telegramId);
       if (user && balls && players && boughtPlayers && boughtBalls) {
         dispatch(setUser(user));
         dispatch(

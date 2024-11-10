@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { getListUsers } from "../../../util/back/requests";
 import WalletListItem from "./WalletListItem";
-import WebApp from "@twa-dev/sdk";
+// import WebApp from "@twa-dev/sdk";
 
 const WalletList = () => {
   const [list, setList] = useState();
@@ -14,9 +14,7 @@ const WalletList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getListUsers(
-          WebApp.initDataUnsafe.user.username,
-        );
+        const response = await getListUsers();
         setList(response.poolUserDtoList);
       } catch {
         setError(true);
