@@ -84,12 +84,29 @@ main {
   background-repeat: no-repeat;
 }
 
-input{
+input {
   background-color: transparent;
 }
-input:focus{
+input:focus {
   outline: none;
 }
-input::placeholder{
-  color: rgba(255, 255, 255, .5)
+input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-130px);
+  }
+}
+
+.floating-text {
+  position: absolute;
+  animation: floatUp 2s forwards;
+  pointer-events: none;
 }

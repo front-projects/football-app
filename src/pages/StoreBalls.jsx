@@ -7,14 +7,14 @@ import { chunkArray } from "../util/front/func";
 import { ButtonLeft, ButtonRight } from "../components/UI/icons";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
-import PlayerItem from "../components/Store/PlayerItem";
 import { useSelector } from "react-redux";
+import BallItem from "../components/Store/BallItem";
 
 export default function StorePlayers() {
-  const players = useSelector((state) => state.static.balls);
+  const balls = useSelector((state) => state.static.balls);
   const swiperRef = useRef(null);
 
-  const groupedPlayers = chunkArray(players, 6);
+  const groupedBalls = chunkArray(balls, 6);
   return (
     <>
       <Swiper
@@ -26,11 +26,11 @@ export default function StorePlayers() {
         className="h-full"
         style={{ height: "calc(100% - 30px)" }}
       >
-        {groupedPlayers.map((group, index) => (
+        {groupedBalls.map((group, index) => (
           <SwiperSlide key={index}>
             <div className="grid grid-cols-2 grid-rows-3 gap-[6px] h-full pb-[40px]">
-              {group.map((player, idx) => (
-                <PlayerItem key={idx} player={player} />
+              {group.map((ball, idx) => (
+                <BallItem key={idx} ball={ball} />
               ))}
             </div>
           </SwiperSlide>
