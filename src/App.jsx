@@ -38,7 +38,8 @@ function App() {
   useEffect(() => {
     WebApp.ready();
     WebApp.expand();
-    WebApp.isClosingConfirmationEnabled = true;
+    // WebApp.isClosingConfirmationEnabled = true;
+    WebApp.enableClosingConfirmation();
     // console.log(WebApp);
     const fetchData = async () => {
       // WebApp.initDataUnsafe.user.username
