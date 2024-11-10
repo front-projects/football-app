@@ -1,14 +1,22 @@
 import { useSelector } from "react-redux";
+import { BsLightningChargeFill } from "react-icons/bs";
 
 export default function Progress() {
-  const balance = useSelector((state) => state.auth.balance);
+  const user = useSelector((state) => state.auth);
 
   return (
     <div className="mt-[80px] text-[#E7FF2B] text-center">
-      <h1 className="text-[46px] max-xsmall:text-[36px]">
-        {balance.toFixed(2)} USD
+      <h1 className="text-[42px] max-xsmall:text-[36px]">
+        {user.balance.toFixed(2)} USD
       </h1>
-      <p className="text-[20px] mt-[-10px] max-xsmall:text-[16px]">Progress</p>
+      <p className="text-[20px] mt-[-10px] max-xsmall:text-[16px] flex gap-2">
+        Progress{" "}
+        <div
+          className={`flex items-center ${user.energy == 0 ? "text-red-600" : ""}`}
+        >
+          ({user.energy}/5 <BsLightningChargeFill />)
+        </div>
+      </p>
     </div>
   );
 }

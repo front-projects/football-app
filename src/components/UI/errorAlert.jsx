@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { useEffect } from "react";
 
-const ErrorAlert = () => {
+const ErrorAlert = ({ children }) => {
   useEffect(() => {
     const anim = gsap.to("#error-alert", { translateY: 0 });
     const timeout = setTimeout(() => {
@@ -18,7 +18,7 @@ const ErrorAlert = () => {
       id="error-alert"
       className="fixed inset-0 w-screen bg-gray-600/80 h-max py-4 text-center text-white rounded-b-[20px] transform -translate-y-[100px]"
     >
-      Something went wrong. Try again
+      {children}
     </div>
   );
 };

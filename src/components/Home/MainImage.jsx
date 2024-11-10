@@ -4,11 +4,15 @@ import { useGesture } from "@use-gesture/react";
 import WebApp from "@twa-dev/sdk";
 import { setUser } from "../../store/auth-slice";
 import gsap from "gsap";
+import ErrorAlert from "../UI/errorAlert";
+import { plusClick, resetClicks } from "../../store/clicks-slice";
 
 export default function MainImage() {
   const staticData = useSelector((state) => state.static);
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.auth);
+  const clicks = useSelector((state) => state.clicks);
+  const [isError, setIsError] = useState(false);
   const [floatingTexts, setFloatingTexts] = useState([]);
   const nextIdRef = useRef(0);
   const timeoutIdsRef = useRef([]);
@@ -22,17 +26,35 @@ export default function MainImage() {
 
   const clickHandler = useCallback(
     (e) => {
+      console.log(clicks);
+      if (userInfo.energy == 0) {
+        if (!isError) {
+          setIsError(true);
+          setTimeout(() => {
+            setIsError(false);
+          }, 2500);
+        }
+
+        return;
+      }
+
+      dispatch(plusClick());
       gsap.to(e.currentTarget, {
-        rotation: "+=180", // обертання по осі X на 360 градусів
+        rotation: "+=180",
         duration: 0.6,
         ease: "power2.inOut",
       });
+
       dispatch(
         setUser({
           ...userInfo,
+          energy: clicks == 500 ? userInfo.energy - 1 : userInfo.energy,
           balance: userInfo.balance + activePlayer.value,
         }),
       );
+      if (clicks == 500) {
+        dispatch(resetClicks());
+      }
       WebApp.HapticFeedback.impactOccurred("medium");
       const { clientX: x, clientY: y } = e;
       const newText = { id: nextIdRef.current, x: x - 50, y: y - 60 };
@@ -46,7 +68,7 @@ export default function MainImage() {
       }, 2000);
       timeoutIdsRef.current.push(timeoutId);
     },
-    [activePlayer.value, dispatch, userInfo],
+    [activePlayer.value, dispatch, userInfo, isError, clicks],
   );
 
   const click = useGesture({
@@ -56,55 +78,60 @@ export default function MainImage() {
   });
 
   return (
-    <div className="h-[60%] max-h-[419px] w-[298px] relative select-none">
-      {floatingTexts.map((text) => (
-        <span
-          className="floating-text z-10 font-semibold text-[15px] text-black"
-          key={text.id}
-          style={{ top: text.y, left: text.x }}
-        >
-          +{activePlayer.value}
-        </span>
-      ))}
-      <div className="h-full relative w-full">
-        <div className="absolute w-full h-full">
-          <div className="h-[12%]"></div>
-          <div
-            className="h-[88%] rounded-t-[20px]"
-            style={{
-              background: 'url("./images/background.png") no-repeat bottom',
-            }}
-          ></div>
-        </div>
-        <div className="w-full flex flex-col items-center absolute">
-          {/* NEED TO UPDATE */}
-
-          <img
-            src={`./images/person/${activePlayer.id}.png`}
-            alt="person"
-            className="w-[35vh] max-xsmall:w-[30vh]"
-          />
-          <div className="bg-[#37C100] w-[52%] text-center py-[9px] rounded-[48px] max-xsmall:py-[2px]">
-            {activePlayer.value} USD
+    <>
+      {isError && <ErrorAlert>No energy. 1 energy = 10 min reset</ErrorAlert>}
+      <div className="h-[60%] max-h-[419px] w-[298px] relative select-none">
+        {floatingTexts.map((text) => (
+          <span
+            className="floating-text z-10 font-semibold text-[15px] text-black"
+            key={text.id}
+            style={{ top: text.y, left: text.x }}
+          >
+            +{activePlayer.value}
+          </span>
+        ))}
+        <div className="h-full relative w-full">
+          <div className="absolute w-full h-full">
+            <div className="h-[12%]"></div>
+            <div
+              className="h-[88%] rounded-t-[20px]"
+              style={{
+                background: 'url("./images/background.png") no-repeat bottom',
+              }}
+            ></div>
           </div>
-          <div className="text-[#1A5B00] text-[26px]">{activePlayer.name}</div>
-        </div>
-        <div className="absolute -bottom-[85px] rounded-[50%] flex items-center justify-center w-full">
-          <p className="text-[14px] absolute left-0 w-1/4 px-2">
-            Click on the ball
-          </p>
-          {/* NEED TO UPDATE */}
-          <img
-            {...click()}
-            src={`./images/ball/${activeBall.id}.png`}
-            alt="ball"
-            className="rounded-[50%]"
-          />
-          <p className="text-[14px] absolute right-0 w-1/4 px-2">
-            To make progress
-          </p>
+          <div className="w-full flex flex-col items-center absolute">
+            {/* NEED TO UPDATE */}
+
+            <img
+              src={`./images/person/${activePlayer.id}.png`}
+              alt="person"
+              className="w-[35vh] max-xsmall:w-[30vh]"
+            />
+            <div className="bg-[#37C100] w-[52%] text-center py-[9px] rounded-[48px] max-xsmall:py-[2px]">
+              {activePlayer.value} USD
+            </div>
+            <div className="text-[#1A5B00] text-[26px]">
+              {activePlayer.name}
+            </div>
+          </div>
+          <div className="absolute -bottom-[85px] rounded-[50%] flex items-center justify-center w-full">
+            <p className="text-[14px] absolute left-0 w-1/4 px-2">
+              Click on the ball
+            </p>
+            {/* NEED TO UPDATE */}
+            <img
+              {...click()}
+              src={`./images/ball/${activeBall.id}.png`}
+              alt="ball"
+              className="rounded-[50%]"
+            />
+            <p className="text-[14px] absolute right-0 w-1/4 px-2">
+              To make progress
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

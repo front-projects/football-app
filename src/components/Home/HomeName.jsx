@@ -32,7 +32,7 @@ export default function HomeName() {
 
   return (
     <>
-      {isError && <ErrorAlert />}
+      {isError && <ErrorAlert>Something went wrong. Try again</ErrorAlert>}
       <div
         className="flex items-center gap-[10px] mt-[25px]"
         onClick={() => setIsEditing(true)}
