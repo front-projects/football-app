@@ -50,11 +50,15 @@ function App() {
     // console.log(WebApp);
     const fetchData = async () => {
       // WebApp.initDataUnsafe.user.username
-      const user = await getUserInfo("Test");
+      const user = await getUserInfo(WebApp.initDataUnsafe.user.username);
       const balls = await getAllBalls();
       const players = await getAllPlayers();
-      const boughtPlayers = await getBoughtPlayers("kleinheisterkamp");
-      const boughtBalls = await getBoughtBalls("kleinheisterkamp");
+      const boughtPlayers = await getBoughtPlayers(
+        WebApp.initDataUnsafe.user.username,
+      );
+      const boughtBalls = await getBoughtBalls(
+        WebApp.initDataUnsafe.user.username,
+      );
       if (user && balls && players && boughtPlayers && boughtBalls) {
         dispatch(setUser(user));
         dispatch(

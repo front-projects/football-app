@@ -24,8 +24,13 @@ const BallItem = ({ ball }) => {
   const updateUser = async () => {
     setIsLoading(true);
     try {
-      const balls = await getBoughtBalls("kleinheisterkamp", ball.id);
-      const updatedUserInfo = await getUserInfo("kleinheisterkamp");
+      const balls = await getBoughtBalls(
+        WebApp.initDataUnsafe.user.username,
+        ball.id,
+      );
+      const updatedUserInfo = await getUserInfo(
+        WebApp.initDataUnsafe.user.username,
+      );
       if (balls && updatedUserInfo) {
         dispatch(setStatic({ ...staticData, boughtBalls: balls }));
         dispatch(setUser(updatedUserInfo));
@@ -96,13 +101,13 @@ const BallItem = ({ ball }) => {
         <div className="flex gap-2 w-full items-center  mt-4">
           <button
             onClick={buyBall}
-            className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100]"
+            className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1"
           >
             Yes
           </button>
           <button
             onClick={() => setIsOpen(false)}
-            className="w-full rounded-md border-2 border-[#E7FF2B]"
+            className="w-full rounded-md border-2 border-[#E7FF2B] py-1"
           >
             Cancel
           </button>
