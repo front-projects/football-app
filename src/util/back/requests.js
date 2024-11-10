@@ -228,9 +228,7 @@ export const getHistory = async () => {
 export const getUserInfo = async (id) => {
   if (TYPE == "DEV") {
     try {
-      const response = await axios.get(
-        URL + "user/kleinheisterkamp/{uniqueLink}",
-      );
+      const response = await axios.get(URL + "user/" + id + "/{uniqueLink}");
       if (response) {
         return response.data;
       }
@@ -280,7 +278,6 @@ export const updateUserName = async (id, name) => {
 };
 
 export const updateBalance = async (id, clicks) => {
-  console.log(id, clicks);
   try {
     const response = axios.put(
       URL + "user/update/balance/" + id,

@@ -41,7 +41,7 @@ function App() {
     // console.log(WebApp);
     const fetchData = async () => {
       // WebApp.initDataUnsafe.user.username
-      const user = await getUserInfo("test");
+      const user = await getUserInfo(WebApp.initDataUnsafe.user.username);
       const balls = await getAllBalls();
       const players = await getAllPlayers();
       if (user && balls && players) {
