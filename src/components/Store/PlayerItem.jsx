@@ -25,7 +25,7 @@ const PlayerItem = ({ player }) => {
     try {
       let data;
       if (type === "BUY") {
-        data = await getBoughtPlayers(("kleinheisterkamp", player.id));
+        data = await getBoughtPlayers("kleinheisterkamp", player.id);
         if (data) {
           dispatch(setStatic({ ...staticData, boughtPlayers: data }));
         }
@@ -69,7 +69,7 @@ const PlayerItem = ({ player }) => {
   }
 
   const updatePlayer = async () => {
-    setIsLoading(false);
+    // setIsLoading(false);
     const response = await selectPlayer(user.telegramId, player.id);
     if (response) {
       updateUser("UPDATE");
