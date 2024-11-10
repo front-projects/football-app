@@ -29,22 +29,29 @@ export default function MainImage() {
     updateBalance(userInfo.telegramId, clicks);
   };
 
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     // Викликаємо запит на оновлення балансу
+  //     clicksUpdate();
+
+  //     // Інтерфейс для підтвердження виходу з сторінки (необов'язково)
+  //     event.preventDefault();
+  //     event.returnValue = ""; // Це необхідно для деяких браузерів (наприклад, Chrome).
+  //   };
+
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+
+  //   // Очистка при відключенні компонента
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
+
   useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      // Викликаємо запит на оновлення балансу
+    WebApp.onEvent("close", () => {
+      // Викликаємо функцію для оновлення балансу перед закриттям
       clicksUpdate();
-
-      // Інтерфейс для підтвердження виходу з сторінки (необов'язково)
-      event.preventDefault();
-      event.returnValue = ""; // Це необхідно для деяких браузерів (наприклад, Chrome).
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    // Очистка при відключенні компонента
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
+    });
   }, []);
 
   const clickHandler = useCallback(
