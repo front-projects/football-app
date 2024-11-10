@@ -40,9 +40,6 @@ function App() {
     WebApp.expand();
     // WebApp.isClosingConfirmationEnabled = true;
     WebApp.enableClosingConfirmation();
-    WebApp.onEvent("web_app_setup_closing_behavior", (eventData) => {
-      alert(eventData);
-    });
 
     // console.log(WebApp);
     const fetchData = async () => {

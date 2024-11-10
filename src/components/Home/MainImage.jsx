@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGesture } from "@use-gesture/react";
 import WebApp from "@twa-dev/sdk";
@@ -6,10 +6,7 @@ import { setUser } from "../../store/auth-slice";
 import gsap from "gsap";
 import ErrorAlert from "../UI/errorAlert";
 import { plusClick, resetClicks } from "../../store/clicks-slice";
-import {
-  updateBalance,
-  updateBalanceBeforeClosing,
-} from "../../util/back/requests";
+import { updateBalance } from "../../util/back/requests";
 
 export default function MainImage() {
   const staticData = useSelector((state) => state.static);
@@ -20,6 +17,7 @@ export default function MainImage() {
   const [floatingTexts, setFloatingTexts] = useState([]);
   const nextIdRef = useRef(0);
   const timeoutIdsRef = useRef([]);
+  const timerRef = useRef(null);
 
   const activePlayer = staticData.players.find(
     (el) => el.id == userInfo.currentPlayerId,
@@ -28,29 +26,15 @@ export default function MainImage() {
     (el) => el.id == userInfo.currentBallId,
   );
 
-  // const clicksUpdate = async () => {
-  //   if (clicks > 0) {
-  //     const response = await updateBalance(userInfo.telegramId, clicks);
-  //     if (response) {
-  //       dispatch(resetClicks());
-  //     }
-  //   }
-  // };
+  const clicksUpdate = async () => {
+    if (clicks > 0) {
+      const response = await updateBalance(userInfo.telegramId, clicks);
+      if (response) {
+        dispatch(resetClicks());
+      }
+    }
+  };
 
-  useEffect(() => {
-    const handleClose = async () => {
-      await updateBalanceBeforeClosing(userInfo.telegramId, clicks);
-    };
-
-    WebApp.onEvent("web_app_close", handleClose);
-    window.addEventListener("beforeunload", handleClose);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleClose);
-    };
-  }, [userInfo.telegramId, clicks]);
-
-  useEffect(() => {});
   const clickHandler = useCallback(
     (e) => {
       console.log(clicks);
@@ -61,9 +45,20 @@ export default function MainImage() {
             setIsError(false);
           }, 2500);
         }
-
         return;
       }
+      //timer update
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+
+      // Встановлюємо новий таймер на 2 секунди
+      timerRef.current = setTimeout(() => {
+        clicksUpdate(); // Скидаємо лічильник після відправлення
+        timerRef.current = null; // Очищуємо таймер після виконання
+      }, 2000);
+
       const clicksSubmit = async () => {
         const response = await updateBalance(userInfo.telegramId, clicks);
         if (response) {
