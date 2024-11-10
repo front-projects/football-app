@@ -6,7 +6,10 @@ import { setUser } from "../../store/auth-slice";
 import gsap from "gsap";
 import ErrorAlert from "../UI/errorAlert";
 import { plusClick, resetClicks } from "../../store/clicks-slice";
-import { updateBalance } from "../../util/back/requests";
+import {
+  updateBalance,
+  updateBalanceBeforeClosing,
+} from "../../util/back/requests";
 
 export default function MainImage() {
   const staticData = useSelector((state) => state.static);
@@ -35,18 +38,8 @@ export default function MainImage() {
   };
 
   useEffect(() => {
-    window.addEventListener("beforeunload", (event) => {
-      // Trigger your custom function here
-      clicksUpdate();
-
-      // This line is required to trigger the confirmation dialog
-      event.preventDefault();
-      event.returnValue = ""; // Chrome requires returnValue to be set
-    });
-    document.addEventListener("visibilitychange", async () => {
-      if (document.visibilityState === "hidden") {
-        await clicksUpdate(); // Perform async operation
-      }
+    window.addEventListener("beforeunload", () => {
+      updateBalanceBeforeClosing(userInfo.telegramId, clicks);
     });
   }, []);
 
