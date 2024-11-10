@@ -16,7 +16,7 @@ const ErrorAlert = ({ children }) => {
   return (
     <div
       id="error-alert"
-      className="fixed inset-0 w-screen bg-gray-600/80 h-max py-4 text-center text-white rounded-b-[20px] transform -translate-y-[100px]"
+      className="fixed inset-0 w-screen z-10 bg-gray-600/80 h-max py-4 text-center text-white rounded-b-[20px] transform -translate-y-[100px]"
     >
       {children}
     </div>

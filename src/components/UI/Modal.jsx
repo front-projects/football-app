@@ -24,7 +24,7 @@ export default function Modal({ onClose, isOpen, children }) {
       >
         <div
           ref={content}
-          className={`bg-[#0F1511] px-4 py-8 text-center text-[20px] w-[90%]  border-white border-2 rounded-[23px]`}
+          className={`bg-[#37C100] px-4 py-8 text-center text-[20px] w-[90%]  border-[#E7FF2B] border-2 rounded-[23px]`}
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex flex-col items-center">{children}</div>

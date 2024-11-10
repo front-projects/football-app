@@ -292,8 +292,92 @@ export const updateBalance = async (id, clicks) => {
         },
       },
     );
-    console.log(response.data);
     return response.data;
+  } catch (err) {
+    return false;
+  }
+};
+
+export const getBoughtPlayers = async (id) => {
+  try {
+    const response = await axios.get(URL + "user/players/" + id);
+    return response.data;
+  } catch {
+    return false;
+  }
+};
+
+export const getBoughtBalls = async (id) => {
+  try {
+    const response = await axios.get(URL + "user/balls/" + id);
+    return response.data;
+  } catch {
+    return false;
+  }
+};
+
+export const selectPlayer = async (id, idPlayer) => {
+  try {
+    const response = await axios.put(
+      URL + "user/player/update/" + id,
+      '"' + idPlayer + '"',
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response;
+  } catch {
+    return false;
+  }
+};
+export const buyNewPlayer = async (id, idPlayer) => {
+  try {
+    const response = await axios.post(
+      URL + "user/players/buy/" + id,
+      '"' + idPlayer + '"',
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+export const selectBall = async (id, idBall) => {
+  try {
+    const response = await axios.put(
+      URL + "user/balls/update/" + id,
+      '"' + idBall + '"',
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response;
+  } catch {
+    return false;
+  }
+};
+export const buyNewBall = async (id, idBall) => {
+  try {
+    const response = await axios.post(
+      URL + "user/balls/buy/" + id,
+      '"' + idBall + '"',
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response;
   } catch (err) {
     console.log(err);
     return false;

@@ -9,8 +9,8 @@ const WalletCard = () => {
       >
         <div className="w-max relative">
           <h1 className="text-[40px] w-max leading-10">100 000 USD</h1>
-          <div className="w-full flex justify-between text-[14px]">
-            <div>**** 4562</div>
+          <div className="w-full flex justify-end text-[14px]">
+            {/* <div>**** 4562</div> */}
             <div>Your cash</div>
           </div>
           <div className="mt-8 text-[11px]">Withdrawal from 25 USD </div>

@@ -20,7 +20,13 @@ import History from "./pages/History";
 import CountrySelect from "./pages/CountrySelect";
 import CryptoSelect from "./pages/CryptoSelect";
 import Withdraw from "./pages/Withdraw";
-import { getAllBalls, getAllPlayers, getUserInfo } from "./util/back/requests";
+import {
+  getAllBalls,
+  getAllPlayers,
+  getBoughtBalls,
+  getBoughtPlayers,
+  getUserInfo,
+} from "./util/back/requests";
 import { useDispatch } from "react-redux";
 import { setUser } from "./store/auth-slice";
 import { setStatic } from "./store/static-slice";
@@ -47,9 +53,18 @@ function App() {
       const user = await getUserInfo("Test");
       const balls = await getAllBalls();
       const players = await getAllPlayers();
-      if (user && balls && players) {
+      const boughtPlayers = await getBoughtPlayers("kleinheisterkamp");
+      const boughtBalls = await getBoughtBalls("kleinheisterkamp");
+      if (user && balls && players && boughtPlayers && boughtBalls) {
         dispatch(setUser(user));
-        dispatch(setStatic({ balls: balls, players: players }));
+        dispatch(
+          setStatic({
+            balls: balls,
+            players: players,
+            boughtPlayers: boughtPlayers,
+            boughtBalls: boughtBalls,
+          }),
+        );
       }
     };
     fetchData();

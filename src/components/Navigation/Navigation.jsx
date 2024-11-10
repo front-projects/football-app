@@ -3,7 +3,7 @@ import NavItem from "./Nav-Item";
 
 export default function Navigation() {
   return (
-    <nav className="w-screen h-[79px] flex items-center justify-center w-[298px] pb-[29px] gap-[16px] px-[3px]">
+    <nav className="w-screen h-[79px] flex items-center justify-center w-[298px] pb-[29px] gap-[16px] px-[3px] select-none">
       <NavItem to="/menu/home" title="Home">
         <HomeIcon />
       </NavItem>

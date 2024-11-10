@@ -141,13 +141,13 @@ export default function MainImage() {
               }}
             ></div>
           </div>
-          <div className="w-full flex flex-col items-center absolute">
+          <div className="w-full h-full flex flex-col items-center absolute">
             {/* NEED TO UPDATE */}
 
             <img
               src={`./images/person/${activePlayer.id}.png`}
               alt="person"
-              className="w-[35vh] max-xsmall:w-[30vh]"
+              className="w-[35vh] max-h-[70%] max-xsmall:w-[30vh]"
             />
             <div className="bg-[#37C100] w-[52%] text-center py-[9px] rounded-[48px] max-xsmall:py-[2px]">
               {activePlayer.value} USD
