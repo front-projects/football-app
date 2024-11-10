@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGesture } from "@use-gesture/react";
 import WebApp from "@twa-dev/sdk";
@@ -27,6 +27,15 @@ export default function MainImage() {
     () => staticData.balls.find((el) => el.id === userInfo.currentBallId),
     [staticData.balls, userInfo.currentBallId],
   );
+
+  useEffect(() => {
+    setInterval(() => {
+      if (userInfo.energy !== 5) {
+        dispatch(setUser({ ...userInfo, energy: userInfo.energy + 1 }));
+      }
+    }, [600]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const clicksUpdate = async () => {
     if (clicks > 0) {
