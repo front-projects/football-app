@@ -40,7 +40,7 @@ export default function MainImage() {
     <div className="h-[60%] max-h-[419px] w-[298px] relative">
       {floatingTexts.map((text) => (
         <span
-          className="floating-text z-10 font-semibold text-[15px]"
+          className="floating-text z-10 font-semibold text-[15px] text-black"
           key={text.id}
           style={{ top: text.y, left: text.x }}
         >
