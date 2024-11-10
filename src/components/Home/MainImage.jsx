@@ -34,6 +34,23 @@ export default function MainImage() {
     }
   };
 
+  useEffect(() => {
+    window.addEventListener("beforeunload", (event) => {
+      // Trigger your custom function here
+      clicksUpdate();
+
+      // This line is required to trigger the confirmation dialog
+      event.preventDefault();
+      event.returnValue = ""; // Chrome requires returnValue to be set
+    });
+    document.addEventListener("visibilitychange", async () => {
+      if (document.visibilityState === "hidden") {
+        await clicksUpdate(); // Perform async operation
+      }
+    });
+  }, []);
+
+  useEffect(() => {});
   const clickHandler = useCallback(
     (e) => {
       console.log(clicks);
@@ -63,7 +80,7 @@ export default function MainImage() {
       dispatch(
         setUser({
           ...userInfo,
-          energy: clicks == 100 ? userInfo.energy - 1 : userInfo.energy,
+          energy: clicks == 500 ? userInfo.energy - 1 : userInfo.energy,
           balance: userInfo.balance + activePlayer.value,
         }),
       );
@@ -98,7 +115,7 @@ export default function MainImage() {
       <div className="h-[60%] max-h-[419px] w-[298px] relative select-none">
         {floatingTexts.map((text) => (
           <span
-            className="floating-text z-10 font-semibold text-[15px] text-black"
+            className="floating-text z-10 font-semibold text-[20px] white"
             key={text.id}
             style={{ top: text.y, left: text.x }}
           >
