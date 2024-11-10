@@ -21,22 +21,14 @@ const BallItem = ({ ball }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
-  const updateUser = async (type) => {
+  const updateUser = async () => {
     setIsLoading(true);
     try {
-      let data;
-      if (type === "BUY") {
-        data = await getBoughtBalls("kleinheisterkamp", ball.id);
-        if (data) {
-          dispatch(setStatic({ ...staticData, boughtBalls: data }));
-        }
-      } else {
-        data = await getUserInfo("kleinheisterkamp");
-        if (data) {
-          dispatch(setUser(data));
-        }
-      }
-      if (data) {
+      const balls = await getBoughtBalls("kleinheisterkamp", ball.id);
+      const updatedUserInfo = await getUserInfo("kleinheisterkamp");
+      if (balls && updatedUserInfo) {
+        dispatch(setStatic({ ...staticData, boughtBalls: balls }));
+        dispatch(setUser(updatedUserInfo));
         setIsOpen(false);
       } else {
         handleError();

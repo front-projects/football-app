@@ -21,22 +21,14 @@ const PlayerItem = ({ player }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
-  const updateUser = async (type) => {
+  const updateUser = async () => {
     setIsLoading(true);
     try {
-      let data;
-      if (type === "BUY") {
-        data = await getBoughtPlayers("kleinheisterkamp", player.id);
-        if (data) {
-          dispatch(setStatic({ ...staticData, boughtPlayers: data }));
-        }
-      } else {
-        data = await getUserInfo("kleinheisterkamp");
-        if (data) {
-          dispatch(setUser(data));
-        }
-      }
-      if (data) {
+      const players = await getBoughtPlayers("kleinheisterkamp", player.id);
+      const updatedUserInfo = await getUserInfo("kleinheisterkamp");
+      if (players && updatedUserInfo) {
+        dispatch(setStatic({ ...staticData, boughtPlayers: players }));
+        dispatch(setUser(updatedUserInfo));
         setIsOpen(false);
       } else {
         handleError();
@@ -74,7 +66,7 @@ const PlayerItem = ({ player }) => {
     WebApp.HapticFeedback.impactOccurred("soft");
     const response = await selectPlayer(user.telegramId, player.id);
     if (response) {
-      updateUser("UPDATE");
+      updateUser();
     } else {
       setIsError(true);
       setTimeout(() => {
@@ -88,7 +80,7 @@ const PlayerItem = ({ player }) => {
     const response = await buyNewPlayer(user.telegramId, player.id);
     if (response) {
       WebApp.HapticFeedback.notificationOccurred("success");
-      updateUser("BUY");
+      updateUser();
     } else {
       setIsError(true);
       setTimeout(() => {
