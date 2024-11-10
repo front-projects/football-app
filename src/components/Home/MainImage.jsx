@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGesture } from "@use-gesture/react";
 import WebApp from "@twa-dev/sdk";
@@ -27,6 +27,11 @@ export default function MainImage() {
     () => staticData.balls.find((el) => el.id === userInfo.currentBallId),
     [staticData.balls, userInfo.currentBallId],
   );
+  useEffect(() => {
+    if (clicks > 0) {
+      WebApp.enableClosingConfirmation();
+    }
+  }, [clicks]);
 
   const clicksUpdate = async () => {
     if (clicks > 0) {

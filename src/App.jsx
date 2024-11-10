@@ -45,7 +45,6 @@ function App() {
     WebApp.ready();
     WebApp.expand();
     // WebApp.isClosingConfirmationEnabled = true;
-    WebApp.enableClosingConfirmation();
 
     // console.log(WebApp);
     const fetchData = async () => {
