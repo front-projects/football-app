@@ -13,7 +13,7 @@ const PlayerItem = ({ player }) => {
         />
 
         <div className="bg-white rounded-[28px] text-[10px] text-[#37C100] w-[90px] py-1 text-center">
-          {player.price} USD
+          {player.value} USD
         </div>
 
         <div className="text-[14px]">{player.name}</div>
