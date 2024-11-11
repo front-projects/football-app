@@ -18,7 +18,7 @@ const CryptoInput = () => {
         type="text"
         // value={usdInput}
         // onChange={(e) => setUsdInput(parseFloat(e.target.value))}
-        className="rounded-[28px] py-[18px] pl-[20px] w-full"
+        className="rounded-[28px] py-[18px] max-xsmall:py-[14px] pl-[20px] w-full"
         placeholder="Enter your crypto adress"
       />
       <div className="bg-white rounded-[28px] text-[#37C100] flex items-center justify-center px-10 min-w-[130px]  w-[130px] relative">
