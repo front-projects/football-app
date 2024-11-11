@@ -9,7 +9,7 @@ const CountrySelect = () => {
       const test = WebApp.CloudStorage;
       console.log(test);
       // Check if CloudStorage is available and if "country" is set
-      return country || "ARS";
+      return test || "ARS";
     } catch (error) {
       console.error("CloudStorage method unsupported or unavailable:", error);
       return "ARS"; // Fallback to "ARG" if CloudStorage is unavailable
