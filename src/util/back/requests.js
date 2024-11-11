@@ -423,3 +423,22 @@ export const getCurrency = async () => {
     return false;
   }
 };
+
+export const checkPromo = async (id, promo) => {
+  try {
+    const response = await axios.post(
+      URL + "user/use_promo/" + id,
+      '"' + promo + '"',
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+  // return true;
+};
