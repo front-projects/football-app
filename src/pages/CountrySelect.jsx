@@ -18,8 +18,8 @@ const CountrySelect = () => {
 
   return (
     <div className="w-full h-full pt-[40px]">
-      <div className="max-h-[80%] grid grid-cols-2 gap-[15px] max-xsmall:max-h-[94px]">
-        <div className="rounded-[28px] bg-[#FFFFFF66] text-[20px] flex items-center justify-center w-full h-[124px] px-[24px] text-center">
+      <div className="max-h-[80%] grid grid-cols-2 gap-[15px] ">
+        <div className="rounded-[28px] bg-[#FFFFFF66] text-[20px] flex items-center justify-center w-full h-[124px] px-[24px] text-center max-xsmall:max-h-[94px]">
           Pick the country you live in
         </div>
         {/* ARG */}
