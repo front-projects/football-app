@@ -6,10 +6,9 @@ import WebApp from "@twa-dev/sdk";
 const CountrySelect = () => {
   const [activeCountry, setActiveCountry] = useState(() => {
     try {
-      const test = WebApp.CloudStorage.getItem("country");
-      console.log(test);
+      const country = WebApp.CloudStorage.getItem("country");
       // Check if CloudStorage is available and if "country" is set
-      return WebApp.CloudStorage.getItem("country") || "ARS";
+      return country || "ARS";
     } catch (error) {
       console.error("CloudStorage method unsupported or unavailable:", error);
       return "ARS"; // Fallback to "ARG" if CloudStorage is unavailable
