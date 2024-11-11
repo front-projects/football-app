@@ -6,6 +6,7 @@ import WebApp from "@twa-dev/sdk";
 const CountrySelect = () => {
   const [activeCountry, setActiveCountry] = useState(() => {
     try {
+      alert(WebApp.CloudStorage.getItem("country"));
       // Check if CloudStorage is available and if "country" is set
       return WebApp.CloudStorage.getItem("country") || "ARS";
     } catch (error) {
