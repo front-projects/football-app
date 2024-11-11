@@ -28,7 +28,7 @@ export default function MainImage() {
     [staticData.balls, userInfo.currentBallId],
   );
   useEffect(() => {
-    if (clicks > 0) {
+    if (clicks > 1) {
       WebApp.enableClosingConfirmation();
     } else {
       WebApp.disableClosingConfirmation();
