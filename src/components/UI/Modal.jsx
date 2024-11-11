@@ -20,7 +20,7 @@ export default function Modal({ onClose, isOpen, children }) {
     <>
       <div
         className="fixed w-screen h-screen top-0 left-0 flex items-center justify-center z-10 bg-black/80"
-        onClick={onClose}
+        // onClick={onClose}
       >
         <div
           ref={content}
