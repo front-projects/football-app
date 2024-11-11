@@ -23,9 +23,10 @@ const UsdInput = () => {
     type == "crypto" ? "SELECTED" : "STARTED",
   );
 
-  const activeCurrency = list?.find(
-    (el) => el.country == localStorage.getItem("country"),
-  );
+  const storageCurrency = localStorage.getItem("country")
+    ? localStorage.getItem("country")
+    : "ARS";
+  const activeCurrency = list?.find((el) => el.country == storageCurrency);
 
   const submitHandler = (e) => {
     e.preventDefault();
