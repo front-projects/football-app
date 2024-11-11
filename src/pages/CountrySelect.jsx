@@ -1,9 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import CountrySelectItem from "../components/Wallet/CountrySelect/CountrySelectItem";
+import WebApp from "@twa-dev/sdk";
 
 const CountrySelect = () => {
-  const [activeCountry, setActiveCountry] = useState("ARG");
+  const [activeCountry, setActiveCountry] = useState(() => {
+    try {
+      // Check if CloudStorage is available and if "country" is set
+      return WebApp.CloudStorage?.getItem("country") || "ARS";
+    } catch (error) {
+      console.error("CloudStorage method unsupported or unavailable:", error);
+      return "ARS"; // Fallback to "ARG" if CloudStorage is unavailable
+    }
+  });
 
   return (
     <div className="w-full h-full pt-[40px]">
@@ -14,28 +23,43 @@ const CountrySelect = () => {
         {/* ARG */}
         <CountrySelectItem
           img="./images/countries/1.png"
-          active={activeCountry == "ARG"}
-          onClick={() => setActiveCountry("ARG")}
+          active={activeCountry == "ARS"}
+          onClick={() => {
+            setActiveCountry("ARS");
+            WebApp.CloudStorage.setItem("countery", "ARS");
+          }}
         />
         <CountrySelectItem
           img="./images/countries/2.png"
           active={activeCountry == "BOL"}
-          onClick={() => setActiveCountry("BOL")}
+          onClick={() => {
+            setActiveCountry("BOL");
+            WebApp.CloudStorage.setItem("countery", "BOL");
+          }}
         />
         <CountrySelectItem
           img="./images/countries/3.png"
           active={activeCountry == "CHL"}
-          onClick={() => setActiveCountry("CHL")}
+          onClick={() => {
+            setActiveCountry("CHL");
+            WebApp.CloudStorage.setItem("countery", "CHL");
+          }}
         />
         <CountrySelectItem
           img="./images/countries/4.png"
           active={activeCountry == "ECD"}
-          onClick={() => setActiveCountry("ECD")}
+          onClick={() => {
+            setActiveCountry("ECD");
+            WebApp.CloudStorage.setItem("countery", "ECD");
+          }}
         />
         <CountrySelectItem
           img="./images/countries/5.png"
-          active={activeCountry == "MEX"}
-          onClick={() => setActiveCountry("MEX")}
+          active={activeCountry == "MXN"}
+          onClick={() => {
+            setActiveCountry("MXN");
+            WebApp.CloudStorage.setItem("countery", "MXN");
+          }}
         />
       </div>
       <div className="w-full text-center mt-[40px]">

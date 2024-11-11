@@ -21,8 +21,8 @@ const PlayerItem = ({ player }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
-  const telegramId = WebApp.initDataUnsafe.user.username;
-  // "kleinheisterkamp"
+  // const telegramId = WebApp.initDataUnsafe.user.username;
+  const telegramId = "kleinheisterkamp";
 
   const updateUser = async () => {
     setIsLoading(true);
