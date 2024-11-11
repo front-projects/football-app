@@ -57,6 +57,7 @@ export default function MainImage() {
     return () => {
       animRight.kill();
       animLeft.kill();
+      ballAnim.kill();
     };
   }, []);
   const clicksUpdate = async () => {
