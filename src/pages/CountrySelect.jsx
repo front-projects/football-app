@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import CountrySelectItem from "../components/Wallet/CountrySelect/CountrySelectItem";
-import WebApp from "@twa-dev/sdk";
 
 const CountrySelect = () => {
   const [activeCountry, setActiveCountry] = useState(() => {
     try {
-      const test = WebApp.CloudStorage.getItem("country");
-      console.log(test.getItems("country"));
-      // Check if CloudStorage is available and if "country" is set
+      const test = localStorage.getItem("country");
       return test || "ARS";
     } catch (error) {
       console.error("CloudStorage method unsupported or unavailable:", error);
@@ -28,7 +25,7 @@ const CountrySelect = () => {
           active={activeCountry == "ARS"}
           onClick={() => {
             setActiveCountry("ARS");
-            WebApp.CloudStorage.setItem("country", "ARS");
+            localStorage.setItem("country", "ARS");
           }}
         />
         <CountrySelectItem
@@ -36,7 +33,7 @@ const CountrySelect = () => {
           active={activeCountry == "BOL"}
           onClick={() => {
             setActiveCountry("BOL");
-            WebApp.CloudStorage.setItem("country", "BOL");
+            localStorage.setItem("country", "BOL");
           }}
         />
         <CountrySelectItem
@@ -44,7 +41,7 @@ const CountrySelect = () => {
           active={activeCountry == "CHL"}
           onClick={() => {
             setActiveCountry("CHL");
-            WebApp.CloudStorage.setItem("country", "CHL");
+            localStorage.setItem("country", "CHL");
           }}
         />
         <CountrySelectItem
@@ -52,7 +49,7 @@ const CountrySelect = () => {
           active={activeCountry == "ECD"}
           onClick={() => {
             setActiveCountry("ECD");
-            WebApp.CloudStorage.setItem("country", "ECD");
+            localStorage.setItem("country", "ECD");
           }}
         />
         <CountrySelectItem
@@ -60,7 +57,7 @@ const CountrySelect = () => {
           active={activeCountry == "MXN"}
           onClick={() => {
             setActiveCountry("MXN");
-            WebApp.CloudStorage.setItem("country", "MXN");
+            localStorage.setItem("country", "MXN");
           }}
         />
       </div>
