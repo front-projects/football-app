@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { loadImages } from "../util/front/loadImages";
 import { imagesToLoad } from "../util/front/imagesToLoad";
 import { useSelector } from "react-redux";
-import LoadingStar from "../components/UI/LoadingStar";
 
 export default function Loading() {
   const [isReady, setIsReady] = useState();
@@ -52,8 +51,15 @@ export default function Loading() {
             </div>
           ) : (
             <div className="text-xl w-full text-center flex flex-col items-center justify-center gap-4">
-              <LoadingStar />
-              <p className="text-[36px] mb-4"> Loading ...</p>
+              {/* <LoadingStar /> */}
+              <div className="w-screen h-screen relative">
+                <img
+                  src="./images/loading.png"
+                  alt="loading"
+                  className="object-cover min-w-screen min-h-screen"
+                />
+              </div>
+              {/* <p className="text-[36px] mb-4"> Loading ...</p> */}
               {/* <RingLoader color="white" size={70} /> */}
             </div>
           )}
