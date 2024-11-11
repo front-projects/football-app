@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGesture } from "@use-gesture/react";
 import WebApp from "@twa-dev/sdk";
@@ -35,6 +42,20 @@ export default function MainImage() {
     }
   }, [clicks]);
 
+  useLayoutEffect(() => {
+    const animLeft = gsap.to("#home-right-text", {
+      translateX: 0,
+      opacity: 1,
+    });
+    const animRight = gsap.to("#home-left-text", {
+      translateX: 0,
+      opacity: 1,
+    });
+    return () => {
+      animRight.kill();
+      animLeft.kill();
+    };
+  }, []);
   const clicksUpdate = async () => {
     if (clicks > 0) {
       const response = await updateBalance(userInfo.telegramId, clicks);
@@ -164,7 +185,10 @@ export default function MainImage() {
             </div>
           </div>
           <div className="absolute -bottom-[85px] rounded-[50%] flex items-center justify-center w-full">
-            <p className="text-[14px] absolute left-0 w-1/4 px-2">
+            <p
+              className="text-[14px] absolute left-0 w-1/4 px-2 -translate-x-[100px] opacity-0"
+              id="home-left-text"
+            >
               Click on the ball
             </p>
             {/* NEED TO UPDATE */}
@@ -174,7 +198,10 @@ export default function MainImage() {
               alt="ball"
               className="rounded-[50%] max-w-[33%]"
             />
-            <p className="text-[14px] absolute right-0 w-1/4 px-2">
+            <p
+              className="text-[14px] absolute right-0 w-1/4 px-2 translate-x-[100px] opacity-0"
+              id="home-right-text"
+            >
               To make progress
             </p>
           </div>

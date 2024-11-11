@@ -442,3 +442,15 @@ export const checkPromo = async (id, promo) => {
   }
   // return true;
 };
+
+export const checkChannel = async (type) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      if (type) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    }, 3000); // Затримка в 3 секунди
+  });
+};

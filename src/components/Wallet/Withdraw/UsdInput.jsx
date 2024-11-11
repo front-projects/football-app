@@ -101,7 +101,7 @@ const UsdInput = () => {
             type="number"
             max={balance}
             min={25}
-            step="0.001"
+            step="0.01"
             value={usdInput}
             onChange={(e) => setUsdInput(parseFloat(e.target.value))}
             className="rounded-[28px] py-[18px] max-xsmall:py-[14px] pl-[20px] w-full"
@@ -110,14 +110,14 @@ const UsdInput = () => {
           <div
             className="bg-white rounded-[28px] text-[#37C100] flex items-center justify-center px-10 w-[130px] min-w-[130px]"
             onClick={() =>
-              setUsdInput(balance ? parseFloat(balance.toFixed(3)) : 0)
+              setUsdInput(balance ? parseFloat(balance.toFixed(2)) : 0)
             }
           >
             MAX
           </div>
         </div>
         <p className="text-[14px] pl-[30px] py-2">
-          Your Banas {balance ? balance.toFixed(3) : "00.00"} USD
+          Your Banas {balance ? balance.toFixed(2) : "00.00"} USD
         </p>
         <div className="w-full grid grid-cols-3 gap-2 text-[20px]">
           <div
@@ -125,7 +125,7 @@ const UsdInput = () => {
             onClick={() =>
               setUsdInput(
                 balance
-                  ? parseFloat((balance.toFixed(3) * 0.25).toFixed(3))
+                  ? parseFloat((balance.toFixed(2) * 0.25).toFixed(2))
                   : 0,
               )
             }
@@ -136,7 +136,7 @@ const UsdInput = () => {
             className="border-[3px] border-white rounded-[28px] py-[16px] max-xsmall:py-[8px] text-center"
             onClick={() =>
               setUsdInput(
-                balance ? parseFloat((balance.toFixed(3) * 0.5).toFixed(3)) : 0,
+                balance ? parseFloat((balance.toFixed(2) * 0.5).toFixed(2)) : 0,
               )
             }
           >
@@ -146,7 +146,7 @@ const UsdInput = () => {
             className="border-[3px] border-white rounded-[28px] py-[16px] max-xsmall:py-[8px] text-center"
             onClick={() =>
               setUsdInput(
-                balance ? parseFloat(balance.toFixed(3) * 0.75).toFixed(3) : 0,
+                balance ? parseFloat(balance.toFixed(2) * 0.75).toFixed(2) : 0,
               )
             }
           >

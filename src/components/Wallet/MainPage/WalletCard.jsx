@@ -12,7 +12,7 @@ const WalletCard = () => {
       >
         <div className="w-max relative">
           <h1 className="text-[38px] w-max leading-10">
-            {balance ? balance.toFixed(3) : "0.00"} USD
+            {balance ? balance.toFixed(2) : "0.00"} USD
           </h1>
           <div className="w-full flex justify-end text-[14px]">
             {/* <div>**** 4562</div> */}

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { EditIcon } from "../UI/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserName } from "../../util/back/requests";
 import ErrorAlert from "../UI/errorAlert";
 import { setUser } from "../../store/auth-slice";
+import gsap from "gsap";
 
 export default function HomeName() {
   const user = useSelector((state) => state.auth);
@@ -12,6 +13,10 @@ export default function HomeName() {
   const [isEditing, setIsEditing] = useState();
   const [isLoading, setIsLoading] = useState();
   const [isError, setIsError] = useState();
+
+  useLayoutEffect(() => {
+    gsap.to("#nickname-text", { translateY: 0, opacity: 1 });
+  }, []);
 
   const submitEditing = async (e) => {
     e.stopPropagation();
@@ -34,7 +39,8 @@ export default function HomeName() {
     <>
       {isError && <ErrorAlert>Something went wrong. Try again</ErrorAlert>}
       <div
-        className="flex items-center gap-[10px] mt-[25px]"
+        className="flex items-center gap-[10px] mt-[25px] -translate-y-[100px] opacity-0"
+        id="nickname-text"
         onClick={() => setIsEditing(true)}
       >
         {isEditing ? (
