@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const clicksSlice = createSlice({
   name: "clicks",
-  initialState: 0,
+  initialState: 1,
   reducers: {
     plusClick: (state) => {
       return state + 1;
     },
     resetClicks: () => {
-      return 0;
+      return 1;
     },
   },
 });

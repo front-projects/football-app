@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { getListUsers } from "../../../util/back/requests";
 import WalletListItem from "./WalletListItem";
+import { useSelector } from "react-redux";
 // import WebApp from "@twa-dev/sdk";
 
 const WalletList = () => {
@@ -10,12 +11,13 @@ const WalletList = () => {
   const [activeSection, setActiveSection] = useState(0);
   const [activeList, setActiveList] = useState();
   const divRef = useRef(null);
+  const telegramId = useSelector((state) => state.auth.telegramId);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getListUsers();
-        setList(response.poolUserDtoList);
+        const response = await getListUsers(telegramId);
+        setList(response);
       } catch {
         setError(true);
       } finally {

@@ -10,9 +10,9 @@ const WalletListItem = ({ data }) => {
         <div className="h-[39px] w-[39px]">
           <img src="./images/wallet-item.png" alt="" />
         </div>
-        <div>
-          <p className="text-[20px]">{data.nameSurname}</p>
-          <p className="text-[11px]">20 USD</p>
+        <div className="flex flex-col items-center max-w-[70%]">
+          <p className="text-[18px]">{data.nameSurname}</p>
+          <p className="text-[11px]">{data.amount.toFixed(2)}. USD</p>
         </div>
         <WalletDollarIcon />
       </div>

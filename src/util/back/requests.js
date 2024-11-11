@@ -98,63 +98,69 @@ export const getAllBalls = async () => {
   }
 };
 
-export const getListUsers = async () => {
-  if (TYPE == "DEV") {
-    return {
-      balance: 0,
-      poolUserDtoList: [
-        {
-          amount: 0,
-          nameSurname: "TestUser",
-          photo: "string",
-        },
-        {
-          amount: 100,
-          nameSurname: "TestUser2",
-          photo: "string",
-        },
-        {
-          amount: 0,
-          nameSurname: "TestUser3",
-          photo: "string",
-        },
-        {
-          amount: 0,
-          nameSurname: "TestUser6",
-          photo: "string",
-        },
-        {
-          amount: 0,
-          nameSurname: "5",
-          photo: "string",
-        },
-        {
-          amount: 0,
-          nameSurname: "6",
-          photo: "string",
-        },
-        {
-          amount: 100,
-          nameSurname: "7",
-          photo: "string",
-        },
-        {
-          amount: 0,
-          nameSurname: "8",
-          photo: "string",
-        },
-        {
-          amount: 0,
-          nameSurname: "9",
-          photo: "string",
-        },
-        {
-          amount: 0,
-          nameSurname: "10",
-          photo: "string",
-        },
-      ],
-    };
+export const getListUsers = async (id) => {
+  // if (TYPE == "DEV") {
+  //   return {
+  //     balance: 0,
+  //     poolUserDtoList: [
+  //       {
+  //         amount: 0,
+  //         nameSurname: "TestUser",
+  //         photo: "string",
+  //       },
+  //       {
+  //         amount: 100,
+  //         nameSurname: "TestUser2",
+  //         photo: "string",
+  //       },
+  //       {
+  //         amount: 0,
+  //         nameSurname: "TestUser3",
+  //         photo: "string",
+  //       },
+  //       {
+  //         amount: 0,
+  //         nameSurname: "TestUser6",
+  //         photo: "string",
+  //       },
+  //       {
+  //         amount: 0,
+  //         nameSurname: "5",
+  //         photo: "string",
+  //       },
+  //       {
+  //         amount: 0,
+  //         nameSurname: "6",
+  //         photo: "string",
+  //       },
+  //       {
+  //         amount: 100,
+  //         nameSurname: "7",
+  //         photo: "string",
+  //       },
+  //       {
+  //         amount: 0,
+  //         nameSurname: "8",
+  //         photo: "string",
+  //       },
+  //       {
+  //         amount: 0,
+  //         nameSurname: "9",
+  //         photo: "string",
+  //       },
+  //       {
+  //         amount: 0,
+  //         nameSurname: "10",
+  //         photo: "string",
+  //       },
+  //     ],
+  //   };
+  // }
+  try {
+    const response = await axios.get(URL + "pool_users/get/" + id);
+    return response.data.poolUserDtoList;
+  } catch {
+    return false;
   }
 };
 
@@ -381,6 +387,39 @@ export const buyNewBall = async (id, idBall) => {
     return response;
   } catch (err) {
     console.log(err);
+    return false;
+  }
+};
+
+export const getCurrency = async () => {
+  // if (TYPE == "DEV") {
+  //   return [
+  //     {
+  //       country: "ARS",
+  //       value: 1100,
+  //     },
+  //     {
+  //       country: "USD",
+  //       value: 1,
+  //     },
+  //     {
+  //       country: "COP",
+  //       value: 4300,
+  //     },
+  //     {
+  //       country: "CLP",
+  //       value: 1010,
+  //     },
+  //     {
+  //       country: "MXN",
+  //       value: 21.3,
+  //     },
+  //   ];
+  // }
+  try {
+    const response = await axios.get(URL + "currency/all");
+    return response.data;
+  } catch {
     return false;
   }
 };

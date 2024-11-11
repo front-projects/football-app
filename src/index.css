@@ -91,6 +91,7 @@ input:focus {
   outline: none;
 }
 input::placeholder {
+  font-size: large;
   color: rgba(255, 255, 255, 0.5);
 }
 

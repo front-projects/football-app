@@ -29,26 +29,26 @@ const CountrySelect = () => {
         />
         <CountrySelectItem
           img="./images/countries/2.png"
-          active={activeCountry == "BOL"}
+          active={activeCountry == "COP"}
           onClick={() => {
-            setActiveCountry("BOL");
-            localStorage.setItem("country", "BOL");
+            setActiveCountry("COP");
+            localStorage.setItem("country", "COP");
           }}
         />
         <CountrySelectItem
           img="./images/countries/3.png"
-          active={activeCountry == "CHL"}
+          active={activeCountry == "CLP"}
           onClick={() => {
-            setActiveCountry("CHL");
-            localStorage.setItem("country", "CHL");
+            setActiveCountry("CLP");
+            localStorage.setItem("country", "CLP");
           }}
         />
         <CountrySelectItem
           img="./images/countries/4.png"
-          active={activeCountry == "ECD"}
+          active={activeCountry == "USD"}
           onClick={() => {
-            setActiveCountry("ECD");
-            localStorage.setItem("country", "ECD");
+            setActiveCountry("USD");
+            localStorage.setItem("country", "USD");
           }}
         />
         <CountrySelectItem
