@@ -1,3 +1,4 @@
+import WebApp from "@twa-dev/sdk";
 import { useNavigate } from "react-router-dom";
 
 const SuccessfulText = () => {
@@ -7,7 +8,10 @@ const SuccessfulText = () => {
       Successfully, you will receive your cash within 3-5 minutes
       <div className="flex gap-2 w-full items-center  mt-4">
         <button
-          onClick={() => navigate("/menu/wallet")}
+          onClick={() => {
+            WebApp.HapticFeedback.notificationOccurred("success");
+            navigate("/menu/wallet");
+          }}
           className="bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1"
         >
           Ok

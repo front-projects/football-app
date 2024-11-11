@@ -119,7 +119,10 @@ const UsdInput = () => {
         <p className="text-[14px] pl-[30px] py-2">
           Your Banas {balance ? balance.toFixed(2) : "00.00"} USD
         </p>
-        <div className="w-full grid grid-cols-3 gap-2 text-[20px]">
+        <div
+          className="w-full grid grid-cols-3 gap-2 text-[20px]"
+          onClick={() => WebApp.HapticFeedback.impactOccurred("soft")}
+        >
           <div
             className="border-[3px] border-white rounded-[28px] py-[16px] max-xsmall:py-[8px] text-center"
             onClick={() =>

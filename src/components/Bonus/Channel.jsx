@@ -23,6 +23,7 @@ const Channel = () => {
       setError(false);
       dispatch(setUser({ ...user, balance: user.balance + 3 }));
     } else {
+      WebApp.HapticFeedback.notificationOccurred("error");
       setError(true);
     }
     setIsLoading(false);

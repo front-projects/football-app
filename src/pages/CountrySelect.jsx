@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import CountrySelectItem from "../components/Wallet/CountrySelect/CountrySelectItem";
+import WebApp from "@twa-dev/sdk";
 
 const CountrySelect = () => {
   const [activeCountry, setActiveCountry] = useState(() => {
@@ -23,6 +24,7 @@ const CountrySelect = () => {
           img="./images/countries/1.png"
           active={activeCountry == "ARS"}
           onClick={() => {
+            WebApp.HapticFeedback.impactOccurred("soft");
             setActiveCountry("ARS");
             localStorage.setItem("country", "ARS");
           }}
@@ -31,6 +33,7 @@ const CountrySelect = () => {
           img="./images/countries/2.png"
           active={activeCountry == "COP"}
           onClick={() => {
+            WebApp.HapticFeedback.impactOccurred("soft");
             setActiveCountry("COP");
             localStorage.setItem("country", "COP");
           }}
@@ -39,6 +42,7 @@ const CountrySelect = () => {
           img="./images/countries/3.png"
           active={activeCountry == "CLP"}
           onClick={() => {
+            WebApp.HapticFeedback.impactOccurred("soft");
             setActiveCountry("CLP");
             localStorage.setItem("country", "CLP");
           }}
@@ -47,6 +51,7 @@ const CountrySelect = () => {
           img="./images/countries/4.png"
           active={activeCountry == "USD"}
           onClick={() => {
+            WebApp.HapticFeedback.impactOccurred("soft");
             setActiveCountry("USD");
             localStorage.setItem("country", "USD");
           }}
@@ -55,6 +60,7 @@ const CountrySelect = () => {
           img="./images/countries/5.png"
           active={activeCountry == "MXN"}
           onClick={() => {
+            WebApp.HapticFeedback.impactOccurred("soft");
             setActiveCountry("MXN");
             localStorage.setItem("country", "MXN");
           }}
