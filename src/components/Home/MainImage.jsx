@@ -51,6 +51,9 @@ export default function MainImage() {
       translateX: 0,
       opacity: 1,
     });
+    const ballAnim = gsap.timeline();
+
+    ballAnim.to("#ball-image", { translateY: 0, opacity: 1 });
     return () => {
       animRight.kill();
       animLeft.kill();
@@ -193,10 +196,11 @@ export default function MainImage() {
             </p>
             {/* NEED TO UPDATE */}
             <img
+              id="ball-image"
               {...click()}
               src={`./images/ball/${activeBall.id}.png`}
               alt="ball"
-              className="rounded-[50%] max-w-[33%]"
+              className="rounded-[50%] max-w-[33%]  -translate-y-[100px] opacity-0"
             />
             <p
               className="text-[14px] absolute right-0 w-1/4 px-2 translate-x-[100px] opacity-0"

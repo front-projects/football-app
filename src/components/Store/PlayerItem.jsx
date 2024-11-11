@@ -111,7 +111,7 @@ const PlayerItem = ({ player }) => {
         </div>
       </Modal>
       <div
-        className={`relative w-full min-h-[80%] h-[80%] bg-white/40 flex flex-col items-center rounded-[14px] mt-10 ${status == "SELECTED" ? "border-[3px] border-[#E7FF2B]" : ""}`}
+        className={`football-player relative w-full min-h-[80%] h-[80%] bg-white/40 flex flex-col items-center rounded-[14px] mt-10 ${status == "SELECTED" ? "border-[3px] border-[#E7FF2B]" : ""}`}
       >
         <div className="absolute w-[90px] -bottom-[10px] z-10 bg-[#E7FF2B] text-[#37C100] text-[10px] py-1 rounded-[28px] text-center">
           {status == "SELECTED" && "SELECTED"}
