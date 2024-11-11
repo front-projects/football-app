@@ -2,11 +2,14 @@ import { InviteIcon } from "../UI/icons";
 import WebApp from "@twa-dev/sdk";
 
 const InviteButton = () => {
+  // const inviteFriend = () => {
+  //   WebApp.HapticFeedback.impactOccurred("light");
+  //   const text = `Text for invite`;
+  //   const url = `https://t.me/share/url?url=&text=${encodeURIComponent(text)}`;
+  //   WebApp.openTelegramLink(url);
+  // };
   const inviteFriend = () => {
-    WebApp.HapticFeedback.impactOccurred("light");
-    const text = `Text for invite`;
-    const url = `https://t.me/share/url?url=&text=${encodeURIComponent(text)}`;
-    WebApp.openTelegramLink(url);
+    WebApp.shareText("Тут можна поділитися цим текстом із друзями!");
   };
 
   return (
