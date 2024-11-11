@@ -7,7 +7,7 @@ const CountrySelect = () => {
   const [activeCountry, setActiveCountry] = useState(() => {
     try {
       // Check if CloudStorage is available and if "country" is set
-      return WebApp.CloudStorage?.getItem("country") || "ARS";
+      return WebApp.CloudStorage.getItem("country") || "ARS";
     } catch (error) {
       console.error("CloudStorage method unsupported or unavailable:", error);
       return "ARS"; // Fallback to "ARG" if CloudStorage is unavailable
@@ -26,7 +26,7 @@ const CountrySelect = () => {
           active={activeCountry == "ARS"}
           onClick={() => {
             setActiveCountry("ARS");
-            WebApp.CloudStorage.setItem("countery", "ARS");
+            WebApp.CloudStorage.setItem("country", "ARS");
           }}
         />
         <CountrySelectItem
@@ -34,7 +34,7 @@ const CountrySelect = () => {
           active={activeCountry == "BOL"}
           onClick={() => {
             setActiveCountry("BOL");
-            WebApp.CloudStorage.setItem("countery", "BOL");
+            WebApp.CloudStorage.setItem("country", "BOL");
           }}
         />
         <CountrySelectItem
@@ -42,7 +42,7 @@ const CountrySelect = () => {
           active={activeCountry == "CHL"}
           onClick={() => {
             setActiveCountry("CHL");
-            WebApp.CloudStorage.setItem("countery", "CHL");
+            WebApp.CloudStorage.setItem("country", "CHL");
           }}
         />
         <CountrySelectItem
@@ -50,7 +50,7 @@ const CountrySelect = () => {
           active={activeCountry == "ECD"}
           onClick={() => {
             setActiveCountry("ECD");
-            WebApp.CloudStorage.setItem("countery", "ECD");
+            WebApp.CloudStorage.setItem("country", "ECD");
           }}
         />
         <CountrySelectItem
@@ -58,7 +58,7 @@ const CountrySelect = () => {
           active={activeCountry == "MXN"}
           onClick={() => {
             setActiveCountry("MXN");
-            WebApp.CloudStorage.setItem("countery", "MXN");
+            WebApp.CloudStorage.setItem("country", "MXN");
           }}
         />
       </div>
