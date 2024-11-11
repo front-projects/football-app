@@ -7,7 +7,8 @@ const CountrySelect = () => {
   const [activeCountry, setActiveCountry] = useState(() => {
     try {
       const test = WebApp.CloudStorage;
-      console.log(test);
+      const country = test.getItem("country");
+      console.log(country);
       // Check if CloudStorage is available and if "country" is set
       return test || "ARS";
     } catch (error) {
