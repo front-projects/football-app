@@ -7,6 +7,7 @@ import WebApp from "@twa-dev/sdk";
 import SuccessfulText from "./SuccessfulText";
 import SelectedText from "./SelectedText";
 import StartedText from "./StartedText";
+import CryptoInput from "./CryptoInput";
 
 const UsdInput = () => {
   const balance = useSelector((state) => state.auth.balance);
@@ -91,21 +92,23 @@ const UsdInput = () => {
         {action == "SUCCESS" && <SuccessfulText />}
       </Modal>
       <form className="w-full flex flex-col" onSubmit={submitHandler}>
+        {type == "crypto" && <CryptoInput />}
         <div
           className={`bg-[#FFFFFF66] w-full rounded-[28px] text-[20px] flex ${validation ? "outline outile-2 outline-red-600" : ""}`}
         >
           <input
+            required
             type="number"
             max={balance}
             min={25}
             step="0.001"
             value={usdInput}
             onChange={(e) => setUsdInput(parseFloat(e.target.value))}
-            className="rounded-[28px] py-[22px] pl-[20px] w-full"
+            className="rounded-[28px] py-[18px] pl-[20px] w-full"
             placeholder="Enter an amount"
           />
           <div
-            className="bg-white rounded-[28px] text-[#37C100] flex items-center justify-center px-6"
+            className="bg-white rounded-[28px] text-[#37C100] flex items-center justify-center px-10 w-[130px] min-w-[130px]"
             onClick={() =>
               setUsdInput(balance ? parseFloat(balance.toFixed(3)) : 0)
             }
@@ -153,12 +156,12 @@ const UsdInput = () => {
         <div className="bg-[#FFFFFF66] w-full rounded-[28px] text-[20px] flex mt-6">
           <input
             type="text"
-            className="rounded-[28px] py-[22px] pl-[20px]"
+            className="rounded-[28px] py-[18px] pl-[20px] w-full"
             placeholder="Enter an amount"
             value={currencyInput}
             readOnly
           />
-          <div className="bg-white rounded-[28px] text-[#37C100] flex items-center justify-center w-full">
+          <div className="bg-white rounded-[28px] text-[#37C100] flex items-center justify-center px-10 w-[130px] min-w-[130px]">
             {isLoading ? "..." : activeCurrency?.country}
           </div>
         </div>
