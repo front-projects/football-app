@@ -5,10 +5,9 @@ import CountrySelectItem from "../components/Wallet/CountrySelect/CountrySelectI
 const CountrySelect = () => {
   const [activeCountry, setActiveCountry] = useState(() => {
     try {
-      const test = localStorage.getItem("country");
-      return test || "ARS";
+      const country = localStorage.getItem("country");
+      return country || "ARS";
     } catch (error) {
-      console.error("CloudStorage method unsupported or unavailable:", error);
       return "ARS"; // Fallback to "ARG" if CloudStorage is unavailable
     }
   });

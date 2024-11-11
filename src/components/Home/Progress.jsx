@@ -7,7 +7,7 @@ export default function Progress() {
   return (
     <div className="mt-[80px] text-[#E7FF2B] text-center select-none">
       <h1 className="text-[42px] max-xsmall:text-[36px]">
-        {user.balance.toFixed(2)} USD
+        {user.balance.toFixed(3)} USD
       </h1>
       <p className="text-[20px] mt-[-10px] max-xsmall:text-[16px] flex gap-2 items-center justify-center">
         Progress{" "}
