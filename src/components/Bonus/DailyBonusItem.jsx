@@ -13,7 +13,11 @@ const DailyBonusItem = ({ price, locked }) => {
       />
       {locked && (
         <div className="absolute flex items-center justify-center w-full h-full z-2 inset-0">
-          <img src="./images/locked.png" alt="" className="w-[84px] h-[84px]" />
+          <img
+            src="./images/locked.png"
+            alt=""
+            className="w-[46px] h-[46px] max-w-[46px] max-h-[46px]"
+          />
         </div>
       )}
     </div>
