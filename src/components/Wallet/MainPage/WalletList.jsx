@@ -29,7 +29,12 @@ const WalletList = () => {
   }, []);
 
   useLayoutEffect(() => {
-    gsap.to(".wallet-item", { translateY: 0, opacity: 1, stagger: 0.1 });
+    const anim = gsap.to(".wallet-item", {
+      translateY: 0,
+      opacity: 1,
+      stagger: 0.1,
+    });
+    return () => anim.kill();
   }, [activeList]);
 
   useEffect(() => {
