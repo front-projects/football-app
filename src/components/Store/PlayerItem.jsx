@@ -5,6 +5,7 @@ import {
   getBoughtPlayers,
   getUserInfo,
   selectPlayer,
+  TG_ID,
 } from "../../util/back/requests";
 import ErrorAlert from "../UI/errorAlert";
 import { setUser } from "../../store/auth-slice";
@@ -21,14 +22,11 @@ const PlayerItem = ({ player }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
-  const telegramId = WebApp.initDataUnsafe.user.username;
-  // const telegramId = "kleinheisterkamp";
-
   const updateUser = async () => {
     setIsLoading(true);
     try {
-      const players = await getBoughtPlayers(telegramId, player.id);
-      const updatedUserInfo = await getUserInfo(telegramId);
+      const players = await getBoughtPlayers(TG_ID, player.id);
+      const updatedUserInfo = await getUserInfo(TG_ID);
       if (players && updatedUserInfo) {
         dispatch(setStatic({ ...staticData, boughtPlayers: players }));
         dispatch(setUser(updatedUserInfo));

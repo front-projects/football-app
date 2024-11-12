@@ -26,6 +26,7 @@ import {
   getBoughtBalls,
   getBoughtPlayers,
   getUserInfo,
+  TG_ID,
 } from "./util/back/requests";
 import { useDispatch } from "react-redux";
 import { setUser } from "./store/auth-slice";
@@ -44,15 +45,15 @@ function App() {
   useEffect(() => {
     WebApp.ready();
     WebApp.expand();
-    const telegramId = WebApp.initDataUnsafe.user.username;
+    // const telegramId = WebApp.initDataUnsafe.user.username;
     // const telegramId = "kleinheisterkamp";
     const fetchData = async () => {
       // WebApp.initDataUnsafe.user.username
-      const user = await getUserInfo(telegramId);
+      const user = await getUserInfo(TG_ID);
       const balls = await getAllBalls();
       const players = await getAllPlayers();
-      const boughtPlayers = await getBoughtPlayers(telegramId);
-      const boughtBalls = await getBoughtBalls(telegramId);
+      const boughtPlayers = await getBoughtPlayers(TG_ID);
+      const boughtBalls = await getBoughtBalls(TG_ID);
       if (user && balls && players && boughtPlayers && boughtBalls) {
         dispatch(setUser(user));
         dispatch(

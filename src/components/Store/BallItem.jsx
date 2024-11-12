@@ -5,6 +5,7 @@ import {
   getBoughtBalls,
   getUserInfo,
   selectBall,
+  TG_ID,
 } from "../../util/back/requests";
 import { setUser } from "../../store/auth-slice";
 import Modal from "../UI/Modal";
@@ -21,13 +22,11 @@ const BallItem = ({ ball }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
-  const telegramId = WebApp.initDataUnsafe.user.username;
-  // const telegramId = "kleinheisterkamp";
   const updateUser = async () => {
     setIsLoading(true);
     try {
-      const balls = await getBoughtBalls(telegramId, ball.id);
-      const updatedUserInfo = await getUserInfo(telegramId);
+      const balls = await getBoughtBalls(TG_ID, ball.id);
+      const updatedUserInfo = await getUserInfo(TG_ID);
       if (balls && updatedUserInfo) {
         dispatch(setStatic({ ...staticData, boughtBalls: balls }));
         dispatch(setUser(updatedUserInfo));
@@ -121,7 +120,9 @@ const BallItem = ({ ball }) => {
           />
           <div className="text-[14px]">{ball.name}</div>
 
-          <div className="w-[90px] bg-[#E7FF2B] text-[#37C100] text-[10px] py-1 rounded-[28px] text-center">
+          <div
+            className={`w-[90px]  text-[#37C100] text-[10px] py-1 rounded-[28px] text-center ${status == "UNAVALIABLE" ? "bg-[#E7FF2B]/70" : "bg-[#E7FF2B]"}`}
+          >
             {status == "SELECTED" && "SELECTED"}
             {status == "BOUGHT" && (
               <div onClick={updateBall}>
