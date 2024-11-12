@@ -21,6 +21,7 @@ const BallItem = ({ ball }) => {
   const staticData = useSelector((state) => state.static);
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const [noBalance, setNoBalance] = useState(false);
 
   const updateUser = async () => {
     setIsLoading(true);
@@ -147,12 +148,24 @@ const BallItem = ({ ball }) => {
               </div>
             )}
             {status == "UNAVALIABLE" && (
-              <div className="text-gray-600">BUY {ball.price} USD</div>
+              <div
+                className="text-gray-400"
+                onClick={() => {
+                  setNoBalance(true);
+                  setTimeout(() => setNoBalance(false), 2500);
+                  WebApp.HapticFeedback.notificationOccurred("error");
+                }}
+              >
+                BUY {ball.price} USD
+              </div>
             )}
           </div>
         </div>
       </div>
       {isError && <ErrorAlert>Something went wrong, try again</ErrorAlert>}
+      {noBalance && (
+        <ErrorAlert>You do not have enough money to buy this ball</ErrorAlert>
+      )}
     </>
   );
 };
