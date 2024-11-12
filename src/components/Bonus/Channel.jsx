@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/auth-slice";
 import { checkChannel } from "../../util/back/requests";
 import ConfettiExplosion from "react-confetti-explosion";
+import { TelegramIcon } from "../UI/icons";
 
 const Channel = () => {
   const user = useSelector((state) => state.auth);
@@ -24,7 +25,7 @@ const Channel = () => {
       setError(false);
       setConfetti(true);
       dispatch(
-        setUser({ ...user, balance: user.balance + 3, telegramBonus: true }),
+        setUser({ ...user, balance: user.balance + 5, telegramBonus: true }),
       );
     } else {
       WebApp.HapticFeedback.notificationOccurred("error");
@@ -42,7 +43,7 @@ const Channel = () => {
         className={`relative border-[3px]  rounded-[28px] px-[10px] pt-[20px] max-xsmall:pt-[10px] pb-[26px] bg-[#FFFFFF] flex flex-col items-center  ${error ? "border-red-600" : success ? "border-green-400" : "border-[#007ED2]"}`}
       >
         <h1 className="text-[#E7FF2B] text-[25px] max-xsmall:text-[18px]">
-          +3 USD
+          <TelegramIcon />
         </h1>
         <p className="text-[11px] text-[#007ED2]">
           Subscribe to telegram and get +5 USD

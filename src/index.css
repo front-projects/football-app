@@ -48,6 +48,10 @@ p {
   font-family: "UEFAEuro-Bold";
 }
 
+h1{
+  font-family: "UEFAEuro-Heavy";
+}
+
 main {
   background: linear-gradient(360deg, #37c100 17.43%, #1a5b00 124.33%);
 }

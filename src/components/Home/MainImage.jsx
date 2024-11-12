@@ -191,9 +191,7 @@ export default function MainImage() {
             <div className="bg-[#37C100] w-[52%] text-center py-[9px] rounded-[48px] max-xsmall:py-[2px]">
               {activePlayer.value} USD
             </div>
-            <div className="text-[#1A5B00] text-[26px]">
-              {activePlayer.name}
-            </div>
+            <h1 className="text-[#1A5B00] text-[26px]">{activePlayer.name}</h1>
           </div>
           <div className="absolute -bottom-[85px] rounded-[50%] flex items-center justify-center w-full">
             <p
