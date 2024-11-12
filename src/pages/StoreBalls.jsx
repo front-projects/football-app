@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useMemo, useRef } from "react";
 import { chunkArray } from "../util/front/func";
 import { ButtonLeft, ButtonRight } from "../components/UI/icons";
 import { Pagination } from "swiper/modules";
@@ -32,7 +32,7 @@ export default function StorePlayers() {
     );
     return () => anim.kill();
   }, []);
-  const groupedBalls = chunkArray(balls, 6);
+  const groupedBalls = useMemo(() => chunkArray(balls, 6), [balls]);
   return (
     <>
       <Swiper
@@ -59,13 +59,13 @@ export default function StorePlayers() {
         <div className="flex gap-[10px]">
           <button
             className="bg-[#E7FF2B] w-[84px] h-[30px] rounded-[28px] flex items-center justify-center"
-            onClick={() => swiperRef.current?.slidePrev()}
+            // onClick={() => swiperRef.current?.slidePrev()}
           >
             <ButtonLeft />
           </button>
           <button
             className="bg-[#E7FF2B] w-[84px] h-[30px] rounded-[28px] flex items-center justify-center"
-            onClick={() => swiperRef.current?.slideNext()}
+            // onClick={() => swiperRef.current?.slideNext()}
           >
             <ButtonRight />
           </button>

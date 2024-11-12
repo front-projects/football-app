@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import { useLayoutEffect, useRef } from "react";
+import { useCallback, useLayoutEffect, useMemo, useRef } from "react";
 import { chunkArray } from "../util/front/func";
 import { ButtonLeft, ButtonRight } from "../components/UI/icons";
 import { Pagination } from "swiper/modules";
@@ -15,7 +15,7 @@ export default function StorePlayers() {
   const players = useSelector((state) => state.static.players);
   const swiperRef = useRef(null);
 
-  const groupedPlayers = chunkArray(players, 4);
+  const groupedPlayers = useMemo(() => chunkArray(players, 4), [players]);
 
   useLayoutEffect(() => {
     const footballPlayers = gsap.utils.toArray(".football-player");
@@ -34,6 +34,9 @@ export default function StorePlayers() {
     return () => anim.kill();
   }, []);
 
+  const handlePrev = useCallback(() => swiperRef.current?.slidePrev(), []);
+  const handleNext = useCallback(() => swiperRef.current?.slideNext(), []);
+
   return (
     <>
       <Swiper
@@ -43,6 +46,7 @@ export default function StorePlayers() {
         pagination={{ clickable: true }}
         modules={[Pagination]}
         className="h-full"
+        lazy
         style={{ height: "calc(100% - 30px)" }}
       >
         {groupedPlayers.map((group, index) => (
@@ -60,13 +64,13 @@ export default function StorePlayers() {
         <div className="flex gap-[10px]">
           <button
             className="bg-[#E7FF2B] w-[84px] h-[30px] rounded-[28px] flex items-center justify-center"
-            onClick={() => swiperRef.current?.slidePrev()}
+            onClick={handlePrev}
           >
             <ButtonLeft />
           </button>
           <button
             className="bg-[#E7FF2B] w-[84px] h-[30px] rounded-[28px] flex items-center justify-center"
-            onClick={() => swiperRef.current?.slideNext()}
+            onClick={handleNext}
           >
             <ButtonRight />
           </button>
