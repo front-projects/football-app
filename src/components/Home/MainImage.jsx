@@ -88,7 +88,6 @@ export default function MainImage() {
 
   const clickHandler = useCallback(
     (e) => {
-      console.log(clicks);
       if (userInfo.energy == 0) {
         if (!isError) {
           setIsError(true);

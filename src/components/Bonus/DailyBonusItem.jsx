@@ -1,6 +1,6 @@
 const DailyBonusItem = ({ price, locked }) => {
   return (
-    <div className="relative max-w-[84px] w-[84px] h-[84px]">
+    <div className="relative max-w-[84px] w-[84px] h-[84px] daily-bonus-item -translate-y-[50px] opacity-0">
       <div
         className={`absolute bottom-0 left-1/2 -translate-x-1/2 text-[#37C100] text-[14px] whitespace-nowrap ${locked ? "opacity-[.4]" : ""}`}
       >

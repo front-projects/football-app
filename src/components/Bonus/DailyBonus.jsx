@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import DailyBonusItem from "./DailyBonusItem";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorAlert from "../UI/errorAlert";
 import ConfettiExplosion from "react-confetti-explosion";
 import { dailyBonusUse } from "../../util/back/requests";
 import { setUser } from "../../store/auth-slice";
+import gsap from "gsap";
 
 const DailyBonus = () => {
   const user = useSelector((state) => state.auth);
@@ -22,6 +23,16 @@ const DailyBonus = () => {
 
     return hoursRemaining;
   }
+
+  useLayoutEffect(() => {
+    const anim = gsap.to(".daily-bonus-item", {
+      translateY: 0,
+      opacity: 1,
+      stagger: 0.2,
+      duration: 0.3,
+    });
+    return () => anim.kill();
+  }, []);
 
   const hoursToUnlock = hoursUntilUnlock(user.dailyBonusUnlock);
 

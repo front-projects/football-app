@@ -2,19 +2,24 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { chunkArray } from "../util/front/func";
 import { ButtonLeft, ButtonRight } from "../components/UI/icons";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 import PlayerItem from "../components/Store/PlayerItem";
 import { useSelector } from "react-redux";
+import gsap from "gsap";
 
 export default function StorePlayers() {
   const players = useSelector((state) => state.static.players);
   const swiperRef = useRef(null);
 
   const groupedPlayers = chunkArray(players, 4);
+
+  useLayoutEffect(() => {
+    gsap.to(".football-player", { translateY: 0, opacity: 1, stagger: 0.2 });
+  }, []);
 
   return (
     <>
