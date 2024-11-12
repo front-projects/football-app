@@ -163,9 +163,7 @@ const BallItem = ({ ball }) => {
         </div>
       </div>
       {isError && <ErrorAlert>Something went wrong, try again</ErrorAlert>}
-      {noBalance && (
-        <ErrorAlert>You do not have enough money to buy this ball</ErrorAlert>
-      )}
+      {noBalance && <ErrorAlert>You do not have enough money </ErrorAlert>}
     </>
   );
 };
