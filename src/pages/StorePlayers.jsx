@@ -21,7 +21,7 @@ export default function StorePlayers() {
     const anim = gsap.to(".football-player", {
       translateY: 0,
       opacity: 1,
-      stagger: 0.2,
+      stagger: 0.1,
     });
     return () => anim.kill();
   }, []);

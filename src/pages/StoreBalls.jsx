@@ -19,7 +19,9 @@ export default function StorePlayers() {
     const anim = gsap.to(".ball-item", {
       translateY: 0,
       opacity: 1,
-      stagger: 0.2,
+      stagger: 0.1,
+      // duration: 0.3,
+      // ease: "power3.inOut",
     });
     return () => anim.kill();
   }, []);
