@@ -49,20 +49,6 @@ const BallItem = ({ ball }) => {
 
   let status;
 
-  // if (user.currentBallId == ball.id) {
-  //   status = "SELECTED";
-  // } else if (boughtBalls.some((element) => element.id == ball.id)) {
-  //   status = "BOUGHT";
-  // } else if (
-  //   !boughtBalls.some(
-  //     (element) => element.id == ball.id && user.balance >= ball.price,
-  //   )
-  // ) {
-  //   status = "AVALIABLE";
-  // } else {
-  //   status = "UNAVALIABLE";
-  // }
-
   if (user.currentBallId == ball.id) {
     status = "SELECTED";
   } else if (boughtBalls.some((element) => element.id == ball.id)) {

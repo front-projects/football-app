@@ -29,10 +29,11 @@ const WalletList = () => {
   }, []);
 
   useLayoutEffect(() => {
-    const anim = gsap.to(".wallet-item", {
+    const items = gsap.utils.toArray(".wallet-item");
+    const anim = gsap.to(items, {
       translateY: 0,
       opacity: 1,
-      stagger: 0.1,
+      stagger: 0.07,
     });
     return () => anim.kill();
   }, [activeList]);

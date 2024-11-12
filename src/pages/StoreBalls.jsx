@@ -16,8 +16,10 @@ export default function StorePlayers() {
   const swiperRef = useRef(null);
 
   useLayoutEffect(() => {
+    const ballItems = gsap.utils.toArray(".ball-item");
+
     const anim = gsap.fromTo(
-      ".ball-item",
+      ballItems,
       {
         translateY: 30,
         opacity: 0,
@@ -25,7 +27,7 @@ export default function StorePlayers() {
       {
         translateY: 0,
         opacity: 1,
-        stagger: 0.1,
+        stagger: 0.07,
       },
     );
     return () => anim.kill();
