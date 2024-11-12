@@ -36,12 +36,11 @@ const Channel = () => {
 
   return (
     <>
-      {confetti && <ConfettiExplosion></ConfettiExplosion>}
-
       <form
         onSubmit={submitHandler}
         className={`relative border-[3px]  rounded-[28px] px-[10px] pt-[20px] max-xsmall:pt-[10px] pb-[26px] bg-[#FFFFFF] flex flex-col items-center  ${error ? "border-red-600" : success ? "border-green-400" : "border-[#007ED2]"}`}
       >
+        {confetti && <ConfettiExplosion></ConfettiExplosion>}
         <h1 className="text-[#E7FF2B] text-[25px] max-xsmall:text-[18px]">
           <TelegramIcon />
         </h1>

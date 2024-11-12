@@ -325,7 +325,7 @@ export const getUserInfo = async (id) => {
       dailyBonus: 1,
       dailyBonusAvailable: false,
       dailyBonusUnlock: "2024-11-14T15:02:21",
-      telegramBonus: true,
+      telegramBonus: false,
       admin: false,
     };
   } else {
