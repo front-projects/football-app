@@ -45,10 +45,8 @@ function App() {
   useEffect(() => {
     WebApp.ready();
     WebApp.expand();
-    // const telegramId = WebApp.initDataUnsafe.user.username;
-    // const telegramId = "kleinheisterkamp";
+
     const fetchData = async () => {
-      // WebApp.initDataUnsafe.user.username
       const user = await getUserInfo(TG_ID);
       const balls = await getAllBalls();
       const players = await getAllPlayers();
