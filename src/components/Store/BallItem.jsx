@@ -149,7 +149,7 @@ const BallItem = ({ ball }) => {
             )}
             {status == "UNAVALIABLE" && (
               <div
-                className="text-gray-400"
+                className="text-white/60"
                 onClick={() => {
                   setNoBalance(true);
                   setTimeout(() => setNoBalance(false), 2500);
