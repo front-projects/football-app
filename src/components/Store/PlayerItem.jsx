@@ -21,6 +21,7 @@ const PlayerItem = ({ player }) => {
   const staticData = useSelector((state) => state.static);
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const [noBalance, setNoBalance] = useState(false);
 
   const updateUser = async () => {
     setIsLoading(true);
@@ -52,11 +53,7 @@ const PlayerItem = ({ player }) => {
     status = "SELECTED";
   } else if (boughtPlayers.some((element) => element.id == player.id)) {
     status = "BOUGHT";
-  } else if (
-    !boughtPlayers.some(
-      (element) => element.id == player.id && user.balance >= player.price,
-    )
-  ) {
+  } else if (user.balance >= player.price) {
     status = "AVALIABLE";
   } else {
     status = "UNAVALIABLE";
@@ -124,7 +121,16 @@ const PlayerItem = ({ player }) => {
             </div>
           )}
           {status == "UNAVALIABLE" && (
-            <div className="text-gray-600">BUY {player.price} USD</div>
+            <div
+              className="text-[#37C100]/70"
+              onClick={() => {
+                setNoBalance(true);
+                setTimeout(() => setNoBalance(false), 2500);
+                WebApp.HapticFeedback.notificationOccurred("error");
+              }}
+            >
+              BUY {player.price} USD
+            </div>
           )}
           {/* BUY {player.price} USD */}
         </div>
@@ -144,6 +150,7 @@ const PlayerItem = ({ player }) => {
         </div>
       </div>
       {isError && <ErrorAlert>Something went wrong, try again</ErrorAlert>}
+      {noBalance && <ErrorAlert>You do not have enough money </ErrorAlert>}
     </>
   );
 };

@@ -73,8 +73,6 @@ const BallItem = ({ ball }) => {
     status = "UNAVALIABLE";
   }
 
-  console.log(status);
-
   const updateBall = async () => {
     // setIsLoading(true);
     WebApp.HapticFeedback.impactOccurred("soft");
@@ -149,7 +147,7 @@ const BallItem = ({ ball }) => {
             )}
             {status == "UNAVALIABLE" && (
               <div
-                className="text-[#37C100]/60"
+                className="text-[#37C100]/70"
                 onClick={() => {
                   setNoBalance(true);
                   setTimeout(() => setNoBalance(false), 2500);
