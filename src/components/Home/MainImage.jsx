@@ -51,9 +51,15 @@ export default function MainImage() {
       translateX: 0,
       opacity: 1,
     });
-    const ballAnim = gsap.timeline();
 
-    ballAnim.to("#ball-image", { translateY: 0, opacity: 1 });
+    const ballAnim = gsap.to("#ball-image", { translateY: 0, opacity: 1 });
+    const playerAnim = gsap.timeline({ duration: 0.1 });
+
+    playerAnim
+      .to("#player-image", { translateX: 10, duration: 0.2 })
+      .to("#player-image", { translateX: -10, duration: 0.2 })
+      .to("#player-image", { translateX: 0, duration: 0.2 });
+
     return () => {
       animRight.kill();
       animLeft.kill();
@@ -177,6 +183,7 @@ export default function MainImage() {
             {/* NEED TO UPDATE */}
 
             <img
+              id="player-image"
               src={`./images/person/${activePlayer.id}.png`}
               alt="person"
               className="w-[35vh] max-h-[70%] max-xsmall:w-[30vh]"
