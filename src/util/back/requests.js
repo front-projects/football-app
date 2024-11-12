@@ -234,10 +234,10 @@ export const getHistory = async () => {
 export const getUserInfo = async (id) => {
   if (TYPE == "DEV") {
     try {
-      // const response = await axios.get(
-      //   URL + "user/kleinheisterkamp/{uniqueLink}",
-      // );
-      const response = await axios.get(URL + "user/" + id + "/{uniqueLink}");
+      const response = await axios.get(
+        URL + "user/kleinheisterkamp/{uniqueLink}",
+      );
+      // const response = await axios.get(URL + "user/" + id + "/{uniqueLink}");
       if (response) {
         return response.data;
       } else {
@@ -443,14 +443,27 @@ export const checkPromo = async (id, promo) => {
   // return true;
 };
 
-export const checkChannel = async (type) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      if (type) {
-        resolve(true);
-      } else {
+export const checkChannel = async (type, id) => {
+  if (!type) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
         resolve(false);
-      }
-    }, 3000); // Затримка в 3 секунди
-  });
+      }, 3000);
+    });
+  }
+  try {
+    const response = await axios.post(URL + "user/bonus/" + id);
+    return response;
+  } catch {
+    return false;
+  }
+};
+
+export const dailyBonusUse = async (id) => {
+  try {
+    const response = await axios.get(URL + "user/bonus/" + id);
+    return response;
+  } catch {
+    return false;
+  }
 };

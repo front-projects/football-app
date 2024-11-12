@@ -1,26 +1,84 @@
 import { useState } from "react";
 import DailyBonusItem from "./DailyBonusItem";
+import { useDispatch, useSelector } from "react-redux";
+import ErrorAlert from "../UI/errorAlert";
+import ConfettiExplosion from "react-confetti-explosion";
+import { dailyBonusUse } from "../../util/back/requests";
+import { setUser } from "../../store/auth-slice";
 
 const DailyBonus = () => {
-  const [locked, setLocked] = useState(false);
+  const user = useSelector((state) => state.auth);
+  const locked = !user.dailyBonusAvailable;
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [sucess, setSucess] = useState(false);
+  const dispatch = useDispatch();
+
+  function hoursUntilUnlock(targetDateStr) {
+    const targetDate = new Date(targetDateStr);
+    const currentDate = new Date();
+    const timeDifferenceMs = targetDate - currentDate;
+    const hoursRemaining = timeDifferenceMs / (1000 * 60 * 60);
+
+    return hoursRemaining;
+  }
+
+  const hoursToUnlock = hoursUntilUnlock(user.dailyBonusUnlock);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const response = await dailyBonusUse(user.telegramId);
+    if (response) {
+      setSucess(true);
+      dispatch(
+        setUser({
+          ...user,
+          dailyBonusAvailable: false,
+          balance: user.balance + user.dailyBonus,
+        }),
+      );
+    } else {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 2500);
+    }
+    setIsLoading(false);
+  };
 
   return (
-    <div className="grid grid-cols-4 relative bg-[#E7FF2B] rounded-[28px] mt-[40px] max-xsmall:mt-[20px]  pt-[15px] pb-[30px] max-xsmall:pb-[15px]">
-      <div className="absolute left-1/2 -translate-x-1/2 -top-2 bg-[#FFFFFF] text-[#37C100] rounded-[28px] w-max px-[20px] text-[11px]">
-        Pick up a bonus every 24 hours
-      </div>
-      <DailyBonusItem price={1} />
-      <DailyBonusItem price={2} locked />
-      <DailyBonusItem price={3} locked />
-      <DailyBonusItem price={4} locked />
-      <div className="absolute left-1/2 -translate-x-1/2 -bottom-4 py-2 bg-[#FFFFFF] text-[#37C100] rounded-[28px] w-max px-[20px] text-[11px]">
-        {locked ? (
-          <span className="text-[#1E1E1E80]">24:00</span>
-        ) : (
-          "Get a bonus"
-        )}
-      </div>
-    </div>
+    <>
+      {error && <ErrorAlert>Something went wrong...</ErrorAlert>}
+      {sucess && <ConfettiExplosion></ConfettiExplosion>}
+      <form
+        className="grid grid-cols-4 relative bg-[#E7FF2B] rounded-[28px] mt-[40px] max-xsmall:mt-[20px]  pt-[15px] pb-[30px] max-xsmall:pb-[15px]"
+        onSubmit={submitHandler}
+      >
+        <div className="absolute left-1/2 -translate-x-1/2 -top-2 bg-[#FFFFFF] text-[#37C100] rounded-[28px] w-max px-[20px] text-[11px]">
+          Pick up a bonus every 24 hours
+        </div>
+        <DailyBonusItem price={1} locked={user.dailyBonus < 1} />
+        <DailyBonusItem price={2} locked={user.dailyBonus < 2} />
+        <DailyBonusItem price={3} locked={user.dailyBonus < 3} />
+        <DailyBonusItem price={4} locked={user.dailyBonus < 4} />
+        <button
+          type="submit"
+          disabled={locked}
+          className="absolute left-1/2 -translate-x-1/2 -bottom-4 py-2 bg-[#FFFFFF] text-[#37C100] rounded-[28px] w-max px-[20px] text-[11px]"
+        >
+          {locked ? (
+            <span className="text-[#1E1E1E80]">
+              {hoursToUnlock ? Math.ceil(hoursToUnlock) : "24"}:00 h
+            </span>
+          ) : !isLoading ? (
+            "Get a bonus"
+          ) : (
+            "Getting..."
+          )}
+        </button>
+      </form>
+    </>
   );
 };
 
