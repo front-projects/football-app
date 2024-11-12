@@ -134,7 +134,7 @@ const BallItem = ({ ball }) => {
           <div className="text-[14px]">{ball.name}</div>
 
           <div
-            className={`w-[90px]  text-[#37C100] text-[10px] py-1 rounded-[28px] text-center ${status == "UNAVALIABLE" ? "bg-[#E7FF2B]/70" : "bg-[#E7FF2B]"}`}
+            className={`w-[90px]  bg-[#E7FF2B] text-[#37C100] text-[10px] py-1 rounded-[28px] text-center`}
           >
             {status == "SELECTED" && "SELECTED"}
             {status == "BOUGHT" && (
@@ -149,7 +149,7 @@ const BallItem = ({ ball }) => {
             )}
             {status == "UNAVALIABLE" && (
               <div
-                className="text-white/60"
+                className="text-[#37C100]/60"
                 onClick={() => {
                   setNoBalance(true);
                   setTimeout(() => setNoBalance(false), 2500);
