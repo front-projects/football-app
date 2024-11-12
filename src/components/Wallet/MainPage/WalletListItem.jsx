@@ -2,7 +2,7 @@ import { WalletDollarIcon, WalletItemBg } from "../../UI/icons";
 
 const WalletListItem = ({ data }) => {
   return (
-    <div className="h-[63px] w-full relative">
+    <div className="h-[63px] w-full relative wallet-item opacity-0 translate-y-[20px]">
       <div className="absolute inset-0">
         <WalletItemBg />
       </div>

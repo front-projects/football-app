@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { getListUsers } from "../../../util/back/requests";
 import WalletListItem from "./WalletListItem";
 import { useSelector } from "react-redux";
+import gsap from "gsap";
 // import WebApp from "@twa-dev/sdk";
 
 const WalletList = () => {
@@ -26,6 +27,10 @@ const WalletList = () => {
     };
     fetchData();
   }, []);
+
+  useLayoutEffect(() => {
+    gsap.to(".wallet-item", { translateY: 0, opacity: 1, stagger: 0.1 });
+  }, [activeList]);
 
   useEffect(() => {
     if (activeSection >= 10) {
