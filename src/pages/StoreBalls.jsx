@@ -16,7 +16,12 @@ export default function StorePlayers() {
   const swiperRef = useRef(null);
 
   useLayoutEffect(() => {
-    gsap.to(".ball-item", { translateY: 0, opacity: 1, stagger: 0.2 });
+    const anim = gsap.to(".ball-item", {
+      translateY: 0,
+      opacity: 1,
+      stagger: 0.2,
+    });
+    return () => anim.kill();
   }, []);
   const groupedBalls = chunkArray(balls, 6);
   return (
