@@ -18,10 +18,13 @@ const DailyBonus = () => {
   function hoursUntilUnlock(targetDateStr) {
     const targetDate = new Date(targetDateStr);
     const currentDate = new Date();
-    const timeDifferenceMs = targetDate - currentDate;
-    const hoursRemaining = timeDifferenceMs / (1000 * 60 * 60);
+    // const timeDifferenceMs = targetDate - currentDate;
+    // const hoursRemaining = timeDifferenceMs / (1000 * 60 * 60);
+    // const timeDifferenceMs = targetDate.getTime() - currentDate.getTime();
+    // const hoursRemaining = timeDifferenceMs / (1000 * 60 * 60);
+    const timeDifference = targetDate.getHours() - currentDate.getUTCHours();
 
-    return hoursRemaining;
+    return timeDifference;
   }
 
   useLayoutEffect(() => {
