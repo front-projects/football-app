@@ -18,11 +18,18 @@ export default function StorePlayers() {
   const groupedPlayers = chunkArray(players, 4);
 
   useLayoutEffect(() => {
-    const anim = gsap.to(".football-player", {
-      translateY: 0,
-      opacity: 1,
-      stagger: 0.1,
-    });
+    const anim = gsap.fromTo(
+      ".football-player",
+      {
+        translateY: 30,
+        opacity: 0,
+      },
+      {
+        translateY: 0,
+        opacity: 1,
+        stagger: 0.1,
+      },
+    );
     return () => anim.kill();
   }, []);
 

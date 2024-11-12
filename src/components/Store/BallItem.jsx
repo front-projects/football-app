@@ -111,7 +111,7 @@ const BallItem = ({ ball }) => {
         </div>
       </Modal>
       <div
-        className={`ball-item translate-y-[30px] opacity-0 relative w-full min-h-[80%] h-[80%] bg-white/40 flex flex-col items-center rounded-[14px] mt-10 ${status == "SELECTED" ? "border-[3px] border-[#E7FF2B]" : ""}`}
+        className={`ball-item  relative w-full min-h-[80%] h-[80%] bg-white/40 flex flex-col items-center rounded-[14px] mt-10 ${status == "SELECTED" ? "border-[3px] border-[#E7FF2B]" : ""}`}
       >
         <div className="absolute -top-8 h-[80%] max-h-[80%] flex flex-col items-center w-full">
           <img

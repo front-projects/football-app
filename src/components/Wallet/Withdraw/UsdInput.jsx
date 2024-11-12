@@ -109,9 +109,10 @@ const UsdInput = () => {
           />
           <div
             className="bg-white rounded-[28px] text-[#37C100] flex items-center justify-center px-10 w-[130px] min-w-[130px]"
-            onClick={() =>
-              setUsdInput(balance ? parseFloat(balance).toFixed(3) : 0)
-            }
+            onClick={() => {
+              WebApp.HapticFeedback.impactOccurred("soft");
+              setUsdInput(balance ? parseFloat(balance).toFixed(3) : 0);
+            }}
           >
             MAX
           </div>
