@@ -111,3 +111,10 @@ input::placeholder {
   animation: floatUp 2.3s forwards;
   pointer-events: none;
 }
+
+.ball-item {
+  will-change: opacity, transform;
+}
+.football-player {
+  will-change: opacity, transform;
+}
