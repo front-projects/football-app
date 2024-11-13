@@ -1,5 +1,5 @@
 import WebApp from "@twa-dev/sdk";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { checkPromo } from "../../util/back/requests";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/auth-slice";
@@ -9,6 +9,7 @@ const Promocode = () => {
   const user = useSelector((state) => state.auth);
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState();
+  const inputRef = useRef(null);
   const [isLoading, setIsLoading] = useState();
   const [success, setIsSuccess] = useState();
   const dispatch = useDispatch();
@@ -17,8 +18,13 @@ const Promocode = () => {
     setError(false);
   }, [inputValue]);
 
+  const handleDivClick = () => {
+    inputRef.current.focus();
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
     if (inputValue == "") {
       WebApp.HapticFeedback.notificationOccurred("error");
       return setError(true);
@@ -46,9 +52,13 @@ const Promocode = () => {
           +3 USD
         </h1>
         <p className="text-[11px] text-[#E7FF2B]">Promo code activation</p>
-        <div className="bg-[#FFFFFF66] w-full rounded-[28px] mt-[11px] py-[10px] text-[11px] flex items-center justify-center">
+        <div
+          className="bg-[#FFFFFF66] w-full rounded-[28px] mt-[11px] py-[10px] text-[11px] flex items-center justify-center "
+          onClick={handleDivClick}
+        >
           <input
             className="w-[40px]"
+            ref={inputRef}
             maxLength={4}
             placeholder="- - - -"
             value={inputValue}
@@ -57,7 +67,7 @@ const Promocode = () => {
         </div>
         <button
           className="absolute left-1/2 -translate-x-1/2 -bottom-4 py-2 bg-[#E7FF2B] text-[#37C100] rounded-[28px] w-max px-[20px] text-[11px]"
-          type="submit"
+          onClick={submitHandler}
         >
           {isLoading ? "Sending..." : "Get a bonus"}
         </button>

@@ -56,7 +56,7 @@ export default function Loading() {
                 <img
                   src="./images/loading.png"
                   alt="loading"
-                  className="object-cover min-w-screen min-h-screen"
+                  className="object-cover min-w-screen min-h-screen w-screen h-screen"
                 />
               </div>
               {/* <p className="text-[36px] mb-4"> Loading ...</p> */}
