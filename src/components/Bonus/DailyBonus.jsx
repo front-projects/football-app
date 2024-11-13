@@ -3,7 +3,7 @@ import DailyBonusItem from "./DailyBonusItem";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorAlert from "../UI/errorAlert";
 import ConfettiExplosion from "react-confetti-explosion";
-import { dailyBonusUse } from "../../util/back/requests";
+import { dailyBonusUse, getUserInfo } from "../../util/back/requests";
 import { setUser } from "../../store/auth-slice";
 import gsap from "gsap";
 
@@ -45,13 +45,8 @@ const DailyBonus = () => {
     const response = await dailyBonusUse(user.telegramId);
     if (response) {
       setSucess(true);
-      dispatch(
-        setUser({
-          ...user,
-          dailyBonusAvailable: false,
-          balance: user.balance + user.dailyBonus,
-        }),
-      );
+      const newData = await getUserInfo(user.telegramId);
+      dispatch(setUser(newData));
     } else {
       setError(true);
       setTimeout(() => {
