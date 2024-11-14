@@ -6,6 +6,9 @@ import ConfettiExplosion from "react-confetti-explosion";
 import { dailyBonusUse, getUserInfo } from "../../util/back/requests";
 import { setUser } from "../../store/auth-slice";
 import gsap from "gsap";
+import dayjs from "dayjs";
+import utc from "dayjs-plugin-utc";
+dayjs.extend(utc);
 
 const DailyBonus = () => {
   const user = useSelector((state) => state.auth);
@@ -16,14 +19,10 @@ const DailyBonus = () => {
   const dispatch = useDispatch();
 
   function hoursUntilUnlock(targetDateStr) {
-    const targetDate = new Date(targetDateStr);
-    const currentDate = new Date();
-    // const timeDifferenceMs = targetDate - currentDate;
-    // const hoursRemaining = timeDifferenceMs / (1000 * 60 * 60);
-    // const timeDifferenceMs = targetDate.getTime() - currentDate.getTime();
-    // const hoursRemaining = timeDifferenceMs / (1000 * 60 * 60);
-    const timeDifference = targetDate.getHours() - currentDate.getUTCHours();
+    const targetDate = dayjs.utc(targetDateStr);
+    const currentDate = dayjs.utc();
 
+    const timeDifference = targetDate.diff(currentDate, "hour");
     return timeDifference;
   }
 
