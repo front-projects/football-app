@@ -31,6 +31,7 @@ import {
 import { useDispatch } from "react-redux";
 import { setUser } from "./store/auth-slice";
 import { setStatic } from "./store/static-slice";
+import WithdrawSecond from "./pages/WithdrawSecond";
 
 function App() {
   const dispatch = useDispatch();
@@ -99,6 +100,10 @@ function App() {
               element={<CryptoSelect />}
             />
             <Route path="/menu/wallet/withdraw" element={<Withdraw />} />
+            <Route
+              path="/menu/wallet/withdraw-second"
+              element={<WithdrawSecond />}
+            />
           </Route>
           <Route path="/menu/bonus" element={<BonusPage />} />
         </Route>

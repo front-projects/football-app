@@ -1,4 +1,4 @@
-const StartedText = ({ onOk, onCancel }) => {
+const StartedText = ({ onOk }) => {
   return (
     <form
       className="text-[18px] text-justify flex flex-col gap-4 w-full"
@@ -28,12 +28,12 @@ const StartedText = ({ onOk, onCancel }) => {
         <button className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1">
           Ok
         </button>
-        <button
+        {/* <button
           onClick={onCancel}
           className="w-full rounded-md outline outline-2 outline-[#E7FF2B] py-1"
         >
           Cancel
-        </button>
+        </button> */}
       </div>
     </form>
   );

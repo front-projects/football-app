@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getCurrency } from "../../../util/back/requests";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Modal from "../../UI/Modal";
 import WebApp from "@twa-dev/sdk";
-import SuccessfulText from "./SuccessfulText";
 import SelectedText from "./SelectedText";
 import StartedText from "./StartedText";
 import CryptoInput from "./CryptoInput";
@@ -28,7 +27,7 @@ const UsdInput = () => {
     ? localStorage.getItem("country")
     : "ARS";
   const activeCurrency = list?.find((el) => el.country == storageCurrency);
-
+  const navigate = useNavigate();
   const submitHandler = (e) => {
     e.preventDefault();
     if (usdInput >= 25 && usdInput <= balance) {
@@ -84,12 +83,17 @@ const UsdInput = () => {
         )}
         {action == "SELECTED" && (
           <SelectedText
-            onClickOk={() => setAction("SUCCESS")}
-            onClickCancel={() => setModalIsOpen(false)}
+            onClickOk={() => {
+              WebApp.HapticFeedback.notificationOccurred("success");
+              navigate(
+                `/menu/wallet/withdraw-second?currency=${activeCurrency.value}&country=${activeCurrency.country}&type=first`,
+              );
+            }}
+            // onClickCancel={() => setModalIsOpen(false)}
             activeCurrency={activeCurrency}
           />
         )}
-        {action == "SUCCESS" && <SuccessfulText />}
+        {/* {action == "SUCCESS" && <SuccessfulText />} */}
       </Modal>
       <form className="w-full flex flex-col" onSubmit={submitHandler}>
         {type == "crypto" && <CryptoInput />}
