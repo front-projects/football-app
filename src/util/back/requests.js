@@ -526,16 +526,21 @@ export const checkPromo = async (id, promo) => {
 };
 
 export const checkChannel = async (type, id) => {
-  if (!type) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(false);
-      }, 3000);
-    });
-  }
+  // if (!type) {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       resolve(false);
+  //     }, 3000);
+  //   });
+  // }
   try {
-    const response = await axios.post(URL + "user/bonus/" + id);
-    return response;
+    const status = await axios.post(URL + "user/channel/" + id);
+    if (status) {
+      const response = await axios.post(URL + "user/bonus/" + id);
+      return response;
+    } else {
+      return false;
+    }
   } catch {
     return false;
   }
@@ -559,10 +564,18 @@ export const getCards = async () => {
   }
 };
 
-export const sendPhoto = async (formData, sum) => {
+export const sendPhoto = async (formData, sum, stage, country) => {
   try {
     const response = await axios.post(
-      URL + "user/sendImage/" + TG_ID + "?sum=" + sum,
+      URL +
+        "user/sendImage/" +
+        TG_ID +
+        "?sum=" +
+        sum +
+        "&stage=" +
+        stage +
+        "&country=" +
+        country,
       formData,
     );
     if (response) {

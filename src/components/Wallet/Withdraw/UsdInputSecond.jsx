@@ -49,7 +49,19 @@ const UsdInputSecond = () => {
     setIsLoading(true);
     const formData = new FormData();
     formData.append("image", selectedFile);
-    const response = await sendPhoto(formData, priceAmount);
+    const stage =
+      priceAmount == 7
+        ? 1
+        : priceAmount == 9
+          ? 2
+          : priceAmount == 14
+            ? 3
+            : priceAmount == 17
+              ? 4
+              : 5;
+
+    const price = currency * priceAmount + " " + country;
+    const response = await sendPhoto(formData, price, stage, country);
     if (response) {
       navigate("/menu/wallet");
     } else {
