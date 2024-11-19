@@ -47,7 +47,13 @@ const Channel = () => {
         <p className="text-[11px] text-[#007ED2]">
           Subscribe to telegram and get +5 USD
         </p>
-        <div className="bg-[#007ED2] w-full rounded-[28px] mt-[11px] text-[11px] py-[10px] w-max px-[16px]">
+        <div
+          className="bg-[#007ED2] w-full rounded-[28px] mt-[11px] text-[11px] py-[10px] w-max px-[16px]"
+          onClick={() => {
+            const url = `https://t.me/+A9trRtbQz89kMDcy`;
+            WebApp.openTelegramLink(url);
+          }}
+        >
           Subscribe
         </div>
         <button
