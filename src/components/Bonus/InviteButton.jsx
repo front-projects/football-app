@@ -1,11 +1,23 @@
+import { useEffect, useState } from "react";
 import { InviteIcon } from "../UI/icons";
 import WebApp from "@twa-dev/sdk";
+import { getUrlLink } from "../../util/back/requests";
 
 const InviteButton = () => {
+  const [link, setLink] = useState();
+
+  useEffect(() => {
+    const fetchUrl = async () => {
+      const response = await getUrlLink();
+      setLink(response);
+    };
+    fetchUrl();
+  }, []);
+
   const inviteFriend = () => {
     WebApp.HapticFeedback.impactOccurred("light");
     const text = `Text for invite`;
-    const url = `https://t.me/share/url?url=&text=${encodeURIComponent(text)}`;
+    const url = `https://t.me/share/url?url=&text=${encodeURIComponent(link)}`;
     WebApp.openTelegramLink(url);
   };
 

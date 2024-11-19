@@ -19,7 +19,7 @@ export default function Modal({ isOpen, children }) {
   return ReactDOM.createPortal(
     <>
       <div
-        className="fixed w-screen h-[100dvh] top-0 left-0 flex items-start pt-12 justify-center z-10 bg-black/80"
+        className="fixed w-screen h-[100dvh] top-0 left-0 flex items-start pt-20 justify-center z-10 bg-black/80"
         // onClick={onClose}
       >
         <div

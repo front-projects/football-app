@@ -586,3 +586,14 @@ export const checkPaymanetStatus = async () => {
     return false;
   }
 };
+
+export const getUrlLink = async () => {
+  try {
+    const response = await axios.get(URL + "user/referal/" + TG_ID);
+    if (response) {
+      return response.data;
+    }
+  } catch {
+    return false;
+  }
+};
