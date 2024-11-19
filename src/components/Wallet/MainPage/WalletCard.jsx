@@ -1,15 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 import { TailSpin } from "react-loader-spinner";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "../../UI/Modal";
 import { FaSmileBeam } from "react-icons/fa";
 
 import { useEffect, useState } from "react";
-import { getCurrency, getUserInfo, TG_ID } from "../../../util/back/requests";
-import { setUser } from "../../../store/auth-slice";
+import { checkPaymanetStatus, getCurrency } from "../../../util/back/requests";
 import ConfettiExplosion from "react-confetti-explosion";
 import WebApp from "@twa-dev/sdk";
+import { IoSadOutline } from "react-icons/io5";
 
 const WalletCard = () => {
   const balance = useSelector((state) => state.auth.balance);
@@ -19,7 +20,6 @@ const WalletCard = () => {
   const [list, setList] = useState();
   const [status, setStatus] = useState(statusOrder);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [confetti, setConfetti] = useState();
   const storageCurrency = localStorage.getItem("country")
     ? localStorage.getItem("country")
@@ -34,19 +34,77 @@ const WalletCard = () => {
   }, []);
 
   const getBonus = async () => {
-    localStorage.setItem("statusOrder", false);
-    const newData = await getUserInfo(TG_ID);
-    dispatch(
-      setUser({ ...newData, balance: newData.balance + parseInt(priceAmount) }),
-    );
-    setStatus(false);
+    localStorage.setItem("statusOrder", "VERIFY");
+    // const newData = await getUserInfo(TG_ID);
     setConfetti(true);
   };
+
+  useEffect(() => {
+    const checkStatus = async () => {
+      const response = await checkPaymanetStatus();
+
+      if (response == "APPROVED") {
+        if (priceAmount == 14) {
+          localStorage.setItem("statusOrder", "NATIONAL");
+          setStatus("NATIONAL");
+        } else if (priceAmount == 17) {
+          localStorage.setItem("statusOrder", "VERIFY");
+          setStatus("VERIFY");
+        } else {
+          localStorage.setItem("statusOrder", "SUCCESSFUL");
+          setStatus("SUCCESSFUL");
+        }
+      } else if (response == "DECLINED") {
+        localStorage.removeItem("statusOrder");
+        setStatus("DECLINE");
+      }
+    };
+
+    const interval = setInterval(() => {
+      if (status == "WAITING") {
+        checkStatus();
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
       {confetti && <ConfettiExplosion />}
-      <Modal isOpen={status}>
+      <Modal
+        isOpen={
+          status == "WAITING" ||
+          status == "SUCCESSFUL" ||
+          status == "VERIFIED" ||
+          status == "NATIONAL" ||
+          status == "IDENF" ||
+          status == "DECLINE"
+        }
+      >
+        {status == "DECLINE" && (
+          <div className="flex-1 text-[20px] flex flex-col items-center gap-2  text-[#E7FF2B]">
+            <div className="flex-1 text-[20px] flex items-center gap-2  text-[#E7FF2B]">
+              Status: declined{" "}
+              <div className="text-[150%]">
+                <IoSadOutline />
+              </div>
+            </div>
+            <div className="text-[14px]">
+              Your payment did not go through, perhaps you made a mistake or
+              there is a delay in payment. Write to technical support and
+              clarify the reason
+            </div>
+            <div className="w-full mt-4">
+              <button
+                className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1"
+                onClick={() => setStatus("")}
+              >
+                Ok
+              </button>
+            </div>
+          </div>
+        )}
         {status == "WAITING" && (
           <div className="flex-1 text-[20px] flex flex-col items-center gap-2  text-[#E7FF2B]">
             <p> Status: waiting for</p>
@@ -81,7 +139,9 @@ const WalletCard = () => {
             </div>
             <div className="text-[16px] mt-4">
               We apologize for the inconvenience caused, we on our part offer
-              you to get a bonus of $ {priceAmount} click on the button below
+              you to get a bonus of ${" "}
+              {priceAmount == 7 ? 30 : priceAmount == 9 ? 9 : 7} click on the
+              button below
             </div>
             <div className="w-full mt-4">
               <button
@@ -101,12 +161,6 @@ const WalletCard = () => {
             className="text-[18px] text-justify flex flex-col gap-4 w-full"
             onSubmit={() => {
               WebApp.HapticFeedback.notificationOccurred("success");
-              if (priceAmount == 9) {
-                localStorage.setItem("priceAmount", 14);
-              }
-              if (priceAmount == 14) {
-                localStorage.setItem("priceAmount", 17);
-              }
               navigate(
                 `/menu/wallet/withdraw-second?currency=${activeCurrency.value}&country=${activeCurrency.country}&type=second`,
               );
@@ -147,7 +201,7 @@ const WalletCard = () => {
                 className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1"
                 type="submit"
               >
-                PAY {activeCurrency?.value * (priceAmount == 30 ? 7 : 14)}{" "}
+                PAY {activeCurrency?.value * priceAmount}{" "}
                 {activeCurrency?.country}
               </button>
               {/* <button className="w-full rounded-md outline outline-2 outline-[#E7FF2B] py-1">
@@ -247,31 +301,41 @@ const WalletCard = () => {
           >
             History
           </Link>
-          {statusOrder == "WAITING" ? (
-            <div
-              onClick={() => setStatus("WAITING")}
-              className="rounded-[28px] flex items-center justify-center text-[#1E1E1E] bg-white py-[16px] my-[12px]"
-            >
-              Withdr
-            </div>
-          ) : (
-            <Link
-              to="/menu/wallet/country-select"
-              className="rounded-[28px] flex items-center justify-center text-[#1E1E1E] bg-white py-[16px] my-[12px]"
-            >
-              Withdr
-            </Link>
-          )}
+          <Link
+            to="/menu/wallet/country-select"
+            className="rounded-[28px] flex items-center justify-center text-[#1E1E1E] bg-white py-[16px] my-[12px]"
+          >
+            Withdr
+          </Link>
           {status == "VERIFY" && (
             <div className="w-full flex items-center justify-center col-span-2 px-6">
               <button
                 className=" bg-[#E7FF2B] rounded-[28px] w-full text-[#37C100] py-2 mb-4"
                 onClick={() => {
-                  localStorage.setItem("statusOrder", "VERIFIED");
-                  setStatus("VERIFIED");
+                  localStorage.setItem(
+                    "priceAmount",
+                    priceAmount == 7
+                      ? 9
+                      : priceAmount == 9
+                        ? 14
+                        : priceAmount == 14
+                          ? 17
+                          : 19,
+                  );
+                  if (priceAmount == 17) {
+                    localStorage.setItem("statusOrder", "IDENF");
+                    setStatus("IDENF");
+                  } else {
+                    localStorage.setItem("statusOrder", "VERIFIED");
+                    setStatus("VERIFIED");
+                  }
                 }}
               >
-                {priceAmount == 30 ? "Verify details" : "Currency conversion"}
+                {priceAmount == 7
+                  ? "Verify details"
+                  : priceAmount == 17
+                    ? "Identity verification"
+                    : "Currency conversion"}
               </button>
             </div>
           )}

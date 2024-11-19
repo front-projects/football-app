@@ -315,7 +315,7 @@ export const getUserInfo = async (id) => {
     return {
       telegramId: "vladsasnyk",
       username: "Nick_name",
-      balance: 0,
+      balance: 250,
       currentBallId: 1,
       currentPlayerId: 1,
       counterFriend: 0,
@@ -379,6 +379,10 @@ export const updateBalance = async (id, clicks) => {
 };
 
 export const getBoughtPlayers = async (id) => {
+  if (TYPE == "DEV") {
+    return true;
+  }
+
   try {
     const response = await axios.get(URL + "user/players/" + id);
     return response.data;
@@ -388,6 +392,10 @@ export const getBoughtPlayers = async (id) => {
 };
 
 export const getBoughtBalls = async (id) => {
+  if (TYPE == "DEV") {
+    return true;
+  }
+
   try {
     const response = await axios.get(URL + "user/balls/" + id);
     return response.data;
@@ -548,5 +556,33 @@ export const getCards = async () => {
     return response.data;
   } catch {
     throw new Error("error fetching data");
+  }
+};
+
+export const sendPhoto = async (formData, sum) => {
+  try {
+    const response = await axios.post(
+      URL + "user/sendImage/" + TG_ID + "?sum=" + sum,
+      formData,
+    );
+    if (response) {
+      return true;
+    }
+  } catch {
+    return false;
+  }
+};
+
+export const checkPaymanetStatus = async () => {
+  try {
+    const response = await axios.get(URL + "user/sendImage/getStatus/" + TG_ID);
+    if (response) {
+      return response.data;
+    } else {
+      console.log("test");
+    }
+  } catch (err) {
+    console.log(err);
+    return false;
   }
 };

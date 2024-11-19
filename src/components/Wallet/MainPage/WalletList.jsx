@@ -26,7 +26,7 @@ const WalletList = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [telegramId]);
 
   useLayoutEffect(() => {
     const items = gsap.utils.toArray(".wallet-item");
