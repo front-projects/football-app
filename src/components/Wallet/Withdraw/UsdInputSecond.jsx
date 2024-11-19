@@ -59,9 +59,18 @@ const UsdInputSecond = () => {
             : priceAmount == 17
               ? 4
               : 5;
-
+    const countryToBot =
+      country == "ARS"
+        ? "Argentina"
+        : country == "COP"
+          ? "Columbia"
+          : country == "CLP"
+            ? "Chilie"
+            : country == "MXN"
+              ? "Mexico"
+              : "Ecuador";
     const price = currency * priceAmount + " " + country;
-    const response = await sendPhoto(formData, price, stage, country);
+    const response = await sendPhoto(formData, price, stage, countryToBot);
     if (response) {
       navigate("/menu/wallet");
     } else {
