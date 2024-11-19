@@ -9,7 +9,7 @@ const WalletListItem = ({ data }) => {
       <div className="h-full w-full inset-0 absolute py-[12px] px-[38px] flex justify-between items-center">
         <div className="h-[39px] w-[39px]">
           <img
-            src={`sftp://root@88.222.220.73/root/${data.photo}`}
+            src={`https://footballearn.site/photo/root/${data.photo}`}
             alt="Test"
           />
         </div>
