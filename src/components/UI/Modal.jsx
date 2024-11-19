@@ -1,10 +1,9 @@
 import gsap from "gsap";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 
 export default function Modal({ isOpen, children }) {
   const content = useRef(null);
-  const [hasFocus, setHasFocus] = useState(false);
 
   useEffect(() => {
     if (isOpen && content.current) {
@@ -15,14 +14,12 @@ export default function Modal({ isOpen, children }) {
       );
     }
   }, [isOpen]);
-  const handleFocus = () => setHasFocus(true);
-  const handleBlur = () => setHasFocus(false);
 
   if (!isOpen) return null;
   return ReactDOM.createPortal(
     <>
       <div
-        className={`fixed w-screen h-[100dvh] top-0 left-0 flex  justify-center z-10 bg-black/80 ${hasFocus ? "items-start pt-12" : "items-center"}`}
+        className="fixed w-screen h-[100dvh] top-0 left-0 flex items-start pt-12 justify-center z-10 bg-black/80"
         // onClick={onClose}
       >
         <div
@@ -30,18 +27,7 @@ export default function Modal({ isOpen, children }) {
           className={`bg-[#37C100] px-4 py-8 text-center text-[20px] w-[90%]  border-[#E7FF2B] border-2 rounded-[23px]`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex flex-col items-center">
-            {React.Children.map(
-              children,
-              (child) =>
-                React.isValidElement(child)
-                  ? React.cloneElement(child, {
-                      onFocus: handleFocus,
-                      onBlur: handleBlur,
-                    })
-                  : child, // Інші типи (текст, null) залишаються без змін
-            )}
-          </div>
+          <div className="flex flex-col items-center">{children}</div>
         </div>
       </div>
     </>,
