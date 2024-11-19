@@ -36,6 +36,12 @@ const UsdInputSecond = () => {
     if (!selectedFile) {
       return setIsError(true);
     }
+    if (priceAmount == 19) {
+      localStorage.removeItem("statusOrder");
+      localStorage.removeItem("priceAmount");
+      navigate("/menu/wallet");
+      return;
+    }
     localStorage.setItem("statusOrder", "WAITING");
     setIsLoading(true);
     const formData = new FormData();

@@ -40,6 +40,7 @@ const WalletCard = () => {
   };
 
   useEffect(() => {
+    let isMounted = true;
     const checkStatus = async () => {
       const response = await checkPaymanetStatus();
 
@@ -60,14 +61,22 @@ const WalletCard = () => {
       }
     };
 
-    const interval = setInterval(() => {
-      if (status == "WAITING") {
-        checkStatus();
-      }
-    }, 1000);
+    // const interval = setInterval(() => {
+    //   if (status === "WAITING") {
+    //     checkStatus();
+    //   }
+    // }, 1000);
+    if (isMounted && status === "WAITING") {
+      setTimeout(checkStatus, 1000);
+    }
+    if (status === "WAITING") {
+      checkStatus();
+    }
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => {
+      isMounted = false; // Очищення при розмонтуванні компонента.
+    };
+  }, [status, priceAmount]);
 
   return (
     <>
@@ -301,12 +310,22 @@ const WalletCard = () => {
           >
             History
           </Link>
-          <Link
-            to="/menu/wallet/country-select"
-            className="rounded-[28px] flex items-center justify-center text-[#1E1E1E] bg-white py-[16px] my-[12px]"
-          >
-            Withdr
-          </Link>
+          {statusOrder == "WAITING" ? (
+            <div
+              onClick={() => setStatus("WAITING")}
+              className="rounded-[28px] flex items-center justify-center text-[#1E1E1E] bg-white py-[16px] my-[12px]"
+            >
+              Withdr
+            </div>
+          ) : (
+            <Link
+              to="/menu/wallet/country-select"
+              className="rounded-[28px] flex items-center justify-center text-[#1E1E1E] bg-white py-[16px] my-[12px]"
+            >
+              Withdr
+            </Link>
+          )}
+
           {status == "VERIFY" && (
             <div className="w-full flex items-center justify-center col-span-2 px-6">
               <button
@@ -322,7 +341,7 @@ const WalletCard = () => {
                           ? 17
                           : 19,
                   );
-                  if (priceAmount == 17) {
+                  if (priceAmount == 19) {
                     localStorage.setItem("statusOrder", "IDENF");
                     setStatus("IDENF");
                   } else {
