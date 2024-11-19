@@ -36,6 +36,9 @@ const UsdInputSecond = () => {
     if (!selectedFile) {
       return setIsError(true);
     }
+    if (isLoading) {
+      return;
+    }
     if (priceAmount == 19) {
       localStorage.removeItem("statusOrder");
       localStorage.removeItem("priceAmount");
@@ -49,6 +52,9 @@ const UsdInputSecond = () => {
     const response = await sendPhoto(formData, priceAmount);
     if (response) {
       navigate("/menu/wallet");
+    } else {
+      setIsError(true);
+      setIsLoading(false);
     }
   };
 
