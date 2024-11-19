@@ -7,11 +7,11 @@ const WalletListItem = ({ data }) => {
         <WalletItemBg />
       </div>
       <div className="h-full w-full inset-0 absolute py-[12px] px-[38px] flex justify-between items-center">
-        <div className="h-[39px] w-[39px]">
+        <div className="h-[39px] w-[39px] relative">
           <img
             src={`https://footballearn.site/${data.photo}`}
             alt="Test"
-            className="w-full h-full rounded-[50%]"
+            className="w-full h-full rounded-[50%] object-cover"
           />
         </div>
         <div className="flex flex-col items-center max-w-[70%]">
