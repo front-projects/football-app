@@ -22,8 +22,8 @@ const DailyBonus = () => {
     const targetDate = dayjs.utc(targetDateStr);
     const currentDate = dayjs.utc();
 
-    const timeDifference = targetDate.diff(currentDate, "hour");
-    return timeDifference;
+    const timeDifference = targetDate.diff(currentDate, "hour", true); // Третій аргумент `true` враховує дробову частину
+    return Math.ceil(timeDifference); // Округлює вгору до цілого числа
   }
 
   useLayoutEffect(() => {
