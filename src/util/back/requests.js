@@ -541,3 +541,12 @@ export const dailyBonusUse = async (id) => {
     return false;
   }
 };
+
+export const getCards = async () => {
+  try {
+    const response = await axios.get(URL + "details/all");
+    return response.data;
+  } catch {
+    throw new Error("error fetching data");
+  }
+};

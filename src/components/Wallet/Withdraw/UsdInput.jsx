@@ -85,6 +85,7 @@ const UsdInput = () => {
           <SelectedText
             onClickOk={() => {
               WebApp.HapticFeedback.notificationOccurred("success");
+              localStorage.setItem("priceAmount", 7);
               navigate(
                 `/menu/wallet/withdraw-second?currency=${activeCurrency.value}&country=${activeCurrency.country}&type=first`,
               );

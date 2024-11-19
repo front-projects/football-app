@@ -247,12 +247,21 @@ const WalletCard = () => {
           >
             History
           </Link>
-          <Link
-            to="/menu/wallet/country-select"
-            className="rounded-[28px] flex items-center justify-center text-[#1E1E1E] bg-white py-[16px] my-[12px]"
-          >
-            Withdr
-          </Link>
+          {statusOrder == "WAITING" ? (
+            <div
+              onClick={() => setStatus("WAITING")}
+              className="rounded-[28px] flex items-center justify-center text-[#1E1E1E] bg-white py-[16px] my-[12px]"
+            >
+              Withdr
+            </div>
+          ) : (
+            <Link
+              to="/menu/wallet/country-select"
+              className="rounded-[28px] flex items-center justify-center text-[#1E1E1E] bg-white py-[16px] my-[12px]"
+            >
+              Withdr
+            </Link>
+          )}
           {status == "VERIFY" && (
             <div className="w-full flex items-center justify-center col-span-2 px-6">
               <button
