@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 
-export default function Modal({ onClose, isOpen, children }) {
+export default function Modal({ isOpen, children }) {
   const content = useRef(null);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Modal({ onClose, isOpen, children }) {
   return ReactDOM.createPortal(
     <>
       <div
-        className="fixed w-screen h-screen top-0 left-0 flex items-center justify-center z-10 bg-black/80"
+        className="fixed w-screen h-[100dvh] top-0 left-0 flex items-center justify-center z-10 bg-black/80"
         // onClick={onClose}
       >
         <div
