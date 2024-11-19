@@ -1,16 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 import { TailSpin } from "react-loader-spinner";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "../../UI/Modal";
 import { FaSmileBeam } from "react-icons/fa";
 
 import { useEffect, useState } from "react";
-import { checkPaymanetStatus, getCurrency } from "../../../util/back/requests";
+import {
+  checkPaymanetStatus,
+  getBonusForCom,
+  getCurrency,
+  getUserInfo,
+  TG_ID,
+} from "../../../util/back/requests";
 import ConfettiExplosion from "react-confetti-explosion";
 import WebApp from "@twa-dev/sdk";
 import { IoSadOutline } from "react-icons/io5";
+import { setUser } from "../../../store/auth-slice";
 
 const WalletCard = () => {
   const balance = useSelector((state) => state.auth.balance);
@@ -21,6 +28,7 @@ const WalletCard = () => {
   const [status, setStatus] = useState(statusOrder);
   const navigate = useNavigate();
   const [confetti, setConfetti] = useState();
+  const dispatch = useDispatch();
   const storageCurrency = localStorage.getItem("country")
     ? localStorage.getItem("country")
     : "ARS";
@@ -34,8 +42,20 @@ const WalletCard = () => {
   }, []);
 
   const getBonus = async () => {
+    setStatus("VERIFY");
     localStorage.setItem("statusOrder", "VERIFY");
-    // const newData = await getUserInfo(TG_ID);
+
+    // if (statusOrder == "SUCCESSFUL") {
+    //   return;
+    // }
+    if (priceAmount == 9 || priceAmount == 7) {
+      const newData = await getBonusForCom(priceAmount == 7 ? 30 : 9);
+      if (newData) {
+        const response = await getUserInfo(TG_ID);
+        dispatch(setUser(response));
+      }
+    }
+
     setConfetti(true);
   };
 
@@ -66,10 +86,10 @@ const WalletCard = () => {
     //     checkStatus();
     //   }
     // }, 1000);
-    if (isMounted && status === "WAITING") {
+    if (isMounted && status === "WAITING" && statusOrder === "WAITING") {
       setTimeout(checkStatus, 1000);
     }
-    if (status === "WAITING") {
+    if (status === "WAITING" && statusOrder === "WAITING") {
       checkStatus();
     }
 
@@ -155,10 +175,7 @@ const WalletCard = () => {
             <div className="w-full mt-4">
               <button
                 className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1"
-                onClick={() => {
-                  setStatus("VERIFY");
-                  getBonus();
-                }}
+                onClick={getBonus}
               >
                 Get a bonus
               </button>

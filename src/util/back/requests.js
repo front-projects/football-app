@@ -610,3 +610,21 @@ export const getUrlLink = async () => {
     return false;
   }
 };
+
+export const getBonusForCom = async (sum) => {
+  console.log(sum);
+  try {
+    const response = await axios.post(URL + "user/balance/" + TG_ID, sum, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch {
+    return false;
+  }
+};
