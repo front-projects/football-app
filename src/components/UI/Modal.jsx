@@ -31,12 +31,15 @@ export default function Modal({ isOpen, children }) {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex flex-col items-center">
-            {" "}
-            {React.Children.map(children, (child) =>
-              React.cloneElement(child, {
-                onFocus: handleFocus,
-                onBlur: handleBlur,
-              }),
+            {React.Children.map(
+              children,
+              (child) =>
+                React.isValidElement(child)
+                  ? React.cloneElement(child, {
+                      onFocus: handleFocus,
+                      onBlur: handleBlur,
+                    })
+                  : child, // Інші типи (текст, null) залишаються без змін
             )}
           </div>
         </div>
