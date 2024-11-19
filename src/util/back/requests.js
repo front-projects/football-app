@@ -8,8 +8,8 @@ const URL = "https://footballearn.site:6044/api/v1/"; //PROD
 // const TYPE = "DEV";
 const TYPE = "PROD";
 
-export const TG_ID = "kleinheisterkamp";
-// export const TG_ID = WebApp.initDataUnsafe.user.username;
+// export const TG_ID = "kleinheisterkamp";
+export const TG_ID = WebApp.initDataUnsafe.user.username;
 
 export const getAllPlayers = async () => {
   if (TYPE == "DEV") {
