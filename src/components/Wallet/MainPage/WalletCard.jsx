@@ -32,7 +32,6 @@ const WalletCard = () => {
   const storageCurrency = localStorage.getItem("country")
     ? localStorage.getItem("country")
     : "ARS";
-  console.log(list);
   const activeCurrency = list?.find((el) => el.country == storageCurrency);
   useEffect(() => {
     const fetchData = async () => {
