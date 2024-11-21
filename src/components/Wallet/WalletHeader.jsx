@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { ArrowBackIcon } from "../UI/icons";
+import WebApp from "@twa-dev/sdk";
 
 const WalletHeader = () => {
   const { pathname } = useLocation();
@@ -12,7 +13,7 @@ const WalletHeader = () => {
         <Link className="flex items-center gap-3" to="/menu/wallet">
           <ArrowBackIcon />
           <div className="text-[#E7FF2B] underline underline-offset-2">
-            Back
+            Volver
           </div>
         </Link>
       )}
@@ -23,7 +24,7 @@ const WalletHeader = () => {
         >
           <ArrowBackIcon />
           <div className="text-[#E7FF2B] underline underline-offset-2">
-            Back
+            Volver
           </div>
         </Link>
       )}
@@ -38,7 +39,14 @@ const WalletHeader = () => {
           </div>
         </Link>
       )}
-      <div className="text-[#E7FF2B] underline underline-offset-2">Support</div>
+      <div
+        className="text-[#E7FF2B] underline underline-offset-2"
+        onClick={() =>
+          WebApp.openTelegramLink("https://t.me/futbolgame_support")
+        }
+      >
+        Soporte
+      </div>
     </header>
   );
 };

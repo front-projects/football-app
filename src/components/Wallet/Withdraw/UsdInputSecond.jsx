@@ -82,8 +82,8 @@ const UsdInputSecond = () => {
   return (
     <>
       <div className="text-center text-[14px]">
-        Transfer the commission to this card, after which you will receive your
-        funds within 3-5 minutes
+        Transfiera la comisión a esta tarjeta, tras lo cual recibirá sus fondos
+        en 3-5 minutos
       </div>
       <div className="pt-4 pb-1 max-xsmall:pt-1">Card number:</div>
       <CopyTextElement text={card?.details}>{card?.details}</CopyTextElement>
@@ -112,20 +112,21 @@ const UsdInputSecond = () => {
             marginTop: "10px",
           }}
         >
-          Add your screenshot
+          Añade tu captura de pantalla
         </button>
 
         {/* Відображення вибраного файлу */}
       </div>
       {selectedFile && (
         <div className="w-full text-center">
-          <p>Selected file: {selectedFile.name}</p>
+          <p>Fichero seleccionado: {selectedFile.name}</p>
         </div>
       )}
       <div className="pt-1 pb-1 text-center text-[14px] mt-1  max-xsmall:pt-1">
         {" "}
-        After payment, click the &apos;add your screenshot&apos; button and send
-        a screenshot of the transaction to our support
+        Tras el pago, haz clic en el botón &apos;añade tu captura de
+        pantalla&apos; y envía una captura de pantalla de la transacción a
+        nuestro soporte
       </div>
 
       <div className="w-full mt-4">
@@ -133,7 +134,7 @@ const UsdInputSecond = () => {
           onClick={submitHandler}
           className="text-[#37C100] w-full bg-[#E7FF2B] text-[28px] max-xsmall:text-[24px] rounded-[28px] py-[12px] max-xsmall:py-[10px] mt-[2px]  max-xsmall:text-[20px]"
         >
-          {isLoading ? "Sending..." : "Paid"}
+          {isLoading ? "Enviando..." : "Pagado"}
         </button>
       </div>
     </>

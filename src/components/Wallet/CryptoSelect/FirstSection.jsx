@@ -13,7 +13,7 @@ const FirstSection = () => {
           className="relative bg-white text-[#37C100] rounded-[28px] p-[18px] text-[20px] leading-[18.21px] h-[132px]"
           id="current-wallet"
         >
-          Current account
+          Cuenta corriente
         </Link>
         <Link
           onClick={() => WebApp.HapticFeedback.impactOccurred("soft")}
@@ -32,8 +32,8 @@ const FirstSection = () => {
         className="relative bg-white text-[#37C100] rounded-[28px] p-[30px] text-[34px] leading-[34px] h-[132px] mt-[20px]"
         id="crypto-wallet"
       >
-        <p>Crypto</p>
-        <p>Wallet</p>
+        <p>Cripto</p>
+        <p>Cartera</p>
       </div>
     </>
   );

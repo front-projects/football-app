@@ -6,9 +6,9 @@ const SelectedText = ({ activeCurrency, onClickOk }) => {
       <div className="flex items-center justify-center pb-4 text-[300%] text-yellow-300">
         <IoIosWarning />
       </div>
-      You need to pay a fee to exchange from cryptocurrency to your currency, it
-      costs - {7 * activeCurrency?.value} {activeCurrency?.country} and then you
-      will receive your cash within 3-5 minutes
+      Para cambiar de criptodivisa a su divisa debe pagar una comisión, que
+      cuesta - {7 * activeCurrency?.value} {activeCurrency?.country} y entonces
+      recibirá su dinero en 3-5 minutos
       <div className="flex gap-2 w-full items-center  mt-4">
         <button
           onClick={onClickOk}

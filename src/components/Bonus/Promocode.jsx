@@ -45,13 +45,15 @@ const Promocode = () => {
     <>
       {success && <ConfettiExplosion></ConfettiExplosion>}
       <form
-        className={`relative border-[3px]  rounded-[28px] px-[30px] pt-[20px] max-xsmall:pt-[10px] pb-[26px] bg-[#FFFFFF66] ${error ? "border-red-600" : success ? "border-green-600" : "border-[#E7FF2B]"}`}
+        className={`relative border-[3px]  rounded-[28px] px-[20px] pt-[20px] max-xsmall:pt-[10px] pb-[26px] bg-[#FFFFFF66] ${error ? "border-red-600" : success ? "border-green-600" : "border-[#E7FF2B]"}`}
         onSubmit={submitHandler}
       >
         <h1 className="text-[#E7FF2B] text-[25px] max-xsmall:text-[18px]">
           +3 USD
         </h1>
-        <p className="text-[11px] text-[#E7FF2B]">Promo code activation</p>
+        <p className="text-[11px] text-[#E7FF2B]">
+          Activación del código promocional
+        </p>
         <div
           className="bg-[#FFFFFF66] w-full rounded-[28px] mt-[11px] py-[10px] text-[11px] flex items-center justify-center "
           onClick={handleDivClick}
@@ -69,7 +71,7 @@ const Promocode = () => {
           className="absolute left-1/2 -translate-x-1/2 -bottom-4 py-2 bg-[#E7FF2B] text-[#37C100] rounded-[28px] w-max px-[20px] text-[11px]"
           onClick={submitHandler}
         >
-          {isLoading ? "Sending..." : "Get a bonus"}
+          {isLoading ? "Sending..." : "Consigue una bonificación"}
         </button>
       </form>
     </>

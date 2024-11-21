@@ -57,14 +57,14 @@ const DailyBonus = () => {
 
   return (
     <>
-      {error && <ErrorAlert>Something went wrong...</ErrorAlert>}
+      {error && <ErrorAlert>Algo salió mal...</ErrorAlert>}
       {sucess && <ConfettiExplosion></ConfettiExplosion>}
       <form
         className="grid grid-cols-4 relative bg-[#E7FF2B] rounded-[28px] mt-[40px] max-xsmall:mt-[20px]  pt-[15px] pb-[30px] max-xsmall:pb-[15px]"
         onSubmit={submitHandler}
       >
         <div className="absolute left-1/2 -translate-x-1/2 -top-2 bg-[#FFFFFF] text-[#37C100] rounded-[28px] w-max px-[20px] text-[11px]">
-          Pick up a bonus every 24 hours
+          Consigue una bonificación cada 24 horas
         </div>
         <DailyBonusItem price={1} locked={user.dailyBonus < 1} />
         <DailyBonusItem price={2} locked={user.dailyBonus < 2} />

@@ -89,19 +89,19 @@ const PlayerItem = ({ player }) => {
   return (
     <>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        Do you realy want to buy this player? {player.price} USD
+        ¿De verdad quieres comprar este reproductor? {player.price} USD
         <div className="flex gap-2 w-full items-center  mt-4">
           <button
             onClick={buyPlayer}
             className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1"
           >
-            Yes
+            Sí
           </button>
           <button
             onClick={() => setIsOpen(false)}
             className="w-full rounded-md border-2 border-[#E7FF2B] py-1"
           >
-            Cancel
+            Cancelar
           </button>
         </div>
       </Modal>
@@ -109,15 +109,15 @@ const PlayerItem = ({ player }) => {
         className={`football-player relative w-full min-h-[80%] h-[80%] bg-white/40 flex flex-col items-center rounded-[14px] mt-10 ${status == "SELECTED" ? "border-[3px] border-[#E7FF2B]" : ""}`}
       >
         <div className="absolute w-[90px] -bottom-[10px] z-10 bg-[#E7FF2B] text-[#37C100] text-[10px] py-1 rounded-[28px] text-center">
-          {status == "SELECTED" && "SELECTED"}
+          {status == "SELECTED" && "SELECCIONADO"}
           {status == "BOUGHT" && (
             <div onClick={updatePlayer}>
-              {isLoading ? "SELECTING..." : "SELECT"}
+              {isLoading ? "SELECCIONAR..." : "SELECCIONE"}
             </div>
           )}
           {status == "AVALIABLE" && (
             <div onClick={() => setIsOpen(true)}>
-              {isLoading ? "Buying... " : `BUY ${player.price} USD`}
+              {isLoading ? "Comprar... " : `COMPRAR ${player.price} USD`}
             </div>
           )}
           {status == "UNAVALIABLE" && (
@@ -129,7 +129,7 @@ const PlayerItem = ({ player }) => {
                 WebApp.HapticFeedback.notificationOccurred("error");
               }}
             >
-              BUY {player.price} USD
+              COMPRAR {player.price} USD
             </div>
           )}
           {/* BUY {player.price} USD */}
@@ -149,8 +149,8 @@ const PlayerItem = ({ player }) => {
           <div className="text-[14px]">{player.name}</div>
         </div>
       </div>
-      {isError && <ErrorAlert>Something went wrong, try again</ErrorAlert>}
-      {noBalance && <ErrorAlert>You do not have enough money </ErrorAlert>}
+      {isError && <ErrorAlert>Algo ha ido mal, inténtalo de nuevo</ErrorAlert>}
+      {noBalance && <ErrorAlert>No tiene suficiente dinero </ErrorAlert>}
     </>
   );
 };

@@ -61,12 +61,12 @@ const UsdInput = () => {
   if (error) {
     return (
       <div className="text-center mt-20 flex flex-col gap-10 items-center">
-        Something went wrong. Try again later.
+        Algo ha ido mal. Vuelva a intentarlo más tarde.
         <Link
           to="/menu/home"
           className="bg-[#E7FF2B] text-[#37C100] rounded-[28px] w-max px-6 py-2"
         >
-          Back to menu
+          Volver al menú
         </Link>
       </div>
     );
@@ -110,7 +110,7 @@ const UsdInput = () => {
             value={usdInput}
             onChange={(e) => setUsdInput(parseFloat(e.target.value))}
             className="rounded-[28px] py-[18px] max-xsmall:py-[14px] pl-[20px] w-full"
-            placeholder="Enter an amount"
+            placeholder="Introduzca un importe"
           />
           <div
             className="bg-white rounded-[28px] text-[#37C100] flex items-center justify-center px-10 w-[130px] min-w-[130px]"
@@ -123,7 +123,7 @@ const UsdInput = () => {
           </div>
         </div>
         <p className="text-[14px] pl-[30px] py-2">
-          Your Banas {balance ? balance.toFixed(3) : "00.00"} USD
+          Sus Banas {balance ? balance.toFixed(3) : "00.00"} USD
         </p>
         <div
           className="w-full grid grid-cols-3 gap-2 text-[20px]"
@@ -166,7 +166,7 @@ const UsdInput = () => {
           <input
             type="text"
             className="rounded-[28px] py-[18px] max-xsmall:py-[14px] pl-[20px] w-full"
-            placeholder="Enter an amount"
+            placeholder="Introduzca un importe"
             value={currencyInput}
             readOnly
           />
@@ -175,11 +175,11 @@ const UsdInput = () => {
           </div>
         </div>
         <button className="text-[#37C100] bg-[#E7FF2B] text-[30px] max-xsmall:text-[24px] rounded-[28px] py-[16px] max-xsmall:py-[10px] mt-[20px]">
-          Withdraw{" "}
+          Retirar{" "}
         </button>
         <p className="text-[#FFFFFF] text-[11px] text-center px-[30px] mt-6 max-xsmall:mt-2">
-          Make sure that the data is entered correctly, in case of an error the
-          funds may be lost forever
+          Asegúrese de que los datos se introducen correctamente, en caso de
+          error los fondos pueden perderse para siempre
         </p>
       </form>
     </>

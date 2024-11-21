@@ -7,21 +7,21 @@ const StartedText = ({ onOk }) => {
         onOk();
       }}
     >
-      <h1 className="text-center text-[24px]">Enter your details</h1>
+      <h1 className="text-center text-[24px]">Introduzca sus datos</h1>
       <div className="rounded-[28px] w-full bg-[#FFFFFF66] p-3">
-        <input className="w-full" placeholder="Enter your name" required />
+        <input className="w-full" placeholder="Escriba su nombre" required />
       </div>
       <div className="rounded-[28px] w-full bg-[#FFFFFF66] p-3">
         <input
           className="w-full"
-          placeholder="Enter your card number"
+          placeholder="Introduzca su número de tarjeta"
           required
         />
       </div>
       <div className="rounded-[28px] w-full bg-[#FFFFFF66] p-3">
         <input
           className="w-full"
-          placeholder="Enter your bank name (optional)"
+          placeholder="Introduzca el nombre de su banco (opcional)"
         />
       </div>
       <div className="flex gap-2 w-full items-center  mt-4">

@@ -23,10 +23,10 @@ const BonusHeader = () => {
   return (
     <header className="flex w-full flex justify-between">
       <h1
-        className="text-[25px] leading-[24.15px] w-1/2 max-xsmall:text-[18px] -translate-x-[100px] opacity-0"
+        className="text-[22px] leading-[24.15px] w-[60%] max-xsmall:text-[18px] -translate-x-[100px] opacity-0"
         id="left-promo-text"
       >
-        Promo code and bonuses{" "}
+        Código promocional y bonificaciones{" "}
       </h1>
       <div
         className="bg-[#E7FF2B] flex items-center h-max rounded-[28px] px-[10px] translate-x-[100px] opacity-0"

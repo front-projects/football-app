@@ -10,7 +10,7 @@ export default function StoreLayout() {
             `${isActive ? "bg-white text-[#37C100] py-[6px]" : "border-2 border-white/40 text-white/40 py-[4px]"} w-1/2 text-center rounded-[28px]`
           }
         >
-          Player Store
+          Tienda Player
         </NavLink>
         <NavLink
           to="/menu/store/balls"
@@ -18,7 +18,7 @@ export default function StoreLayout() {
             `${isActive ? "bg-white text-[#37C100] py-[6px]" : "border-2 border-white/40 text-white/40 py-[4px]"} w-1/2 text-center rounded-[28px]`
           }
         >
-          Ball Store
+          Tienda de bolas
         </NavLink>
       </nav>
       <div

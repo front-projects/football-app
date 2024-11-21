@@ -64,11 +64,11 @@ const WalletList = () => {
 
   return isLoading ? (
     <div className="w-full h-full flex items-center justify-center text-3xl">
-      Loading...
+      Cargando...
     </div>
   ) : error ? (
     <div className="w-full h-full flex items-center justify-center text-2xl text-red-500">
-      Error loading users
+      Error al cargar usuarios
     </div>
   ) : (
     <div

@@ -5,7 +5,7 @@ const SuccessfulText = () => {
   const navigate = useNavigate();
   return (
     <div className="text-[18px] text-center">
-      Successfully, you will receive your cash within 3-5 minutes
+      Si lo consigue, recibirá su dinero en 3-5 minutos.
       <div className="flex gap-2 w-full items-center  mt-4">
         <button
           onClick={() => {

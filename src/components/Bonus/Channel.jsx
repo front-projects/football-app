@@ -45,7 +45,7 @@ const Channel = () => {
           <TelegramIcon />
         </h1>
         <p className="text-[11px] text-[#007ED2]">
-          Subscribe to telegram and get +5 USD
+          Suscríbete a telegram y recibe +5 USD
         </p>
         <div
           className="bg-[#007ED2] w-full rounded-[28px] mt-[11px] text-[11px] py-[10px] w-max px-[16px]"
@@ -54,14 +54,18 @@ const Channel = () => {
             WebApp.openTelegramLink(url);
           }}
         >
-          Subscribe
+          Suscríbase
         </div>
         <button
           disabled={success}
           type="submit"
           className="absolute left-1/2 -translate-x-1/2 -bottom-4 py-2 bg-[#E7FF2B] text-[#37C100] rounded-[28px] w-max px-[20px] text-[11px]"
         >
-          {isLoading ? "Sending..." : success ? "Received" : "Get a bonus "}
+          {isLoading
+            ? "Envío de..."
+            : success
+              ? "Recibido"
+              : "Consigue una bonificación "}
         </button>
       </form>
     </>

@@ -37,7 +37,7 @@ const History = () => {
         {history?.map((el) => (
           <HistoryItem key={el.name + el.price} data={el} />
         ))}
-        <div className="w-full text-center">Your history is clean</div>
+        <div className="w-full text-center">Su historial está limpio</div>
       </div>
     </>
   );

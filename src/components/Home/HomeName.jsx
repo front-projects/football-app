@@ -37,7 +37,7 @@ export default function HomeName() {
 
   return (
     <>
-      {isError && <ErrorAlert>Something went wrong. Try again</ErrorAlert>}
+      {isError && <ErrorAlert>Algo ha ido mal. Vuelve a intentarlo</ErrorAlert>}
       <div
         className="flex items-center gap-[10px] mt-[25px] -translate-y-[100px] opacity-0"
         id="nickname-text"
@@ -62,7 +62,7 @@ export default function HomeName() {
                 className="bg-[#E7FF2B] rounded-[28px] text-[#37C100] px-2"
                 onClick={submitEditing}
               >
-                {isLoading ? "Saving..." : "Save"}
+                {isLoading ? "Ahorrar..." : "Guardar"}
               </div>
               <div
                 className="border-[#37C100] border-2 rounded-[28px] text-white px-2"
@@ -72,7 +72,7 @@ export default function HomeName() {
                   setName(user.username);
                 }}
               >
-                Cancel
+                Cancelar
               </div>
             </div>
           ) : (

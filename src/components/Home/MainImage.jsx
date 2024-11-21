@@ -158,7 +158,9 @@ export default function MainImage() {
 
   return (
     <>
-      {isError && <ErrorAlert>No energy. 1 energy = 10 min reset</ErrorAlert>}
+      {isError && (
+        <ErrorAlert>Sin energía. 1 energía = 10 min reset</ErrorAlert>
+      )}
       <div className="h-[60%] max-h-[419px] w-[298px] relative select-none">
         {floatingTexts.map((text) => (
           <span
@@ -195,10 +197,10 @@ export default function MainImage() {
           </div>
           <div className="absolute -bottom-[85px] rounded-[50%] flex items-center justify-center w-full">
             <p
-              className="text-[14px] absolute left-0 w-1/4 px-2 -translate-x-[100px] opacity-0"
+              className="text-[14px] absolute left-0 w-1/3 px-2 -translate-x-[100px] opacity-0"
               id="home-left-text"
             >
-              Click on the ball
+              Haga clic en la pelota
             </p>
             {/* NEED TO UPDATE */}
             <img
@@ -212,7 +214,7 @@ export default function MainImage() {
               className="text-[14px] absolute right-0 w-1/4 px-2 translate-x-[100px] opacity-0"
               id="home-right-text"
             >
-              To make progress
+              Para progresar
             </p>
           </div>
         </div>

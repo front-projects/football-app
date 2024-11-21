@@ -114,15 +114,15 @@ const WalletCard = () => {
         {status == "DECLINE" && (
           <div className="flex-1 text-[20px] flex flex-col items-center gap-2  text-[#E7FF2B]">
             <div className="flex-1 text-[20px] flex items-center gap-2  text-[#E7FF2B]">
-              Status: declined{" "}
+              Estado: rechazado{" "}
               <div className="text-[150%]">
                 <IoSadOutline />
               </div>
             </div>
             <div className="text-[14px]">
-              Your payment did not go through, perhaps you made a mistake or
-              there is a delay in payment. Write to technical support and
-              clarify the reason
+              Su pago no se ha efectuado, tal vez haya cometido un error o hay
+              un retraso en el pago. Escriba al servicio de asistencia técnica y
+              aclare el motivo
             </div>
             <div className="w-full mt-4">
               <button
@@ -136,9 +136,9 @@ const WalletCard = () => {
         )}
         {status == "WAITING" && (
           <div className="flex-1 text-[20px] flex flex-col items-center gap-2  text-[#E7FF2B]">
-            <p> Status: waiting for</p>
+            <p> Estado: a la espera de</p>
             <div className="flex item-center gap-2">
-              <p> payment confirmation</p>
+              <p> confirmación de pago</p>
               <div>
                 <TailSpin
                   visible={true}
@@ -161,23 +161,23 @@ const WalletCard = () => {
         {status == "SUCCESSFUL" && (
           <>
             <div className="flex-1 text-[20px] flex items-center gap-2  text-[#E7FF2B]">
-              Status: successful{" "}
+              Estado: correcto{" "}
               <div className="text-[150%]">
                 <FaSmileBeam />
               </div>
             </div>
             <div className="text-[16px] mt-4">
-              We apologize for the inconvenience caused, we on our part offer
-              you to get a bonus of ${" "}
-              {priceAmount == 7 ? 30 : priceAmount == 9 ? 9 : 7} click on the
-              button below
+              Le pedimos disculpas por las molestias ocasionadas, nosotros por
+              nuestra parte le ofrecemos a usted una bonificación de ${" "}
+              {priceAmount == 7 ? 30 : priceAmount == 9 ? 9 : 7} haga clic en el
+              botón
             </div>
             <div className="w-full mt-4">
               <button
                 className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1"
                 onClick={getBonus}
               >
-                Get a bonus
+                Consigue una bonificación
               </button>
             </div>
           </>
@@ -192,32 +192,32 @@ const WalletCard = () => {
               );
             }}
           >
-            <h1 className="text-center text-[24px]">Enter your details</h1>
+            <h1 className="text-center text-[24px]">Introduzca sus datos</h1>
             {status == "VERIFIED" && priceAmount == 14 && (
               <div className="text-[13px]">
-                Because your earnings are in dollars, you'll have to pay a fee
-                the conversion to your country's currency and you'll get your
-                earnings within 2-3 minutes. within 2-3 minutes and it also has
-                a button “pay for conversion”.
+                Como tus ganancias son en dólares, tendrás que pagar una
+                comisión la conversión a la moneda de tu país y obtendrás tus
+                ganancias en 2-3 minutos. en 2-3 minutos y también tiene un
+                botón «pagar por la conversión».
               </div>
             )}
             <div className="rounded-[28px] w-full bg-[#FFFFFF66] p-3">
               <input
                 className="w-full"
-                placeholder="Enter your full name"
+                placeholder="Introduzca su nombre completo"
                 required
               />
             </div>
             <div className="rounded-[28px] w-full bg-[#FFFFFF66] p-3">
               <input
                 className="w-full"
-                placeholder="Enter your bank name (optional)"
+                placeholder="Introduzca el nombre de su banco (opcional)"
               />
             </div>
             <div className="rounded-[28px] w-full bg-[#FFFFFF66] p-3">
               <input
                 className="w-full"
-                placeholder="Enter your card number"
+                placeholder="Introduzca su número de tarjeta"
                 required
               />
             </div>
@@ -227,8 +227,8 @@ const WalletCard = () => {
                 className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1"
                 type="submit"
               >
-                PAY {activeCurrency?.value * priceAmount}{" "}
-                {activeCurrency?.country}
+                PAGAR
+                {activeCurrency?.value * priceAmount} {activeCurrency?.country}
               </button>
               {/* <button className="w-full rounded-md outline outline-2 outline-[#E7FF2B] py-1">
                 Cancel
@@ -238,10 +238,11 @@ const WalletCard = () => {
         )}
         {status == "NATIONAL" && (
           <div className="text-[15px]">
-            Dear user, due to the fact that the bank that will send you your
-            money is in another country you will need to deposit (the amount in
-            its currency base 17$), this is the amount that you will be added to
-            your earnings immediately after payment.
+            Estimado usuario, debido a que el banco que le enviará su dinero
+            está en otro país tendrá que depositar
+            {activeCurrency?.value * 17} {activeCurrency?.country}, esta es la
+            cantidad que se le añadirá a sus ganancias inmediatamente después
+            del pago.
             <button
               className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1 mt-8"
               type="submit"
@@ -253,7 +254,7 @@ const WalletCard = () => {
                 );
               }}
             >
-              PAY INTERNATIONAL TRANSFER
+              PAGAR TRANSFERENCIA INTERNACIONAL
             </button>
           </div>
         )}
@@ -268,7 +269,7 @@ const WalletCard = () => {
               );
             }}
           >
-            <h1 className="text-center text-[24px]">Enter your details</h1>
+            <h1 className="text-center text-[24px]">Introduzca sus datos</h1>
             <div className="rounded-[28px] w-full bg-[#FFFFFF66] p-3">
               <input
                 className="w-full"
@@ -277,15 +278,19 @@ const WalletCard = () => {
               />
             </div>
             <div className="rounded-[28px] w-full bg-[#FFFFFF66] p-3">
-              <input className="w-full" placeholder="Date of birthd" required />
+              <input
+                className="w-full"
+                placeholder="Fecha de nacimientod"
+                required
+              />
             </div>
             <div className="rounded-[28px] w-full bg-[#FFFFFF66] p-3">
-              <input className="w-full" placeholder="Country, city" required />
+              <input className="w-full" placeholder="País, ciudad" required />
             </div>
             <div className="rounded-[28px] w-full bg-[#FFFFFF66] p-3">
               <input
                 className="w-full"
-                placeholder="Enter your bank name (optional)"
+                placeholder="Introduzca el nombre de su banco (opcional)"
               />
             </div>
 
@@ -294,7 +299,8 @@ const WalletCard = () => {
                 className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1"
                 type="submit"
               >
-                PAY {activeCurrency?.value * 19} {activeCurrency?.country}
+                PAGAR
+                {activeCurrency?.value * 19} {activeCurrency?.country}
               </button>
               {/* <button className="w-full rounded-md outline outline-2 outline-[#E7FF2B] py-1">
                 Cancel
@@ -314,9 +320,9 @@ const WalletCard = () => {
           <div className="w-full flex justify-end text-[14px]">
             {/* <div>**** 4562</div> */}
 
-            <div>Your cash</div>
+            <div>Su dinero</div>
           </div>
-          <div className="mt-8 text-[11px]">Withdrawal from 25 USD </div>
+          <div className="mt-8 text-[11px]">Retirada a partir de 25 USD </div>
         </div>
       </div>
       <div className="w-full px-[20px]">
@@ -325,21 +331,21 @@ const WalletCard = () => {
             to="/menu/wallet/history"
             className="border-[4px] border-white rounded-[28px] flex items-center justify-center py-[16px] my-[12px]"
           >
-            History
+            Historia
           </Link>
           {statusOrder == "WAITING" ? (
             <div
               onClick={() => setStatus("WAITING")}
               className="rounded-[28px] flex items-center justify-center text-[#1E1E1E] bg-white py-[16px] my-[12px]"
             >
-              Withdr
+              Retirar
             </div>
           ) : (
             <Link
               to="/menu/wallet/country-select"
               className="rounded-[28px] flex items-center justify-center text-[#1E1E1E] bg-white py-[16px] my-[12px]"
             >
-              Withdr
+              Retirar
             </Link>
           )}
 

@@ -90,19 +90,19 @@ const BallItem = ({ ball }) => {
   return (
     <>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        Do you realy want to buy this player? {ball.price} USD
+        ¿De verdad quieres comprar este reproductor? {ball.price} USD
         <div className="flex gap-2 w-full items-center  mt-4">
           <button
             onClick={buyBall}
             className=" bg-[#E7FF2B] rounded-md w-full text-[#37C100] py-1"
           >
-            Yes
+            Sí
           </button>
           <button
             onClick={() => setIsOpen(false)}
             className="w-full rounded-md border-2 border-[#E7FF2B] py-1"
           >
-            Cancel
+            Cancelar
           </button>
         </div>
       </Modal>
@@ -120,15 +120,15 @@ const BallItem = ({ ball }) => {
           <div
             className={`w-[90px]  bg-[#E7FF2B] text-[#37C100] text-[10px] py-1 rounded-[28px] text-center`}
           >
-            {status == "SELECTED" && "SELECTED"}
+            {status == "SELECTED" && "SELECCIONADO"}
             {status == "BOUGHT" && (
               <div onClick={updateBall}>
-                {isLoading ? "SELECTING..." : "SELECT"}
+                {isLoading ? "SELECCIÓN ..." : "SELECCIONE"}
               </div>
             )}
             {status == "AVALIABLE" && (
               <div onClick={() => setIsOpen(true)}>
-                {isLoading ? "Buying... " : `BUY ${ball.price} USD`}
+                {isLoading ? "Comprar..." : `COMPRAR ${ball.price} USD`}
               </div>
             )}
             {status == "UNAVALIABLE" && (
@@ -140,14 +140,14 @@ const BallItem = ({ ball }) => {
                   WebApp.HapticFeedback.notificationOccurred("error");
                 }}
               >
-                BUY {ball.price} USD
+                COMPRAR {ball.price} USD
               </div>
             )}
           </div>
         </div>
       </div>
-      {isError && <ErrorAlert>Something went wrong, try again</ErrorAlert>}
-      {noBalance && <ErrorAlert>You do not have enough money </ErrorAlert>}
+      {isError && <ErrorAlert>Algo ha ido mal, inténtalo de nuevo</ErrorAlert>}
+      {noBalance && <ErrorAlert>No tiene suficiente dinero </ErrorAlert>}
     </>
   );
 };

@@ -17,7 +17,7 @@ const CountrySelect = () => {
     <div className="w-full h-full pt-[40px]">
       <div className="max-h-[80%] grid grid-cols-2 gap-[15px] ">
         <div className="rounded-[28px] bg-[#FFFFFF66] text-[20px] flex items-center justify-center w-full h-[124px] px-[24px] text-center max-xsmall:max-h-[94px]">
-          Pick the country you live in
+          Elige el país en el que vives
         </div>
         {/* ARG */}
         <CountrySelectItem
@@ -71,7 +71,7 @@ const CountrySelect = () => {
           to="/menu/wallet/crypto-select"
           className="bg-[#E7FF2B] rounded-[28px] text-[#37C100] py-[17px] px-[40px]"
         >
-          Next step
+          Siguiente paso
         </Link>
       </div>
     </div>
