@@ -5,8 +5,8 @@ import axios from "axios";
 
 // const URL = "https://blockcreater.com:6054/"; // TEST
 const URL = "https://fotball-learn.site:6044/api/v1/"; //PROD
-const TYPE = "DEV";
-// const TYPE = "PROD";
+// const TYPE = "DEV";
+const TYPE = "PROD";
 
 // export const TG_ID = "kleinheisterkamp";
 export const TG_ID = WebApp.initDataUnsafe.user.username;
