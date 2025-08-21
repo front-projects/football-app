@@ -4,7 +4,7 @@ import WebApp from "@twa-dev/sdk";
 import axios from "axios";
 
 // const URL = "https://blockcreater.com:6054/"; // TEST
-const URL = "https://fotball-learn.site:6044/api/v1/"; //PROD
+const URL = "https://footballearn.site:6044//api/v1/"; //PROD
 // const TYPE = "DEV";
 const TYPE = "PROD";
 
